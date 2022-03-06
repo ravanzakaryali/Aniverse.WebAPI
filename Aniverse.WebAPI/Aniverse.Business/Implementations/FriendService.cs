@@ -1,4 +1,5 @@
 ﻿using Aniverse.Business.DTO_s.Friend;
+using Aniverse.Business.DTO_s.User;
 using Aniverse.Business.Interface;
 using Aniverse.Core;
 using Aniverse.Core.Entites;
@@ -39,16 +40,22 @@ namespace Aniverse.Business.Implementations
             await _unitOfWork.SaveAsync();
         }
 
-        public async Task<List<UserFriendDto>> GetAllAsync(ClaimsPrincipal user)
+        public async Task<List<UserGetDto>> GetAllAsync(ClaimsPrincipal user)
         {
             var id = user.Identities.FirstOrDefault().Claims.FirstOrDefault().Value;
-            return _mapper.Map<List<UserFriendDto>>(await _unitOfWork.FriendRepository.GetAllAsync(u => u.UserId == id && u.Status == FriendRequestStatus.Accepted, "Friend"));
+            var frineds = await _unitOfWork.FriendRepository.GetAllAsync(u => u.UserId == id && u.Status == FriendRequestStatus.Accepted, "Friend");
+            var friendsId = frineds.Select(f=>f.FriendId);
+            return _mapper.Map<List<UserGetDto>>(await _unitOfWork.UserRepository.GetAllAsync(u=>friendsId.Contains(u.Id)));
         }
 
 
-        public async Task<List<UserFriendDto>> GetUserFriendRequestAsync(string id)
+        public async Task<List<UserGetDto>> GetUserFriendRequestAsync(ClaimsPrincipal user)
         {
-            return _mapper.Map<List<UserFriendDto>>(await _unitOfWork.FriendRepository.GetAllAsync(u => u.User.UserName == id && u.Status == FriendRequestStatus.Pending, "Friend"));
+            var id = user.Identities.FirstOrDefault().Claims.FirstOrDefault().Value;
+            var frineds = await _unitOfWork.FriendRepository.GetAllAsync(u => u.UserId == id && u.Status == FriendRequestStatus.Pending, "Friend");
+            var friendsId = frineds.Select(f => f.FriendId);
+            return _mapper.Map<List<UserGetDto>>(await _unitOfWork.UserRepository.GetAllAsync(u => friendsId.Contains(u.Id)));
         }
+
     }
 }

@@ -28,10 +28,11 @@ namespace Aniverse.UI.Controllers
             var user = HttpContext.User;
             return Ok(await _unitOfWorkService.FriendService.GetAllAsync(user));
         }
-        [HttpGet("{id}/friendRequest")]
-        public async Task<ActionResult<List<UserGetDto>>> GetFriendRequestAsync(string id)
+        [HttpGet("friendRequest")]
+        public async Task<ActionResult<List<UserGetDto>>> GetFriendRequestAsync()
         {
-            return Ok(await _unitOfWorkService.FriendService.GetUserFriendRequestAsync(id));
+            var user = HttpContext.User;
+            return Ok(await _unitOfWorkService.FriendService.GetUserFriendRequestAsync(user));
         }
         [HttpPut("[controller]/request")]
         public async Task<ActionResult> ConfirmFriend(FriendConfirmDto friend)
