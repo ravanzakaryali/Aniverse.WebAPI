@@ -1,0 +1,16 @@
+D:\GitHub Project\Animalgram\Animalgram.Data\bin\Debug\netcoreapp3.1\Animalgram.Data.deps.json
+D:\GitHub Project\Animalgram\Animalgram.Data\bin\Debug\netcoreapp3.1\Animalgram.Data.dll
+D:\GitHub Project\Animalgram\Animalgram.Data\bin\Debug\netcoreapp3.1\Animalgram.Data.pdb
+D:\GitHub Project\Animalgram\Animalgram.Data\obj\Debug\netcoreapp3.1\Animalgram.Data.csproj.AssemblyReference.cache
+D:\GitHub Project\Animalgram\Animalgram.Data\obj\Debug\netcoreapp3.1\Animalgram.Data.GeneratedMSBuildEditorConfig.editorconfig
+D:\GitHub Project\Animalgram\Animalgram.Data\obj\Debug\netcoreapp3.1\Animalgram.Data.AssemblyInfoInputs.cache
+D:\GitHub Project\Animalgram\Animalgram.Data\obj\Debug\netcoreapp3.1\Animalgram.Data.AssemblyInfo.cs
+D:\GitHub Project\Animalgram\Animalgram.Data\obj\Debug\netcoreapp3.1\Animalgram.Data.csproj.CoreCompileInputs.cache
+D:\GitHub Project\Animalgram\Animalgram.Data\obj\Debug\netcoreapp3.1\Animalgram.Data.dll
+D:\GitHub Project\Animalgram\Animalgram.Data\obj\Debug\netcoreapp3.1\Animalgram.Data.pdb
+D:\GitHub Project\Animalgram\Animalgram.Data\bin\Debug\netcoreapp3.1\Animalgram.Core.dll
+D:\GitHub Project\Animalgram\Animalgram.Data\bin\Debug\netcoreapp3.1\Animalgram.Core.pdb
+D:\GitHub Project\Animalgram\Animalgram.Data\obj\Debug\netcoreapp3.1\Animalgram.Data.csproj.CopyComplete
+D:\GitHub Project\Animalgram\Animalgram.Data\bin\Debug\netcoreapp3.1\Animalgram.Data.runtimeconfig.json
+D:\GitHub Project\Animalgram\Animalgram.Data\bin\Debug\netcoreapp3.1\Animalgram.Data.runtimeconfig.dev.json
+D:\GitHub Project\Animalgram\Animalgram.Data\obj\Debug\netcoreapp3.1\Animalgram.Data.genruntimeconfig.cache

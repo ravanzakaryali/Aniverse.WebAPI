@@ -1,0 +1,69 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Migrations\20220208191608_CreateDB.cs" />
+    <Compile Remove="Migrations\20220208191608_CreateDB.Designer.cs" />
+    <Compile Remove="Migrations\20220208231156_ModifiedDefaultValue.cs" />
+    <Compile Remove="Migrations\20220208231156_ModifiedDefaultValue.Designer.cs" />
+    <Compile Remove="Migrations\20220210081035_ModifiedAnimaltable.cs" />
+    <Compile Remove="Migrations\20220210081035_ModifiedAnimaltable.Designer.cs" />
+    <Compile Remove="Migrations\20220210081328_ModifiedAnimaltable.cs" />
+    <Compile Remove="Migrations\20220210081328_ModifiedAnimaltable.Designer.cs" />
+    <Compile Remove="Migrations\20220210081512_ModifiedAnimaltable.cs" />
+    <Compile Remove="Migrations\20220210081512_ModifiedAnimaltable.Designer.cs" />
+    <Compile Remove="Migrations\20220210093943_AddCollection.cs" />
+    <Compile Remove="Migrations\20220210093943_AddCollection.Designer.cs" />
+    <Compile Remove="Migrations\20220210100838_AddModifiedCollection.cs" />
+    <Compile Remove="Migrations\20220210100838_AddModifiedCollection.Designer.cs" />
+    <Compile Remove="Migrations\20220210101011_AddModifiedCollection.cs" />
+    <Compile Remove="Migrations\20220210101011_AddModifiedCollection.Designer.cs" />
+    <Compile Remove="Migrations\20220210101136_AddModifiedCollection.cs" />
+    <Compile Remove="Migrations\20220210101136_AddModifiedCollection.Designer.cs" />
+    <Compile Remove="Migrations\20220210151305_ModifiedId.cs" />
+    <Compile Remove="Migrations\20220210151305_ModifiedId.Designer.cs" />
+    <Compile Remove="Migrations\20220210180823_AddedUserFriendId.cs" />
+    <Compile Remove="Migrations\20220210180823_AddedUserFriendId.Designer.cs" />
+    <Compile Remove="Migrations\20220210181605_RemoveUserFrientTable.cs" />
+    <Compile Remove="Migrations\20220210181605_RemoveUserFrientTable.Designer.cs" />
+    <Compile Remove="Migrations\20220210181815_AddedUserFriend.cs" />
+    <Compile Remove="Migrations\20220210181815_AddedUserFriend.Designer.cs" />
+    <Compile Remove="Migrations\20220210182214_RemoveUserFriend.cs" />
+    <Compile Remove="Migrations\20220210182214_RemoveUserFriend.Designer.cs" />
+    <Compile Remove="Migrations\20220215061657_ModifiedSMTable.cs" />
+    <Compile Remove="Migrations\20220215061657_ModifiedSMTable.Designer.cs" />
+    <Compile Remove="Migrations\20220215061920_ModifiedUserSMTable.cs" />
+    <Compile Remove="Migrations\20220215061920_ModifiedUserSMTable.Designer.cs" />
+    <Compile Remove="Migrations\20220227012526_ModifiedDate.cs" />
+    <Compile Remove="Migrations\20220227012526_ModifiedDate.Designer.cs" />
+    <Compile Remove="Migrations\20220227013025_AnimalIdullModifiied.cs" />
+    <Compile Remove="Migrations\20220227013025_AnimalIdullModifiied.Designer.cs" />
+    <Compile Remove="Migrations\20220301174452_FrDeleteAddedAnimalFollow.cs" />
+    <Compile Remove="Migrations\20220301174452_FrDeleteAddedAnimalFollow.Designer.cs" />
+    <Compile Remove="Migrations\20220302214537_AddedAnimalFollow.cs" />
+    <Compile Remove="Migrations\20220302214537_AddedAnimalFollow.Designer.cs" />
+    <Compile Remove="Migrations\20220302214750_AddedAnimalFollow.cs" />
+    <Compile Remove="Migrations\20220302214750_AddedAnimalFollow.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="10.3.6" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.22" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="3.1.22" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.22" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.22" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="3.1.22" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.22">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Aniverse.Core\Aniverse.Core.csproj" />
+  </ItemGroup>
+
+</Project>

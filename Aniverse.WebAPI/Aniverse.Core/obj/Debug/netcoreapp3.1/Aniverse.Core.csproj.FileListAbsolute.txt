@@ -1,0 +1,26 @@
+D:\GitHub Project\Animalgram\Animalgram.Core\bin\Debug\netcoreapp3.1\Aniverse.Core.deps.json
+D:\GitHub Project\Animalgram\Animalgram.Core\bin\Debug\netcoreapp3.1\Aniverse.Core.runtimeconfig.json
+D:\GitHub Project\Animalgram\Animalgram.Core\bin\Debug\netcoreapp3.1\Aniverse.Core.runtimeconfig.dev.json
+D:\GitHub Project\Animalgram\Animalgram.Core\bin\Debug\netcoreapp3.1\Aniverse.Core.dll
+D:\GitHub Project\Animalgram\Animalgram.Core\bin\Debug\netcoreapp3.1\Aniverse.Core.pdb
+D:\GitHub Project\Animalgram\Animalgram.Core\obj\Debug\netcoreapp3.1\Aniverse.Core.csproj.AssemblyReference.cache
+D:\GitHub Project\Animalgram\Animalgram.Core\obj\Debug\netcoreapp3.1\Aniverse.Core.GeneratedMSBuildEditorConfig.editorconfig
+D:\GitHub Project\Animalgram\Animalgram.Core\obj\Debug\netcoreapp3.1\Aniverse.Core.AssemblyInfoInputs.cache
+D:\GitHub Project\Animalgram\Animalgram.Core\obj\Debug\netcoreapp3.1\Aniverse.Core.AssemblyInfo.cs
+D:\GitHub Project\Animalgram\Animalgram.Core\obj\Debug\netcoreapp3.1\Aniverse.Core.csproj.CoreCompileInputs.cache
+D:\GitHub Project\Animalgram\Animalgram.Core\obj\Debug\netcoreapp3.1\Aniverse.Core.dll
+D:\GitHub Project\Animalgram\Animalgram.Core\obj\Debug\netcoreapp3.1\Aniverse.Core.pdb
+D:\GitHub Project\Animalgram\Animalgram.Core\obj\Debug\netcoreapp3.1\Aniverse.Core.genruntimeconfig.cache
+C:\CodeAcademyFinalProject\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.Core\bin\Debug\netcoreapp3.1\Aniverse.Core.deps.json
+C:\CodeAcademyFinalProject\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.Core\bin\Debug\netcoreapp3.1\Aniverse.Core.runtimeconfig.json
+C:\CodeAcademyFinalProject\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.Core\bin\Debug\netcoreapp3.1\Aniverse.Core.runtimeconfig.dev.json
+C:\CodeAcademyFinalProject\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.Core\bin\Debug\netcoreapp3.1\Aniverse.Core.dll
+C:\CodeAcademyFinalProject\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.Core\bin\Debug\netcoreapp3.1\Aniverse.Core.pdb
+C:\CodeAcademyFinalProject\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.Core\obj\Debug\netcoreapp3.1\Aniverse.Core.csproj.AssemblyReference.cache
+C:\CodeAcademyFinalProject\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.Core\obj\Debug\netcoreapp3.1\Aniverse.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\CodeAcademyFinalProject\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.Core\obj\Debug\netcoreapp3.1\Aniverse.Core.AssemblyInfoInputs.cache
+C:\CodeAcademyFinalProject\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.Core\obj\Debug\netcoreapp3.1\Aniverse.Core.AssemblyInfo.cs
+C:\CodeAcademyFinalProject\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.Core\obj\Debug\netcoreapp3.1\Aniverse.Core.csproj.CoreCompileInputs.cache
+C:\CodeAcademyFinalProject\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.Core\obj\Debug\netcoreapp3.1\Aniverse.Core.dll
+C:\CodeAcademyFinalProject\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.Core\obj\Debug\netcoreapp3.1\Aniverse.Core.pdb
+C:\CodeAcademyFinalProject\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.Core\obj\Debug\netcoreapp3.1\Aniverse.Core.genruntimeconfig.cache

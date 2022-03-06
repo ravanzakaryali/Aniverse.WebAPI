@@ -1,0 +1,31 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "8c34212f-ad31-4ffa-9b13-d052ab3db78a": {
+      "ProjectGuid": "8c34212f-ad31-4ffa-9b13-d052ab3db78a",
+      "DisplayName": "Aniverse.UI",
+      "ColorIndex": 0
+    },
+    "13ab46b3-624f-4e3e-9806-5e870566838d": {
+      "ProjectGuid": "13ab46b3-624f-4e3e-9806-5e870566838d",
+      "DisplayName": "Aniverse.Core",
+      "ColorIndex": 1
+    },
+    "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3": {
+      "ProjectGuid": "a2fe74e1-b743-11d0-ae1a-00a0c90fffc3",
+      "DisplayName": "Miscellaneous Files",
+      "ColorIndex": -1
+    },
+    "f9962fee-5fc4-4811-a2c4-b0a1710f577b": {
+      "ProjectGuid": "f9962fee-5fc4-4811-a2c4-b0a1710f577b",
+      "DisplayName": "Aniverse.Data",
+      "ColorIndex": 2
+    },
+    "a1d939c7-da0e-4cdb-b9f2-7e506cde26f0": {
+      "ProjectGuid": "a1d939c7-da0e-4cdb-b9f2-7e506cde26f0",
+      "DisplayName": "Aniverse.Business",
+      "ColorIndex": 3
+    }
+  },
+  "NextColorIndex": 4
+}
