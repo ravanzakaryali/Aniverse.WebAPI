@@ -39,10 +39,13 @@ namespace Aniverse.Business.Implementations
             await _unitOfWork.SaveAsync();
         }
 
-        public async Task<List<UserFriendDto>> GetAllAsync(string id)
+        public async Task<List<UserFriendDto>> GetAllAsync(ClaimsPrincipal user)
         {
-            return _mapper.Map<List<UserFriendDto>>(await _unitOfWork.FriendRepository.GetAllAsync(u => u.User.UserName == id && u.Status == FriendRequestStatus.Accepted, "Friend"));
+            var id = user.Identities.FirstOrDefault().Claims.FirstOrDefault().Value;
+            return _mapper.Map<List<UserFriendDto>>(await _unitOfWork.FriendRepository.GetAllAsync(u => u.UserId == id && u.Status == FriendRequestStatus.Accepted, "Friend"));
         }
+
+
         public async Task<List<UserFriendDto>> GetUserFriendRequestAsync(string id)
         {
             return _mapper.Map<List<UserFriendDto>>(await _unitOfWork.FriendRepository.GetAllAsync(u => u.User.UserName == id && u.Status == FriendRequestStatus.Pending, "Friend"));
