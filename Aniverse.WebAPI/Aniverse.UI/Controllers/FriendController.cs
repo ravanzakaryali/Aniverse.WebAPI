@@ -49,13 +49,27 @@ namespace Aniverse.UI.Controllers
             }
         }
         [HttpPost("friend/add")]
-        public async Task<ActionResult> AddFriend(AddFriendDto addFriend)
+        public async Task<ActionResult> AddFriend(FriendRequestDto addFriend)
         {
             try
             {
                 var user = HttpContext.User;
                 await _unitOfWorkService.FriendService.AddFriendAsync(addFriend, user);
                 return StatusCode(StatusCodes.Status204NoContent, new { Status = "Successs", Message = "Add Friend successfully" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new { Status = "Error", Message = ex.Message });
+            }
+        }
+        [HttpPost("friend/delete")]
+        public async Task<ActionResult> DeleteFriend(FriendRequestDto deleteFriend)
+        {
+            try
+            {
+                var user = HttpContext.User;
+                await _unitOfWorkService.FriendService.DeleteFriendAsync(deleteFriend, user);
+                return StatusCode(StatusCodes.Status204NoContent, new { Status = "Successs", Message = "Delete Friend successfully" });
             }
             catch (Exception ex)
             {

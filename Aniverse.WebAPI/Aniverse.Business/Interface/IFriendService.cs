@@ -14,6 +14,7 @@ namespace Aniverse.Business.Interface
         Task<List<UserGetDto>> GetAllAsync(string username, ClaimsPrincipal user);
         Task<List<UserGetDto>> GetUserFriendRequestAsync(ClaimsPrincipal user);
         Task ConfirmFriend(ClaimsPrincipal user, FriendConfirmDto friend);
-        Task AddFriendAsync(AddFriendDto addFriend,ClaimsPrincipal user);
+        Task AddFriendAsync(FriendRequestDto addFriend,ClaimsPrincipal user);
+        Task DeleteFriendAsync(FriendRequestDto friend, ClaimsPrincipal user);
     }
 }

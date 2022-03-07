@@ -57,15 +57,15 @@ namespace Aniverse.Business.Implementations
             var friendsId = frineds.Select(f => f.FriendId);
             return _mapper.Map<List<UserGetDto>>(await _unitOfWork.UserRepository.GetAllAsync(u => friendsId.Contains(u.Id)));
         }
-        public async Task AddFriendAsync(AddFriendDto addFriend, ClaimsPrincipal user)
+        public async Task AddFriendAsync(FriendRequestDto addFriend, ClaimsPrincipal userClaims)
         {
-            var UserId = user.Identities.FirstOrDefault().Claims.FirstOrDefault().Value;
-            var friends = await _unitOfWork.UserRepository.GetAsync(u => u.Id == addFriend.Id);
-            if(friends is null)
+            var UserId = userClaims.Identities.FirstOrDefault().Claims.FirstOrDefault().Value;
+            var user = await _unitOfWork.UserRepository.GetAsync(u => u.Id == addFriend.Id);
+            if(user is null)
             {
                 throw new NotFoundException("User is not found");
             }
-            var userfriends = await _unitOfWork.FriendRepository.GetAsync(f=>f.UserId == friends.Id && f.FriendId == UserId);
+            var userfriends = await _unitOfWork.FriendRepository.GetAsync(f=>f.UserId == user.Id && f.FriendId == UserId);
             if (userfriends != null)
             {
                 throw new AlreadyException("Friendly or blocked user");
@@ -78,6 +78,23 @@ namespace Aniverse.Business.Implementations
             };
             await _unitOfWork.FriendRepository.CreateAsync(userFriend);
             await _unitOfWork.SaveAsync();
+        }
+        public async Task DeleteFriendAsync(FriendRequestDto deleteFriend,ClaimsPrincipal userClaims)
+        {
+            var UserId = userClaims.Identities.FirstOrDefault().Claims.FirstOrDefault().Value;
+            var user = await _unitOfWork.UserRepository.GetAsync(u => u.Id == deleteFriend.Id);
+            if(user is null)
+            {
+                throw new NotFoundException("User is not found");
+            }
+            var userfriends = await _unitOfWork.FriendRepository.GetAsync(f => f.UserId == user.Id && f.FriendId == UserId);
+            if (userfriends is null)
+            {
+                throw new AlreadyException("Friend is not found");
+            }
+            _unitOfWork.FriendRepository.Delete(userfriends);
+            await _unitOfWork.SaveAsync();
+
         }
 
     }

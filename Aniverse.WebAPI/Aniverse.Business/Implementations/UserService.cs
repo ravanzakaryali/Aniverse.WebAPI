@@ -39,9 +39,10 @@ namespace Aniverse.Business.Implementations
         public async Task<List<UserAllDto>> GetAllAsync(ClaimsPrincipal user)
         {
             var userId = user.Identities.FirstOrDefault().Claims.FirstOrDefault().Value;
-            var friends = await _unitOfWork.FriendRepository.GetAllAsync(f=>f.UserId == userId);
+            var friends = await _unitOfWork.FriendRepository.GetAllAsync(f=>f.UserId == userId || f.FriendId==userId);
             var friendsId = friends.Select(f=>f.FriendId);
-            return _mapper.Map<List<UserAllDto>>(await _unitOfWork.UserRepository.GetAllAsync(u=> !friendsId.Contains(u.Id) && u.Id != userId));
+            var usersId = friends.Select(f=>f.UserId);
+            return _mapper.Map<List<UserAllDto>>(await _unitOfWork.UserRepository.GetAllAsync(u=> !friendsId.Contains(u.Id) && !usersId.Contains(u.Id) && u.Id != userId));
         }
         public async Task<UserGetDto> GetAsync(string id, HttpRequest request)
         {
