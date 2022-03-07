@@ -4,6 +4,7 @@ using Aniverse.Business.Helpers;
 using Aniverse.Business.Interface;
 using Aniverse.Core;
 using Aniverse.Core.Entites;
+using Aniverse.Core.Entites.Enum;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.JsonPatch;
@@ -105,6 +106,13 @@ namespace Aniverse.Business.Implementations
 
             }
             return photosMap;
+        }
+        public async Task<List<UserGetDto>> GetBlcokUsersAsync(ClaimsPrincipal user)
+        {
+            var id = user.Identities.FirstOrDefault().Claims.FirstOrDefault().Value;
+            var frineds = await _unitOfWork.FriendRepository.GetAllAsync(u => u.UserId == id && u.Status == FriendRequestStatus.Blocked, "Friend");
+            var friendsId = frineds.Select(f => f.FriendId);
+            return _mapper.Map<List<UserGetDto>>(await _unitOfWork.UserRepository.GetAllAsync(u => friendsId.Contains(u.Id)));
         }
     }
 }

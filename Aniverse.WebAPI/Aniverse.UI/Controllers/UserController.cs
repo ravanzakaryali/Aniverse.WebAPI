@@ -78,5 +78,11 @@ namespace Aniverse.UI.Controllers
             var request = HttpContext.Request;
             return Ok(await _unitOfWorkService.UserService.GetPhotos(id,request,page,size));
         }
+        [HttpGet("block")]
+        public async Task<ActionResult<List<UserGetDto>>> GetBlockUsers()
+        {
+            var user = HttpContext.User;
+            return Ok(await _unitOfWorkService.UserService.GetBlcokUsersAsync(user));
+        }
     }
 }
