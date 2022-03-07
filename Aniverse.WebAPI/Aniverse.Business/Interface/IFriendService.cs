@@ -11,10 +11,12 @@ namespace Aniverse.Business.Interface
 {
     public interface IFriendService
     {
-        Task<List<UserGetDto>> GetAllAsync(string username, ClaimsPrincipal user);
-        Task<List<UserGetDto>> GetUserFriendRequestAsync(ClaimsPrincipal user);
-        Task ConfirmFriend(ClaimsPrincipal user, FriendConfirmDto friend);
-        Task AddFriendAsync(FriendRequestDto addFriend,ClaimsPrincipal user);
-        Task DeleteFriendAsync(FriendRequestDto friend, ClaimsPrincipal user);
+        Task<List<UserGetDto>> GetAllAsync(string username);
+        Task<List<UserGetDto>> GetUserFriendRequestAsync();
+        Task ConfirmFriend(FriendConfirmDto friend);
+        Task AddFriendAsync(FriendRequestDto addFriend);
+        Task DeleteFriendAsync(FriendRequestDto friend);
+        Task FriendBlockAsync(FriendRequestDto friend);
+        Task FriendUnBlockAsync(FriendRequestDto friend);
     }
 }

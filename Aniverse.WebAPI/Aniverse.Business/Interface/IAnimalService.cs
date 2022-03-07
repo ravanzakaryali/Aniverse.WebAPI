@@ -14,10 +14,10 @@ namespace Aniverse.Business.Interface
         Task<List<AnimalAllDto>> GetFriendAsync(string username);
         Task<List<AnimalAllDto>> GetAnimalUserAsync(string username);
         Task<List<PostGetDto>> GetAnimalPosts(string animalname, HttpRequest request);
-        Task FollowCreate(FollowDto follow, ClaimsPrincipal user);
+        Task FollowCreate(FollowDto follow);
         Task<List<AnimalGetCategory>> GetAnimalCategory();
-        Task AnimalCreateAsync(AnimalCreateDto animalCreate,ClaimsPrincipal user);
-        Task<List<AnimalSelectGetDto>> SelectAnimal(ClaimsPrincipal user);
-        Task UpdateAnimalAsync(int id, AnimalUpdateDto animalUpdate, ClaimsPrincipal user);
+        Task AnimalCreateAsync(AnimalCreateDto animalCreate);
+        Task<List<AnimalSelectGetDto>> SelectAnimal();
+        Task UpdateAnimalAsync(int id, AnimalUpdateDto animalUpdate);
     }
 }

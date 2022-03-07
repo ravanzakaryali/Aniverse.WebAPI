@@ -9,6 +9,5 @@ namespace Aniverse.Core.Entites.Enum
         Male,
         Female,
         Other
-
     }
 }

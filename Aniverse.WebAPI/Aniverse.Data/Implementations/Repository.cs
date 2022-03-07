@@ -27,7 +27,7 @@ namespace Aniverse.Data.Implementations
                 : await query.Where(exp).ToListAsync();
         }
 
-        public async Task<List<TEntity>> GetAllPaginateAsync(int page, int size, Expression<Func<TEntity, bool>> exp = null, params string[] includes)
+        public async Task<List<TEntity>> GetAllPaginateAsync(int page, int size, Expression<Func<TEntity, bool>> exp = null ,params string[] includes)
         {
             var query = GetQuery(includes);
             return exp is null

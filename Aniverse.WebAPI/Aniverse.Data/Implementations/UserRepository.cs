@@ -17,9 +17,5 @@ namespace Aniverse.Data.Implementations
         {
             _context = context;
         }
-        //public async Task<List<AppUser>> GetFriends(string id)
-        //{
-        //    return await _context.UserFriends.Where(u => u.User.UserName == id).Include(u => u.Friend).Select(u => u.Friend).ToListAsync();
-        //}
     }
 }

@@ -21,8 +21,8 @@ using Microsoft.Extensions.FileProviders;
 using System.IO;
 using Aniverse.UI.Hubs;
 using FluentValidation.AspNetCore;
-using System.Collections;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Http;
 
 namespace Aniverse
 {
@@ -76,6 +76,9 @@ namespace Aniverse
             });
             services.AddSingleton<IDictionary<string, UserConnection>>(opts => new Dictionary<string, UserConnection>());
             services.AddMapperService();
+
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+
             services.AddScoped<IUnitOfWorkService, UnitOfWorkService>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IJwtService, JwtService>();

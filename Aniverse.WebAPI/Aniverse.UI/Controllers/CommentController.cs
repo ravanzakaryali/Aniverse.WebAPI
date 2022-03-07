@@ -1,4 +1,5 @@
 ﻿using Aniverse.Business.DTO_s.Comment;
+using Aniverse.Business.DTO_s.StatusCode;
 using Aniverse.Business.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -29,13 +30,12 @@ namespace Aniverse.UI.Controllers
         {
             try
             {
-                var user = HttpContext.User;
-                await _unitOfWorkService.CommentService.CreateAsync(commentCreate, user);
-                return StatusCode(StatusCodes.Status204NoContent, new { Status = "Successs", Message = "Story successfully posted" });
+                await _unitOfWorkService.CommentService.CreateAsync(commentCreate);
+                return StatusCode(StatusCodes.Status204NoContent, new Response { Status = "Successs", Message = "Story successfully posted" });
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status502BadGateway, new { Status = "Error", Message = ex.ToString() });
+                return StatusCode(StatusCodes.Status502BadGateway, new  Response { Status = "Error", Message = ex.Message });
             }
         }
     }

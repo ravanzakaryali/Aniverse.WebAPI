@@ -1,4 +1,5 @@
 ﻿using Aniverse.Business.DTO_s.Authentication;
+using Aniverse.Business.DTO_s.User;
 using Aniverse.Business.Helpers;
 using Aniverse.Business.Services.Interface;
 using Aniverse.Core.Entites;
@@ -14,12 +15,10 @@ namespace Aniverse.UI.Controllers
     public class AuthenticateController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IJwtService _jwtService;
-        public AuthenticateController(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager, IJwtService jwtService)
+        public AuthenticateController(UserManager<AppUser> userManager, IJwtService jwtService)
         {
             _userManager = userManager;
-            _roleManager = roleManager;
             _jwtService = jwtService;
         }
         [HttpPost("register")]
@@ -56,7 +55,18 @@ namespace Aniverse.UI.Controllers
             if (user == null) return NotFound();
             if (!await _userManager.CheckPasswordAsync(user, login.Password)) return Unauthorized();
             var roles = _userManager.GetRolesAsync(user).Result;
-            return Ok(_jwtService.GetJwt(user, roles));
+            var jwtToken = _jwtService.GetJwt(user, roles);
+            var userData = new UserData
+            {
+                Id = user.Id,
+                Username = login.Username,
+                Email = user.Email,
+            };
+            return Ok(new
+            {
+                token = jwtToken,
+                user = userData,
+            });
         }
         #region CreateRoles
         //[HttpPost("createroles")]

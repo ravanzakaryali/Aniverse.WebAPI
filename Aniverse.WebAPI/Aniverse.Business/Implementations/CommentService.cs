@@ -1,8 +1,10 @@
 ﻿using Aniverse.Business.DTO_s.Comment;
+using Aniverse.Business.Extensions;
 using Aniverse.Business.Interface;
 using Aniverse.Core;
 using Aniverse.Core.Entites;
 using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -15,20 +17,23 @@ namespace Aniverse.Business.Implementations
 
         public readonly IUnitOfWork _unitOfWork;
         public readonly IMapper _mapper;
-        public CommentService(IUnitOfWork unitOfWork, IMapper mapper)
+        public readonly IHttpContextAccessor _httpContextAccessor;
+
+        public CommentService(IUnitOfWork unitOfWork, IMapper mapper, IHttpContextAccessor httpContextAccessor)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public async Task<List<CommentGetDto>> GetAllAsync(int id)
         {
             return _mapper.Map<List<CommentGetDto>>(await _unitOfWork.CommentRepository.GetAllAsync(c=>c.PostId == id));
         }
-        public async Task CreateAsync(CommentCreateDto commentCreate, ClaimsPrincipal user)
+        public async Task CreateAsync(CommentCreateDto commentCreate)
         {
-            var id = user.Identities.FirstOrDefault().Claims.FirstOrDefault().Value;
-            commentCreate.UserId = id;
+            var UserLoginId  = _httpContextAccessor.HttpContext.User.GetUserId();
+            commentCreate.UserId = UserLoginId;
             await _unitOfWork.CommentRepository.CreateAsync(_mapper.Map<Comment>(commentCreate));
             await _unitOfWork.SaveAsync();
         }

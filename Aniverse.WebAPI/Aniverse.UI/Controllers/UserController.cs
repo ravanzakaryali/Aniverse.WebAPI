@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace Aniverse.UI.Controllers
@@ -19,7 +18,7 @@ namespace Aniverse.UI.Controllers
 
     public class UserController : Controller
     {
-        private IUnitOfWorkService _unitOfWorkService { get; }
+        private readonly IUnitOfWorkService _unitOfWorkService;
         public UserController(IUnitOfWorkService userService)
         {
             _unitOfWorkService = userService;
@@ -27,8 +26,7 @@ namespace Aniverse.UI.Controllers
         [HttpGet]
         public async Task<ActionResult<List<UserAllDto>>> GetAllAsync()
         {
-            var user = HttpContext.User;
-            return await _unitOfWorkService.UserService.GetAllAsync(user);
+            return await _unitOfWorkService.UserService.GetAllAsync();
         }
         [HttpGet("{id}")]
         public async Task<ActionResult<UserGetDto>> GetAsync(string id)
@@ -37,10 +35,9 @@ namespace Aniverse.UI.Controllers
             return Ok(await _unitOfWorkService.UserService.GetAsync(id, request));
         }
         [HttpPatch("bio")]
-        public async Task<ActionResult> BioPatch([FromBody] JsonPatchDocument<AppUser> bioChange)
+        public async Task<ActionResult> BioUpdate([FromBody] JsonPatchDocument<AppUser> bioChange)
         {
-            var user = HttpContext.User;
-            await _unitOfWorkService.UserService.ChangeBio(bioChange, user);
+            await _unitOfWorkService.UserService.ChangeBio(bioChange);
             return NoContent();
         }
         [HttpPost("profile")]
@@ -48,8 +45,7 @@ namespace Aniverse.UI.Controllers
         {
             try
             {
-                var user = HttpContext.User;
-                await _unitOfWorkService.UserService.ProfileCreate(profilePicture, user);
+                await _unitOfWorkService.UserService.ProfileCreate(profilePicture);
                 return StatusCode(StatusCodes.Status204NoContent, new { Status = "Successs", Message = "Story successfully posted" });
             }
             catch (Exception ex)
@@ -58,13 +54,13 @@ namespace Aniverse.UI.Controllers
             }
         }
         [HttpPost("cover")]
+        
         public async Task<ActionResult> ChangeCoverImage([FromForm] ProfileCreateDto coverPicture)
         {
             try
             {
 
-                var user = HttpContext.User;
-                await _unitOfWorkService.UserService.CoverCreate(coverPicture, user);
+                await _unitOfWorkService.UserService.CoverCreate(coverPicture);
                 return StatusCode(StatusCodes.Status204NoContent, new { Status = "Successs", Message = "Story successfully posted" });
             }
             catch (Exception ex)
@@ -81,8 +77,7 @@ namespace Aniverse.UI.Controllers
         [HttpGet("block")]
         public async Task<ActionResult<List<UserGetDto>>> GetBlockUsers()
         {
-            var user = HttpContext.User;
-            return Ok(await _unitOfWorkService.UserService.GetBlcokUsersAsync(user));
+            return Ok(await _unitOfWorkService.UserService.GetBlcokUsersAsync());
         }
     }
 }

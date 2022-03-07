@@ -1,4 +1,4 @@
-﻿namespace Aniverse.Business.Interface
+﻿ namespace Aniverse.Business.Interface
 {
     public interface IUnitOfWorkService
     {

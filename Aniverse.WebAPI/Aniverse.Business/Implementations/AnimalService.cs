@@ -1,6 +1,7 @@
 ﻿using Aniverse.Business.DTO_s.Animal;
 using Aniverse.Business.DTO_s.Post;
 using Aniverse.Business.Exceptions;
+using Aniverse.Business.Extensions;
 using Aniverse.Business.Interface;
 using Aniverse.Core;
 using Aniverse.Core.Entites;
@@ -18,21 +19,35 @@ namespace Aniverse.Business.Implementations
     {
         public readonly IUnitOfWork _unitOfWork;
         public readonly IMapper _mapper;
-        public AnimalService(IUnitOfWork unitOfWork, IMapper mapper)
+        public readonly IHttpContextAccessor _httpContextAccessor;
+
+        public AnimalService(IUnitOfWork unitOfWork, IMapper mapper, IHttpContextAccessor httpContextAccessor)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _httpContextAccessor = httpContextAccessor;
         }
         public async Task<AnimalGetDto> GetAsync(string id)
         {
-
-            AnimalGetDto animal = _mapper.Map<AnimalGetDto>(await _unitOfWork.AnimalRepository.GetAsync(a => a.Animalname == id, "User"));
+            var animals = await _unitOfWork.AnimalRepository.GetAsync(a => a.Animalname == id, "User");
+            if(animals is null)
+            {
+                throw new NotFoundException("Animals is not found");
+            }
+            AnimalGetDto animal = _mapper.Map<AnimalGetDto>(animals);
             var PostCount = await _unitOfWork.PostRepository.GetAllAsync(p => p.Animal.Animalname == id);
+
             List<AnimalFollow> follow = await _unitOfWork.AnimalFollowRepository.GetAllAsync(a => a.Animal.Animalname == id, "User");
+
+            if(follow is null)
+            {
+                throw new NotFoundException("Follow is not found");
+            }
+
             animal.AnimalFollow = _mapper.Map<List<AnimalFollowDto>>(follow);
+
             animal.PostCount = PostCount.Count;
             return animal;
-
         }
         public async Task<List<AnimalAllDto>> GetAllAsync()
         {
@@ -48,65 +63,79 @@ namespace Aniverse.Business.Implementations
         }
         public async Task<List<PostGetDto>> GetAnimalPosts(string animalname, HttpRequest request)
         {
-            var posts = _mapper.Map<List<PostGetDto>>(await _unitOfWork.PostRepository.GetAllAsync(p => p.Animal.Animalname == animalname, "User", "Likes", "Comments", "Comments.User", "Pictures", "Animal"));
+            var animalPost = await _unitOfWork.PostRepository.GetAllAsync(p => p.Animal.Animalname == animalname, "User", "Likes", "Comments", "Comments.User", "Pictures", "Animal");
+            if(animalPost is null)
+            {
+                throw new NotFoundException("Animal post not found");
+            }
+            var posts = _mapper.Map<List<PostGetDto>>(animalPost);
             foreach (var post in posts)
             {
                 foreach (var item in post.Pictures)
                 {
-                    item.ImageName = String.Format("{0}://{1}{2}/Images/{3}", request.Scheme, request.Host, request.PathBase, item.ImageName);
+                    item.ImageName = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{item.ImageName}");
                     var name = item.ImageName;
                 }
             }
             return posts;
         }
 
-        public async Task FollowCreate(FollowDto follow, ClaimsPrincipal user)
+        public async Task FollowCreate(FollowDto follow)
         {
 
-            var UserId = user.Identities.FirstOrDefault().Claims.FirstOrDefault().Value;
+            var UserLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
             if (follow.IsFollowing)
             {
                 var followEntity = new AnimalFollow
                 {
                     AnimalId = follow.AnimalId,
-                    UserId = UserId,
+                    UserId = UserLoginId,
                 };
                 await _unitOfWork.AnimalFollowRepository.CreateAsync(followEntity);
             }
             else
             {
-                var followDelete = await _unitOfWork.AnimalFollowRepository.GetAsync(a => a.UserId == UserId && a.AnimalId == follow.AnimalId);
+                var followDelete = await _unitOfWork.AnimalFollowRepository.GetAsync(a => a.UserId == UserLoginId && a.AnimalId == follow.AnimalId);
+                if(followDelete is null)
+                {
+                    throw new NotFoundException("Follow is not found");
+                }
                 _unitOfWork.AnimalFollowRepository.Delete(followDelete);
             }
             await _unitOfWork.SaveAsync();
         }
         public async Task<List<AnimalGetCategory>> GetAnimalCategory()
         {
-            return _mapper.Map<List<AnimalGetCategory>>(await _unitOfWork.AnimalCategory.GetAllAsync());
+            var animalCategory = await _unitOfWork.AnimalCategory.GetAllAsync();
+            if(animalCategory is null)
+            {
+                throw new NotFoundException("Animal category is not found");
+            }
+            return _mapper.Map<List<AnimalGetCategory>>(animalCategory);
         }
 
-        public async Task AnimalCreateAsync(AnimalCreateDto animalCreate, ClaimsPrincipal user)
+        public async Task AnimalCreateAsync(AnimalCreateDto animalCreate)
         {
             var animalnameDb = await _unitOfWork.AnimalRepository.GetAsync(a => a.Animalname == animalCreate.Animalname);
             if (animalnameDb != null)
             {
                 throw new AlreadyException("Already animalname");
             }
-            animalCreate.UserId = user.Identities.FirstOrDefault().Claims.FirstOrDefault().Value;
+            animalCreate.UserId = _httpContextAccessor.HttpContext.User.GetUserId();
             var animal = _mapper.Map<Animal>(animalCreate);
             await _unitOfWork.AnimalRepository.CreateAsync(animal);
             await _unitOfWork.SaveAsync();
         }
-        public async Task<List<AnimalSelectGetDto>> SelectAnimal(ClaimsPrincipal user)
+        public async Task<List<AnimalSelectGetDto>> SelectAnimal()
         {
-            var UserId = user.Identities.FirstOrDefault().Claims.FirstOrDefault().Value;
+            var UserId = _httpContextAccessor.HttpContext.User.GetUserId();
             return _mapper.Map<List<AnimalSelectGetDto>>(await _unitOfWork.AnimalRepository.GetAllAsync(a => a.UserId == UserId));
         }
 
-        public async Task UpdateAnimalAsync(int id, AnimalUpdateDto animalUpdate, ClaimsPrincipal user)
+        public async Task UpdateAnimalAsync(int id, AnimalUpdateDto animalUpdate)
         {
-            var UserId = user.Identities.FirstOrDefault().Claims.FirstOrDefault().Value;
-            var animal = await _unitOfWork.AnimalRepository.GetAsync(a => a.Id == id && a.UserId == UserId);
+            var UserLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
+            var animal = await _unitOfWork.AnimalRepository.GetAsync(a => a.Id == id && a.UserId == UserLoginId);
             if (animal is null)
             {
                 throw new NotFoundException("Not found animal");

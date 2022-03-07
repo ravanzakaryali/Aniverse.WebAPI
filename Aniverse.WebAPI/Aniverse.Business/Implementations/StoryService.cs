@@ -1,4 +1,5 @@
 ﻿using Aniverse.Business.DTO_s.Story;
+using Aniverse.Business.Extensions;
 using Aniverse.Business.Helpers;
 using Aniverse.Business.Interface;
 using Aniverse.Core;
@@ -19,16 +20,19 @@ namespace Aniverse.Business.Implementations
         public readonly IUnitOfWork _unitOfWork;
         public readonly IMapper _mapper;
         public readonly IHostEnvironment _hostEnvironment;
-        public StoryService(IUnitOfWork unitOfWork, IMapper mapper, IHostEnvironment hostEnvironment)
+        private readonly IHttpContextAccessor _httpContextAccessor;
+
+        public StoryService(IUnitOfWork unitOfWork, IMapper mapper, IHostEnvironment hostEnvironment, IHttpContextAccessor httpContextAccessor)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _hostEnvironment = hostEnvironment;
+            _httpContextAccessor = httpContextAccessor;
         }
 
-        public async Task CreateAsync(StoryCreateDto storyCreate, ClaimsPrincipal user)
+        public async Task CreateAsync(StoryCreateDto storyCreate)
         {
-            storyCreate.UserId = user.Identities.FirstOrDefault().Claims.FirstOrDefault().Value;
+            storyCreate.UserId = _httpContextAccessor.HttpContext.User.GetUserId();
             storyCreate.StoryFileName = await storyCreate.StoryFile.FileSaveAsync(_hostEnvironment.ContentRootPath, "Images");
             await _unitOfWork.StoryRepository.CreateAsync(_mapper.Map<Story>(storyCreate));
             await _unitOfWork.SaveAsync();
@@ -42,7 +46,7 @@ namespace Aniverse.Business.Implementations
             var stories = _mapper.Map<List<StoryGetDto>>(await _unitOfWork.StoryRepository.GetAllAsync(s=>s.User.UserName == username, "User"));
             foreach (var story in stories)
             {
-                story.ImageSrc = String.Format("{0}://{1}{2}/Images/{3}", request.Scheme, request.Host, request.PathBase, story.StoryFileName);
+                story.ImageSrc = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{story.StoryFileName}");
             }
             return stories;
         }
@@ -51,7 +55,7 @@ namespace Aniverse.Business.Implementations
             var stories = _mapper.Map<List<StoryGetDto>>(await _unitOfWork.StoryRepository.GetFriendStory(username));
             foreach (var story in stories)
             {
-                story.ImageSrc = String.Format("{0}://{1}{2}/Images/{3}", request.Scheme, request.Host, request.PathBase, story.StoryFileName); 
+                story.ImageSrc = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{story.StoryFileName}");
             }    
             return stories;
         }

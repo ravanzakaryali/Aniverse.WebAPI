@@ -1,8 +1,10 @@
 ﻿using Aniverse.Business.DTO_s.Post.Like;
+using Aniverse.Business.Extensions;
 using Aniverse.Business.Interface;
 using Aniverse.Core;
 using Aniverse.Core.Entites;
 using AutoMapper;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using System.Linq;
 using System.Security.Claims;
@@ -14,17 +16,18 @@ namespace Aniverse.Business.Implementations
     {
         public readonly IUnitOfWork _unitOfWork;
         public readonly IMapper _mapper;
+        public readonly IHttpContextAccessor _httpContextAccessor;
 
-
-        public LikeService(IUnitOfWork unitOfWork, IMapper mapper)
+        public LikeService(IUnitOfWork unitOfWork, IMapper mapper, IHttpContextAccessor httpContextAccessor)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _httpContextAccessor = httpContextAccessor;
         }
-        public async Task CreateAsync(LikeCreateDto likeCreate, ClaimsPrincipal user)
+        public async Task CreateAsync(LikeCreateDto likeCreate)
         {
-            var id = user.Identities.FirstOrDefault().Claims.FirstOrDefault().Value;
-            likeCreate.UserId = id;
+            var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
+            likeCreate.UserId = userLoginId;
             if (likeCreate.IsLike)
             {
                 await _unitOfWork.LikeRepository.CreateAsync(_mapper.Map<Like>(likeCreate));

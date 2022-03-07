@@ -1,5 +1,7 @@
 ﻿using Aniverse.Business.DTO_s.Picture;
 using Aniverse.Business.DTO_s.User;
+using Aniverse.Business.Exceptions;
+using Aniverse.Business.Extensions;
 using Aniverse.Business.Helpers;
 using Aniverse.Business.Interface;
 using Aniverse.Core;
@@ -12,7 +14,6 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Aniverse.Business.Implementations
@@ -22,27 +23,39 @@ namespace Aniverse.Business.Implementations
         public readonly IUnitOfWork _unitOfWork;
         public readonly IMapper _mapper;
         private readonly IHostEnvironment _hostEnvironment;
-        public UserService(IUnitOfWork unitOfWork, IMapper mapper, IHostEnvironment hostEnvironment)
+        public readonly IHttpContextAccessor _httpContextAccessor;
+        public UserService(IUnitOfWork unitOfWork, IMapper mapper, IHostEnvironment hostEnvironment, IHttpContextAccessor httpContextAccessor)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _hostEnvironment = hostEnvironment;
+            _httpContextAccessor = httpContextAccessor;
         }
 
-        public async Task ChangeBio(JsonPatchDocument<AppUser> bioChange, ClaimsPrincipal user)
+        public async Task ChangeBio(JsonPatchDocument<AppUser> bioChange)
         {
-            var userDb = await _unitOfWork.UserRepository.GetAsync(u => u.Id == user.Identities.FirstOrDefault().Claims.FirstOrDefault().Value);
-            bioChange.ApplyTo(userDb);
+            string userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
+            AppUser user = await _unitOfWork.UserRepository.GetAsync(u => u.Id == userLoginId);
+            if(user is null)
+            {
+                throw new NotFoundException("User is not found");   
+            }
+            bioChange.ApplyTo(user);
             await _unitOfWork.SaveAsync();
         }
 
-        public async Task<List<UserAllDto>> GetAllAsync(ClaimsPrincipal user)
+        public async Task<List<UserAllDto>> GetAllAsync()
         {
-            var userId = user.Identities.FirstOrDefault().Claims.FirstOrDefault().Value;
-            var friends = await _unitOfWork.FriendRepository.GetAllAsync(f=>f.UserId == userId || f.FriendId==userId);
+            var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
+            var friends = await _unitOfWork.FriendRepository.GetAllAsync(f=>f.UserId == userLoginId || f.FriendId== userLoginId);
+            if(friends is null)
+            {
+                throw new NotFoundException("Friends is not found");
+            }
             var friendsId = friends.Select(f=>f.FriendId);
             var usersId = friends.Select(f=>f.UserId);
-            return _mapper.Map<List<UserAllDto>>(await _unitOfWork.UserRepository.GetAllAsync(u=> !friendsId.Contains(u.Id) && !usersId.Contains(u.Id) && u.Id != userId));
+            var users = await _unitOfWork.UserRepository.GetAllAsync(u => !friendsId.Contains(u.Id) && !usersId.Contains(u.Id) && u.Id != userLoginId, "Images");
+            return _mapper.Map<List<UserAllDto>>(users);
         }
         public async Task<UserGetDto> GetAsync(string id, HttpRequest request)
         {
@@ -51,26 +64,26 @@ namespace Aniverse.Business.Implementations
             var cover = await _unitOfWork.PictureRepository.GetAsync(p => p.User.UserName == id && p.IsCoverPicture == true);
             if (picture != null)
             {
-                user.ProfilPicture = String.Format("{0}://{1}{2}/Images/{3}", request.Scheme, request.Host, request.PathBase, picture.ImageName);
+                user.ProfilPicture = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{picture.ImageName}");
             }
             if (cover != null)
             {
-                user.CoverPicture = String.Format("{0}://{1}{2}/Images/{3}", request.Scheme, request.Host, request.PathBase, cover.ImageName);
+                user.CoverPicture = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{cover.ImageName}");
 
             }
             return user;
         }
 
-        public async Task ProfileCreate(ProfileCreateDto profilCreate, ClaimsPrincipal user)
+        public async Task ProfileCreate(ProfileCreateDto profilCreate)
         {
-            var userId = user.Identities.FirstOrDefault().Claims.FirstOrDefault().Value;
+            var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
             var picture = new Picture
             {
                 IsProfilePicture = true,
                 ImageName = await profilCreate.ImageFile.FileSaveAsync(_hostEnvironment.ContentRootPath, "Images"),
-                UserId = userId,
+                UserId = userLoginId,
             };
-            var pictureProfileDb = await _unitOfWork.PictureRepository.GetAsync(p => p.UserId == userId && p.IsProfilePicture == true);
+            var pictureProfileDb = await _unitOfWork.PictureRepository.GetAsync(p => p.UserId == userLoginId && p.IsProfilePicture == true);
             await _unitOfWork.PictureRepository.CreateAsync(picture);
             if (pictureProfileDb != null)
             {
@@ -79,16 +92,16 @@ namespace Aniverse.Business.Implementations
             await _unitOfWork.SaveAsync();
         }
 
-        public async Task CoverCreate(ProfileCreateDto coverCreate, ClaimsPrincipal user)
+        public async Task CoverCreate(ProfileCreateDto coverCreate)
         {
-            var userId = user.Identities.FirstOrDefault().Claims.FirstOrDefault().Value;
+            var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
             var picture = new Picture
             {
                 IsCoverPicture = true,
                 ImageName = await coverCreate.ImageFile.FileSaveAsync(_hostEnvironment.ContentRootPath, "Images"),
-                UserId = userId,
+                UserId = userLoginId,
             };
-            var coverPictureDb = await _unitOfWork.PictureRepository.GetAsync(p => p.UserId == userId && p.IsCoverPicture == true);
+            var coverPictureDb = await _unitOfWork.PictureRepository.GetAsync(p => p.UserId == userLoginId && p.IsCoverPicture == true);
             await _unitOfWork.PictureRepository.CreateAsync(picture);
             if (coverPictureDb != null)
             {
@@ -103,15 +116,19 @@ namespace Aniverse.Business.Implementations
 
             for (int i = 0; i < photosMap.Count; i++)
             {
-                photosMap[i].ImageName = String.Format("{0}://{1}{2}/Images/{3}", request.Scheme, request.Host, request.PathBase, photos[i].ImageName);
+                photosMap[i].ImageName = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{photos[0].ImageName}");
 
             }
             return photosMap;
         }
-        public async Task<List<UserGetDto>> GetBlcokUsersAsync(ClaimsPrincipal user)
+        public async Task<List<UserGetDto>> GetBlcokUsersAsync()
         {
-            var id = user.Identities.FirstOrDefault().Claims.FirstOrDefault().Value;
-            var frineds = await _unitOfWork.FriendRepository.GetAllAsync(u => u.UserId == id && u.Status == FriendRequestStatus.Blocked, "Friend");
+            var userLoginId  = _httpContextAccessor.HttpContext.User.GetUserId();
+            var frineds = await _unitOfWork.FriendRepository.GetAllAsync(u => u.UserId == userLoginId && u.Status == FriendRequestStatus.Blocked, "Friend");
+            if(frineds is null)
+            {
+                throw new NotFoundException("Friend is not found");
+            }
             var friendsId = frineds.Select(f => f.FriendId);
             return _mapper.Map<List<UserGetDto>>(await _unitOfWork.UserRepository.GetAllAsync(u => friendsId.Contains(u.Id)));
         }

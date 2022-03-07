@@ -1,5 +1,6 @@
 ﻿using Aniverse.Business.DTO_s.Post;
 using Aniverse.Business.DTO_s.Post.Like;
+using Aniverse.Business.DTO_s.StatusCode;
 using Aniverse.Business.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -10,62 +11,59 @@ using System.Threading.Tasks;
 
 namespace Aniverse.UI.Controllers
 {
-    [Route("api")]
+    [Route("api/[controller]")]
     [ApiController]
     [Authorize]
 
     public class PostController : Controller
     {
-        private IUnitOfWorkService _unitOfWorkService { get; }
+        private readonly IUnitOfWorkService _unitOfWorkService;
         public PostController(IUnitOfWorkService unitOfWorkService)
         {
             _unitOfWorkService = unitOfWorkService;
         }
-        [HttpGet("[controller]")]
+        [HttpGet]
         public async Task<ActionResult<List<PostGetDto>>> GetAllAsync()
         {
             var request = HttpContext.Request;
             return await _unitOfWorkService.PostService.GetAllAsync(request);  
         }
-        [HttpGet("[controller]/{id}")]
+        [HttpGet("{id}")]
         public async Task<ActionResult<List<PostGetDto>>> GetAsync(string id)
         {
             var request = HttpContext.Request;
             return await _unitOfWorkService.PostService.GetAsync(id, request);
         }
-        [HttpGet("user/friend/[controller]")]
-        public async Task<ActionResult<List<PostGetDto>>> GetAllAsync([FromQuery] int page,[FromQuery] int size)
+        [HttpGet("friend")]
+        public async Task<ActionResult<List<PostGetDto>>> GetFrinedsPostAll([FromQuery] int page,[FromQuery] int size)
         {
             var request = HttpContext.Request;
-            var user = HttpContext.User;
-            return await _unitOfWorkService.PostService.GetFriendPost(user,request, page,size);
+            return await _unitOfWorkService.PostService.GetFriendPost(request, page,size);
         }
-        [HttpPost("[controller]")]
-        public async Task<ActionResult> Create([FromForm] PostCreateDto postCreate)
+        [HttpPost]
+        public async Task<ActionResult> CreateAsync([FromForm] PostCreateDto postCreate)
         {
             try
             {
-                var user = HttpContext.User;
-            await _unitOfWorkService.PostService.CreateAsync(postCreate, user);
-            return StatusCode(StatusCodes.Status204NoContent, new { Status = "Successs", Message = "Post successfully posted" });
+            await _unitOfWorkService.PostService.CreateAsync(postCreate);
+            return StatusCode(StatusCodes.Status204NoContent, new Response { Status = "Successs", Message = "Post successfully posted" });
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status502BadGateway, new { Status = "Error", Message = ex.ToString() });
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.ToString() });
             }
         } 
-        [HttpPost("[controller]/like")]
-        public async Task<ActionResult> LikeCreate([FromBody]LikeCreateDto likeCreate)
+        [HttpPost("like")]
+        public async Task<ActionResult> LikeCreateAsync([FromBody]LikeCreateDto likeCreate)
         {
             try
             {
-                var user = HttpContext.User;
-                await _unitOfWorkService.LikeService.CreateAsync(likeCreate, user);
-                return StatusCode(StatusCodes.Status204NoContent, new { Status = "Successs", Message = "Like successfully" });
+                await _unitOfWorkService.LikeService.CreateAsync(likeCreate);
+                return StatusCode(StatusCodes.Status204NoContent, new Response  { Status = "Successs", Message = "Like successfully" });
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status502BadGateway, new { Status = "Error", Message = ex.ToString() });
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.ToString() });
             }
         }
     }

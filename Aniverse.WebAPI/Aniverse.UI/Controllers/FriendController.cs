@@ -1,9 +1,9 @@
 ﻿    using Aniverse.Business.DTO_s.Friend;
+using Aniverse.Business.DTO_s.StatusCode;
 using Aniverse.Business.DTO_s.User;
 using Aniverse.Business.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Aniverse.UI.Controllers
 {
-    [Route("api/user")]
+    [Route("api/[controller]")]
     [ApiController]
     [Authorize]
 
@@ -22,58 +22,79 @@ namespace Aniverse.UI.Controllers
         {
             _unitOfWorkService = unitOfWorkService;
         }
-        [HttpGet("[controller]/{username}")]
+        [HttpGet("{username}")]
         public async Task<ActionResult<List<UserGetDto>>> GetFriends(string username)
         {
-            var user = HttpContext.User;
-            return Ok(await _unitOfWorkService.FriendService.GetAllAsync(username,user));
+            return Ok(await _unitOfWorkService.FriendService.GetAllAsync(username));
         }
-        [HttpGet("friendRequest")]
+        [HttpGet("friendrequest")]
         public async Task<ActionResult<List<UserGetDto>>> GetFriendRequestAsync()
         {
-            var user = HttpContext.User;
-            return Ok(await _unitOfWorkService.FriendService.GetUserFriendRequestAsync(user));
+            return Ok(await _unitOfWorkService.FriendService.GetUserFriendRequestAsync());
         }
-        [HttpPut("[controller]/request")]
+        [HttpPut("requestconfirm")]
         public async Task<ActionResult> ConfirmFriend(FriendConfirmDto friend)
         {
             try
             {
-                var user = HttpContext.User;
-                await _unitOfWorkService.FriendService.ConfirmFriend(user, friend);
-                return StatusCode(StatusCodes.Status204NoContent, new { Status = "Successs", Message = "Confirm successfully" });
+                await _unitOfWorkService.FriendService.ConfirmFriend(friend);
+                return StatusCode(StatusCodes.Status204NoContent, new Response { Status = "Successs", Message = "Confirm successfully" });
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status502BadGateway, new { Status = "Error", Message = ex.ToString() });
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
             }
         }
-        [HttpPost("friend/add")]
+        [HttpPost("add")]
         public async Task<ActionResult> AddFriend(FriendRequestDto addFriend)
         {
             try
             {
-                var user = HttpContext.User;
-                await _unitOfWorkService.FriendService.AddFriendAsync(addFriend, user);
-                return StatusCode(StatusCodes.Status204NoContent, new { Status = "Successs", Message = "Add Friend successfully" });
+                await _unitOfWorkService.FriendService.AddFriendAsync(addFriend);
+                return StatusCode(StatusCodes.Status204NoContent, new Response { Status = "Successs", Message = "Add Friend successfully" });
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status502BadGateway, new { Status = "Error", Message = ex.Message });
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
             }
         }
-        [HttpPost("friend/delete")]
+        [HttpPost("delete")]
         public async Task<ActionResult> DeleteFriend(FriendRequestDto deleteFriend)
         {
             try
             {
-                var user = HttpContext.User;
-                await _unitOfWorkService.FriendService.DeleteFriendAsync(deleteFriend, user);
-                return StatusCode(StatusCodes.Status204NoContent, new { Status = "Successs", Message = "Delete Friend successfully" });
+                await _unitOfWorkService.FriendService.DeleteFriendAsync(deleteFriend);
+                return StatusCode(StatusCodes.Status204NoContent, new Response { Status = "Successs", Message = "Delete friend successfully" });
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status502BadGateway, new { Status = "Error", Message = ex.Message });
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
+            }
+        }
+        [HttpPost("block")]
+        public async Task<ActionResult> FriendBlock(FriendRequestDto friendBlock)
+        {
+            try
+            {
+                await _unitOfWorkService.FriendService.FriendBlockAsync(friendBlock);
+                return StatusCode(StatusCodes.Status204NoContent, new Response { Status = "Successs", Message = "Friend block successfully" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
+            }
+        } 
+        [HttpPost("unblock")]
+        public async Task<ActionResult> FriendUnblock(FriendRequestDto frinedUnblock)
+        {
+            try
+            {
+                await _unitOfWorkService.FriendService.FriendUnBlockAsync(frinedUnblock);
+                return StatusCode(StatusCodes.Status204NoContent, new Response { Status = "Successs", Message = "Friend unblock successfully" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
             }
         }
     }

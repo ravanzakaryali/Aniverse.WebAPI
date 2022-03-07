@@ -1,4 +1,5 @@
-﻿using Aniverse.Business.DTO_s.Story;
+﻿using Aniverse.Business.DTO_s.StatusCode;
+using Aniverse.Business.DTO_s.Story;
 using Aniverse.Business.Interface;
 using Aniverse.Core.Entites;
 using Microsoft.AspNetCore.Authorization;
@@ -11,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Aniverse.UI.Controllers
 {
-    [Route("api")]
+    [Route("api/[controller]")]
     [ApiController]
     [Authorize]
 
@@ -22,33 +23,32 @@ namespace Aniverse.UI.Controllers
         {
             _unitOfWorkService = unitOfWorkService;
         }
-        [HttpGet("[controller]")]
+        [HttpGet]
         public async Task<ActionResult<List<StoryGetDto>>> GetAllAsync()
         {
             return await _unitOfWorkService.StoryService.GetAllAsync();
         }
-        [HttpGet("[controller]/{username}")]
-        public async Task<ActionResult<List<StoryGetDto>>> GetAllAsync(string username)
+        [HttpGet("{username}")]
+        public async Task<ActionResult<List<StoryGetDto>>> GetUserStories(string username)
         {
             var request = HttpContext.Request;
             return await _unitOfWorkService.StoryService.GetUserAsync(username, request);
         }
-        [HttpPost("[controller]")]
+        [HttpPost]
         public async Task<ActionResult> CreateAsync([FromForm] StoryCreateDto storyCreate)
         {
             try
             {
-                var user = HttpContext.User;
-                await _unitOfWorkService.StoryService.CreateAsync(storyCreate, user);
-                return StatusCode(StatusCodes.Status204NoContent,new { Status = "Successs", Message = "Story successfully posted"});
+                await _unitOfWorkService.StoryService.CreateAsync(storyCreate);
+                return StatusCode(StatusCodes.Status204NoContent,new Response { Status = "Successs", Message = "Story successfully posted"});
             }
             catch(Exception ex)
             {
-               return StatusCode(StatusCodes.Status502BadGateway, new { Status = "Error", Message = ex.ToString() });
+               return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
             }
         }
-        [HttpGet("user/{username}/friend/[controller]")]
-        public async Task<ActionResult<List<StoryGetDto>>> GetFriendAsync(string username)
+        [HttpGet("friend")]
+        public async Task<ActionResult<List<StoryGetDto>>> GetFriendStoriesAsync(string username)
         {
             var request = HttpContext.Request;
             return await _unitOfWorkService.StoryService.GetFriendAsync(username, request);

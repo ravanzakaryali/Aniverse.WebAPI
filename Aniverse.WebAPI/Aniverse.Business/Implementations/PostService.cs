@@ -13,6 +13,8 @@ using System;
 using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using System.Linq;
+using Aniverse.Business.Extensions;
+using Aniverse.Business.Exceptions;
 
 namespace Aniverse.Business.Implementations
 {
@@ -21,24 +23,26 @@ namespace Aniverse.Business.Implementations
         public readonly IUnitOfWork _unitOfWork;
         public readonly IMapper _mapper;
         private readonly IHostEnvironment _hostEnvironment;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public PostService(IUnitOfWork unitOfWork, IMapper mapper, IHostEnvironment hostEnvironment)
+        public PostService(IUnitOfWork unitOfWork, IMapper mapper, IHostEnvironment hostEnvironment, IHttpContextAccessor httpContextAccessor)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
             _hostEnvironment = hostEnvironment;
+            _httpContextAccessor = httpContextAccessor;
         }
 
-        public async Task CreateAsync(PostCreateDto postCreate, ClaimsPrincipal claims)
+        public async Task CreateAsync(PostCreateDto postCreate)
         {
             postCreate.Pictures = new List<PostImageDto>();
-            var id = claims.Identities.FirstOrDefault().Claims.FirstOrDefault().Value;
-            postCreate.UserId = id;
+            var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
+            postCreate.UserId = userLoginId;
             foreach (var picture in postCreate.ImageFile)
             {
                 var image = new PostImageDto
                 {
-                    UserId = id,
+                    UserId = userLoginId,
                     ImageName = await picture.FileSaveAsync(_hostEnvironment.ContentRootPath, "Images"),
                 };
                 postCreate.Pictures.Add(image);
@@ -52,9 +56,9 @@ namespace Aniverse.Business.Implementations
             var posts = _mapper.Map<List<PostGetDto>>(await _unitOfWork.PostRepository.GetAllAsync(null, "Comments", "User", "Likes"));
             foreach (var post in posts)
             {
-                foreach (var item in post.Pictures)
+                foreach (var picture in post.Pictures)
                 {
-                    item.ImageName = String.Format("{0}://{1}{2}/Images/{3}", request.Scheme, request.Host, request.PathBase, item.ImageName);
+                    picture.ImageName = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{picture.ImageName}");
                 }
             }
             return posts;
@@ -69,22 +73,26 @@ namespace Aniverse.Business.Implementations
             var posts = _mapper.Map<List<PostGetDto>>(await _unitOfWork.PostRepository.GetAllAsync(p => p.User.UserName == id, "Comments", "Comments.User", "User", "Likes", "Pictures"));
             foreach (var post in posts)
             {
-                foreach (var item in post.Pictures)
+                foreach (var picture in post.Pictures)
                 {
-                    item.ImageName = String.Format("{0}://{1}{2}/Images/{3}", request.Scheme, request.Host, request.PathBase, item.ImageName);
+                    picture.ImageName = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{picture.ImageName}");
                 }
             }
             return posts;
         }
-        public async Task<List<PostGetDto>> GetFriendPost(ClaimsPrincipal user, HttpRequest request, int page = 1, int size = 4)
+        public async Task<List<PostGetDto>> GetFriendPost(HttpRequest request, int page = 1, int size = 4)
         {
-            var id = user.Identities.FirstOrDefault().Claims.FirstOrDefault().Value;
-            var friends = await _unitOfWork.FriendRepository.GetFriendId(id);
-            var posts = await _unitOfWork.PostRepository.GetAllPaginateAsync(page, size, p => friends.Contains(p.UserId) || p.UserId == id, "User","Comments","Likes","Animal","Pictures");
+            var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
+            var friends = await _unitOfWork.FriendRepository.GetFriendId(userLoginId);
+            if(friends is null)
+            {
+                throw new NotFoundException("Friends is null");
+            }
+            var posts = await _unitOfWork.PostRepository.GetAllPaginateAsync(page, size, p => friends.Contains(p.UserId) || p.UserId == userLoginId, "User","Comments","Likes","Animal","Pictures");
             var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p=>posts.Contains(p.Post));
             foreach (var picture in pictures)
             {
-                picture.ImageName = String.Format("{0}://{1}{2}/Images/{3}", request.Scheme, request.Host, request.PathBase, picture.ImageName);
+                picture.ImageName = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{picture.ImageName}");
             }
             return _mapper.Map<List<PostGetDto>>(posts);
         }
