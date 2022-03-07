@@ -1,5 +1,6 @@
 ﻿using Aniverse.Business.DTO_s.Friend;
 using Aniverse.Business.DTO_s.User;
+using Aniverse.Business.Exceptions;
 using Aniverse.Business.Interface;
 using Aniverse.Core;
 using Aniverse.Core.Entites;
@@ -40,14 +41,14 @@ namespace Aniverse.Business.Implementations
             await _unitOfWork.SaveAsync();
         }
 
-        public async Task<List<UserGetDto>> GetAllAsync(ClaimsPrincipal user)
+        public async Task<List<UserGetDto>> GetAllAsync(string username, ClaimsPrincipal user)
         {
-            var id = user.Identities.FirstOrDefault().Claims.FirstOrDefault().Value;
-            var frineds = await _unitOfWork.FriendRepository.GetAllAsync(u => u.UserId == id && u.Status == FriendRequestStatus.Accepted, "Friend");
-            var friendsId = frineds.Select(f=>f.FriendId);
-            return _mapper.Map<List<UserGetDto>>(await _unitOfWork.UserRepository.GetAllAsync(u=>friendsId.Contains(u.Id)));
+            var UserId = user.Identities.FirstOrDefault().Claims.FirstOrDefault().Value;
+            var friends = await _unitOfWork.FriendRepository.GetAllAsync(u => u.User.UserName == username || u.Friend.UserName == username && u.Status == FriendRequestStatus.Accepted, "Friend");
+            var friendIds = friends.Select(x => x.FriendId);
+            var userIds = friends.Select(x => x.UserId);
+            return _mapper.Map<List<UserGetDto>>(await _unitOfWork.UserRepository.GetAllAsync(u=> u.UserName != username && friendIds.Contains(u.Id) || userIds.Contains(u.Id)));
         }
-
 
         public async Task<List<UserGetDto>> GetUserFriendRequestAsync(ClaimsPrincipal user)
         {
@@ -55,6 +56,28 @@ namespace Aniverse.Business.Implementations
             var frineds = await _unitOfWork.FriendRepository.GetAllAsync(u => u.UserId == id && u.Status == FriendRequestStatus.Pending, "Friend");
             var friendsId = frineds.Select(f => f.FriendId);
             return _mapper.Map<List<UserGetDto>>(await _unitOfWork.UserRepository.GetAllAsync(u => friendsId.Contains(u.Id)));
+        }
+        public async Task AddFriendAsync(AddFriendDto addFriend, ClaimsPrincipal user)
+        {
+            var UserId = user.Identities.FirstOrDefault().Claims.FirstOrDefault().Value;
+            var friends = await _unitOfWork.UserRepository.GetAsync(u => u.Id == addFriend.Id);
+            if(friends is null)
+            {
+                throw new NotFoundException("User is not found");
+            }
+            var userfriends = await _unitOfWork.FriendRepository.GetAsync(f=>f.UserId == friends.Id && f.FriendId == UserId);
+            if (userfriends != null)
+            {
+                throw new AlreadyException("Friendly or blocked user");
+            }
+            UserFriend userFriend = new UserFriend
+            {
+                UserId = addFriend.Id,
+                FriendId = UserId,
+                Status = FriendRequestStatus.Pending
+            };
+            await _unitOfWork.FriendRepository.CreateAsync(userFriend);
+            await _unitOfWork.SaveAsync();
         }
 
     }

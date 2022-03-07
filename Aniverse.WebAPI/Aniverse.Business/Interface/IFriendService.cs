@@ -11,8 +11,9 @@ namespace Aniverse.Business.Interface
 {
     public interface IFriendService
     {
-        Task<List<UserGetDto>> GetAllAsync(ClaimsPrincipal user);
+        Task<List<UserGetDto>> GetAllAsync(string username, ClaimsPrincipal user);
         Task<List<UserGetDto>> GetUserFriendRequestAsync(ClaimsPrincipal user);
         Task ConfirmFriend(ClaimsPrincipal user, FriendConfirmDto friend);
+        Task AddFriendAsync(AddFriendDto addFriend,ClaimsPrincipal user);
     }
 }
