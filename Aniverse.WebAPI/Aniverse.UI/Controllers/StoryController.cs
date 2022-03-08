@@ -48,10 +48,10 @@ namespace Aniverse.UI.Controllers
             }
         }
         [HttpGet("friend")]
-        public async Task<ActionResult<List<StoryGetDto>>> GetFriendStoriesAsync(string username)
+        public async Task<ActionResult<List<StoryGetDto>>> GetFriendStoriesAsync()
         {
             var request = HttpContext.Request;
-            return await _unitOfWorkService.StoryService.GetFriendAsync(username, request);
+            return await _unitOfWorkService.StoryService.GetFriendAsync(request);
         }
 
     }

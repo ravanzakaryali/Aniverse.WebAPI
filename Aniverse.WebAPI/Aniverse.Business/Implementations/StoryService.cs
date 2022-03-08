@@ -1,4 +1,5 @@
 ﻿using Aniverse.Business.DTO_s.Story;
+using Aniverse.Business.Exceptions;
 using Aniverse.Business.Extensions;
 using Aniverse.Business.Helpers;
 using Aniverse.Business.Interface;
@@ -10,7 +11,6 @@ using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace Aniverse.Business.Implementations
@@ -39,24 +39,42 @@ namespace Aniverse.Business.Implementations
         }
         public async Task<List<StoryGetDto>> GetAllAsync()
         {
-            return _mapper.Map<List<StoryGetDto>>(await _unitOfWork.StoryRepository.GetAllAsync(null, "User"));
+            return _mapper.Map<List<StoryGetDto>>(await _unitOfWork.StoryRepository.GetAllAsync(s=>!s.IsDeleted, "User"));
         }
         public async Task<List<StoryGetDto>> GetUserAsync(string username, HttpRequest request)
         {
-            var stories = _mapper.Map<List<StoryGetDto>>(await _unitOfWork.StoryRepository.GetAllAsync(s=>s.User.UserName == username, "User"));
+            var stories = _mapper.Map<List<StoryGetDto>>(await _unitOfWork.StoryRepository.GetAllAsync(s => s.User.UserName == username && !s.IsDeleted && !s.IsArchive ,"User"));
             foreach (var story in stories)
             {
                 story.ImageSrc = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{story.StoryFileName}");
             }
             return stories;
         }
-        public async Task<List<StoryGetDto>> GetFriendAsync(string username, HttpRequest request)
+        public async Task<List<StoryGetDto>> GetFriendAsync(HttpRequest request)
         {
-            var stories = _mapper.Map<List<StoryGetDto>>(await _unitOfWork.StoryRepository.GetFriendStory(username));
+            string userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
+            var friends = await _unitOfWork.FriendRepository.GetAllAsync(f => f.UserId == userLoginId || f.FriendId == userLoginId);
+            if (friends is null)
+            {
+                throw new NotFoundException("Friends is not found");
+            }
+            var usersId = friends.Select(f => f.UserId);
+            var friendsId = friends.Select(f => f.FriendId);
+            var pictures = await _unitOfWork.PictureRepository.GetAllAsync(u => u.IsProfilePicture && usersId.Contains(u.UserId) && friendsId.Contains(u.UserId));
+            foreach (var picture in pictures)
+            {
+                picture.ImageName = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{picture.ImageName}");
+            }
+            var stories = _mapper.Map<List<StoryGetDto>>(await _unitOfWork.StoryRepository.GetAllAsync(s => !s.IsDeleted && !s.IsArchive && friendsId.Contains(s.UserId) || usersId.Contains(s.UserId), "User"));
             foreach (var story in stories)
             {
+                if (pictures.Any(p => p.UserId == story.User.Id))
+                {
+                    story.User.ProfilPicture = pictures.Where(p => p.UserId == story.User.Id).First().ImageName;
+                }
+
                 story.ImageSrc = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{story.StoryFileName}");
-            }    
+            }
             return stories;
         }
     }

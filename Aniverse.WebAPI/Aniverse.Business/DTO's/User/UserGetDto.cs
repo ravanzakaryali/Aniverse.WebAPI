@@ -1,4 +1,5 @@
-﻿using Aniverse.Business.DTO_s.Post;
+﻿using Aniverse.Business.DTO_s.Picture;
+using Aniverse.Business.DTO_s.Post;
 using Aniverse.Core.Entites;
 using Aniverse.Core.Entites.Enum;
 using System.Collections.Generic;

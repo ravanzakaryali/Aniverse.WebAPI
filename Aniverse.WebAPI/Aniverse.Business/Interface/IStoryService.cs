@@ -12,6 +12,6 @@ namespace Aniverse.Business.Interface
         Task<List<StoryGetDto>> GetAllAsync();
         Task<List<StoryGetDto>> GetUserAsync(string username, HttpRequest request);
         Task CreateAsync(StoryCreateDto storyCreate);
-        Task<List<StoryGetDto>> GetFriendAsync(string username, HttpRequest request);
+        Task<List<StoryGetDto>> GetFriendAsync(HttpRequest request);
     }
 }

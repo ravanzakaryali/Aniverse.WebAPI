@@ -1,5 +1,4 @@
-﻿using Aniverse.Business.DTO_s.Friend;
-using Aniverse.Business.DTO_s.Post;
+﻿using Aniverse.Business.DTO_s.Post;
 using Aniverse.Business.Interface;
 using Aniverse.Core;
 using AutoMapper;
@@ -10,9 +9,6 @@ using Aniverse.Business.Helpers;
 using Aniverse.Core.Entites;
 using Microsoft.AspNetCore.Http;
 using System;
-using Microsoft.AspNetCore.Identity;
-using System.Security.Claims;
-using System.Linq;
 using Aniverse.Business.Extensions;
 using Aniverse.Business.Exceptions;
 

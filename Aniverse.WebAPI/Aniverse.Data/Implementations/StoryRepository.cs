@@ -17,15 +17,15 @@ namespace Aniverse.Data.Implementations
         {
             _context = context;
         }
-        public async Task<List<Story>> GetFriendStory(string username)
-        {
-            var friends = await _context.UserFriends.Where(u => u.User.UserName == username && u.Status == FriendRequestStatus.Accepted).Select(u => u.FriendId).Distinct().ToListAsync();
-            var stories = await _context.Story
-                .Where(p => friends
-                .Contains(p.UserId) || p.User.UserName == username)
-                .Include(p => p.User)
-                .ToListAsync();
-            return stories;
-        }
+        //public async Task<List<Story>> GetFriendStory(string username)
+        //{
+        //    var friends = await _context.UserFriends.Where(u => u.User.UserName == username && u.Status == FriendRequestStatus.Accepted).Select(u => u.FriendId).Distinct().ToListAsync();
+        //    var stories = await _context.Story
+        //        .Where(p => friends
+        //        .Contains(p.UserId) || p.User.UserName == username)
+        //        .Include(p => p.User)
+        //        .ToListAsync();
+        //    return stories;
+        //}
     }
 }

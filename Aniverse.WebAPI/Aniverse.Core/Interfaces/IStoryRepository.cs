@@ -6,6 +6,6 @@ namespace Aniverse.Core.Interfaces
 {
     public interface IStoryRepository : IRepository<Story>
     {
-        public Task<List<Story>> GetFriendStory(string id);
+        //public Task<List<Story>> GetFriendStory(string id);
     }
 }

@@ -10,6 +10,8 @@ namespace Aniverse.Data.Configuration
         {
             builder.Property(s=>s.CreatedDate).HasDefaultValueSql("GETDATE()");
             builder.Ignore(s=>s.ImageSrc);
+            builder.Property(s=>s.IsDeleted).HasDefaultValue(false);
+            builder.Property(s=>s.IsArchive).HasDefaultValue(false);
         }
     }
 }
