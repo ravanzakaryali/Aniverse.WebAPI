@@ -88,6 +88,17 @@ namespace Aniverse.Business.Implementations
             story.IsDeleted = true;
             await _unitOfWork.SaveAsync();
         }
+        public async Task ArchiveAsync(int id)
+        {
+            string userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
+            var story = await _unitOfWork.StoryRepository.GetAsync(s => s.Id == id && s.UserId == userLoginId);
+            if (story is null)
+            {
+                throw new NotFoundException("Story is not found");
+            }
+            story.IsArchive = true;
+            await _unitOfWork.SaveAsync();
+        }
 
 
     }

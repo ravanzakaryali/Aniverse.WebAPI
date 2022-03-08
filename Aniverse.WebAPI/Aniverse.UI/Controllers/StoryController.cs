@@ -66,5 +66,18 @@ namespace Aniverse.UI.Controllers
                 return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
             }
         }
+        [HttpPatch("archive/{id}")]
+        public async Task<ActionResult> Archive(int id)
+        {
+            try
+            {
+                await _unitOfWorkService.StoryService.ArchiveAsync(id);
+                return StatusCode(StatusCodes.Status204NoContent, new Response { Status = "Successs", Message = "Story archive successfully" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
+            }
+        }
     }
 }
