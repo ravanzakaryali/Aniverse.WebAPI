@@ -77,5 +77,18 @@ namespace Aniverse.Business.Implementations
             }
             return stories;
         }
+        public async Task DeleteAsync(int id)
+        {
+            string userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
+            var story = await _unitOfWork.StoryRepository.GetAsync(s => s.Id == id && s.UserId == userLoginId);
+            if(story is null)
+            {
+                throw new NotFoundException("Story is not found");
+            }
+            story.IsDeleted = true;
+            await _unitOfWork.SaveAsync();
+        }
+
+
     }
 }

@@ -53,6 +53,18 @@ namespace Aniverse.UI.Controllers
             var request = HttpContext.Request;
             return await _unitOfWorkService.StoryService.GetFriendAsync(request);
         }
-
+        [HttpPatch("delete/{id}")]
+        public async Task<ActionResult> DeleteAsync(int id)
+        {
+            try
+            {
+                await _unitOfWorkService.StoryService.DeleteAsync(id);
+                return StatusCode(StatusCodes.Status204NoContent, new Response { Status = "Successs", Message = "Story delete successfully" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
+            }
+        }
     }
 }
