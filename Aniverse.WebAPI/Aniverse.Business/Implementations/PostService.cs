@@ -11,6 +11,8 @@ using Microsoft.AspNetCore.Http;
 using System;
 using Aniverse.Business.Extensions;
 using Aniverse.Business.Exceptions;
+using System.Linq;
+using Aniverse.Business.DTO_s.Comment;
 
 namespace Aniverse.Business.Implementations
 {
@@ -49,24 +51,32 @@ namespace Aniverse.Business.Implementations
 
         public async Task<List<PostGetDto>> GetAllAsync(HttpRequest request)
         {
-            var posts = _mapper.Map<List<PostGetDto>>(await _unitOfWork.PostRepository.GetAllAsync(null, "Comments", "User", "Likes"));
-            foreach (var post in posts)
+            var posts = await _unitOfWork.PostRepository.GetAllAsync(null, "User", "Likes");
+            var postsIds = posts.Select(f => f.Id);
+            var userIds = posts.Select(p=>p.UserId);
+            var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => posts.Contains(p.Post) || userIds.Contains(p.UserId));
+            foreach (var picture in pictures)
             {
-                foreach (var picture in post.Pictures)
-                {
-                    picture.ImageName = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{picture.ImageName}");
-                }
+                picture.ImageName = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{picture.ImageName}");
             }
-            return posts;
-        }
-        public async Task<List<PostGetDto>> GetAllAsync(string id)
-        {
-            var user = _mapper.Map<List<PostGetDto>>(await _unitOfWork.FriendRepository.GetAllAsync(u => u.User.UserName == id, "Friend"));
-            return user;
+            var postMap = _mapper.Map<List<PostGetDto>>(posts);
+            var comments = _mapper.Map<List<CommentGetDto>>(await _unitOfWork.CommentRepository.GetAllAsync(c => postsIds.Contains(c.PostId), "User"));
+            foreach (var post in postMap)
+            {
+                post.Comments = comments.Where(c => c.PostId == post.Id).ToList();
+                if (pictures.Any(p => p.UserId == post.UserId && p.IsProfilePicture))
+                    post.User.ProfilPicture = pictures.Where(p => p.UserId == post.UserId && p.IsProfilePicture).FirstOrDefault().ImageName;
+            }
+            foreach (var comment in comments)
+            {
+                if (pictures.Any(p => p.UserId == comment.UserId && p.IsProfilePicture))
+                    comment.User.ProfilPicture = pictures.Where(p => p.UserId == comment.UserId && p.IsProfilePicture).FirstOrDefault().ImageName;
+            }
+            return postMap;
         }
         public async Task<List<PostGetDto>> GetAsync(string id, HttpRequest request)
         {
-            var posts = _mapper.Map<List<PostGetDto>>(await _unitOfWork.PostRepository.GetAllAsync(p => p.User.UserName == id, "Comments", "Comments.User", "User", "Likes", "Pictures"));
+            var posts = _mapper.Map<List<PostGetDto>>(await _unitOfWork.PostRepository.GetAllAsync(p => p.User.UserName == id, "User", "Likes", "Pictures"));
             foreach (var post in posts)
             {
                 foreach (var picture in post.Pictures)
@@ -79,18 +89,33 @@ namespace Aniverse.Business.Implementations
         public async Task<List<PostGetDto>> GetFriendPost(HttpRequest request, int page = 1, int size = 4)
         {
             var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
-            var friends = await _unitOfWork.FriendRepository.GetFriendId(userLoginId);
-            if(friends is null)
+            var friends = await _unitOfWork.FriendRepository.GetAllAsync(f => f.UserId == userLoginId);
+            var friendsId = friends.Select(f => f.FriendId);
+            if (friends is null)
             {
                 throw new NotFoundException("Friends is null");
             }
-            var posts = await _unitOfWork.PostRepository.GetAllPaginateAsync(page, size, p => friends.Contains(p.UserId) || p.UserId == userLoginId, "User","Comments","Likes","Animal","Pictures");
-            var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p=>posts.Contains(p.Post));
+            var posts = await _unitOfWork.PostRepository.GetAllAsync(p => friendsId.Contains(p.UserId) , "User", "Likes", "Animal");
+            var postsIds = posts.Select(f => f.Id);
+            var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => posts.Contains(p.Post) || friendsId.Contains(p.UserId) || p.UserId == userLoginId );
             foreach (var picture in pictures)
             {
                 picture.ImageName = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{picture.ImageName}");
             }
-            return _mapper.Map<List<PostGetDto>>(posts);
+            var postMap = _mapper.Map<List<PostGetDto>>(posts);
+            var comments = _mapper.Map<List<CommentGetDto>>(await _unitOfWork.CommentRepository.GetAllAsync(c=> postsIds.Contains(c.PostId),"User"));
+            foreach (var post in postMap)
+            {
+                post.Comments = comments.Where(c=>c.PostId == post.Id).ToList();
+                if (pictures.Any(p => p.UserId == post.UserId && p.IsProfilePicture))
+                    post.User.ProfilPicture = pictures.Where(p => p.UserId == post.UserId && p.IsProfilePicture).FirstOrDefault().ImageName;
+            }
+            foreach (var comment in comments)
+            {
+                if (pictures.Any(p => p.UserId == comment.UserId && p.IsProfilePicture))
+                    comment.User.ProfilPicture = pictures.Where(p => p.UserId == comment.UserId && p.IsProfilePicture).FirstOrDefault().ImageName;
+            }
+            return postMap;
         }
 
     }

@@ -1,4 +1,5 @@
 ﻿using Aniverse.Core.Entites.Enum;
+using Aniverse.Core.Entities;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace Aniverse.Core.Entites
         public DateTime Birthday { get; set; }
         public DateTime RegisterDate { get; set; }
         public bool IsBlock { get; set; }
+        public ICollection<SavePost> SavePosts { get; set; }
         public ICollection<Post> Posts { get; set; }
         public ICollection<Picture> Pictures { get; set; }
         public ICollection<Message> MessagesSent { get; set; }

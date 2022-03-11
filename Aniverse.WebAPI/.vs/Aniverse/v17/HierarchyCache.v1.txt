@@ -1,0 +1,903 @@
+﻿++Solution 'Aniverse' ‎(4 of 4 projects)
+i:{00000000-0000-0000-0000-000000000000}:Aniverse.sln
+++Aniverse.UI
+i:{00000000-0000-0000-0000-000000000000}:Aniverse.UI
+++Connected Services 
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:>1494
+++Dependencies
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:>1493
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:>1143
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:>1144
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:>1145
+++Properties
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\properties\
+++Controllers
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\controllers\
+++AnimalController.cs
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\controllers\animalcontroller.cs
+++AuthenticateController.cs
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\controllers\authenticatecontroller.cs
+++CommentController.cs
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\controllers\commentcontroller.cs
+++FriendController.cs
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\controllers\friendcontroller.cs
+++PostController.cs
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\controllers\postcontroller.cs
+++StoryController.cs
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\controllers\storycontroller.cs
+++UserController.cs
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\controllers\usercontroller.cs
+++Hubs
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\hubs\
+++Images
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\
+++appsettings.Development.json
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\appsettings.development.json
+++appsettings.json
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\appsettings.json
+++Program.cs
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\program.cs
+++Startup.cs
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\startup.cs
+++No service dependencies discovered
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:>1495
+++Analyzers
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:analyzers
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:analyzers
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:analyzers
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:analyzers
+++Frameworks
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:frameworks
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:frameworks
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:frameworks
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:frameworks
+++Packages
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:packages
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:packages
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:packages
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:packages
+++Projects
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:projects
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:projects
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:projects
+++launchSettings.json
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\properties\launchsettings.json
+++ChatHub.cs
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\hubs\chathub.cs
+++UserConnection.cs
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\hubs\userconnection.cs
+++011950cd-5888-4250-884d-8e4eb41a736e015a1757e67f766a12621af543b3a5fd.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\011950cd-5888-4250-884d-8e4eb41a736e015a1757e67f766a12621af543b3a5fd.jpg
+++019d16ad-42b8-485f-a914-6f84e435dce3photo_2021-06-26_10-46-22.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\019d16ad-42b8-485f-a914-6f84e435dce3photo_2021-06-26_10-46-22.jpg
+++01f85974-4033-442f-b640-d6512d78db0b015a1757e67f766a12621af543b3a5fd.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\01f85974-4033-442f-b640-d6512d78db0b015a1757e67f766a12621af543b3a5fd.jpg
+++024d051c-1645-4a84-9c55-d8899a1da961Screenshot 2021-11-29 095921.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\024d051c-1645-4a84-9c55-d8899a1da961screenshot 2021-11-29 095921.png
+++0273898e-d133-48ad-8363-97ea11e1c9f4photo_2021-06-26_11-37-03.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\0273898e-d133-48ad-8363-97ea11e1c9f4photo_2021-06-26_11-37-03.jpg
+++047261c9-926c-47ba-805c-750967ed0e81about-header.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\047261c9-926c-47ba-805c-750967ed0e81about-header.png
+++04b8c06c-45a0-4995-b3bf-3c9d7ee90c69photo_2021-08-29_18-32-14.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\04b8c06c-45a0-4995-b3bf-3c9d7ee90c69photo_2021-08-29_18-32-14.jpg
+++04ef842e-41a3-4098-9df0-76db9b2b8254revan-yayfest).jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\04ef842e-41a3-4098-9df0-76db9b2b8254revan-yayfest).jpg
+++081049aa-47a9-4d9a-a1a0-0d664ae69d91Screenshot 2021-12-31 100432.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\081049aa-47a9-4d9a-a1a0-0d664ae69d91screenshot 2021-12-31 100432.png
+++0a645a0c-09f3-46f1-81a5-6077771959e9photo_2021-06-26_11-37-03.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\0a645a0c-09f3-46f1-81a5-6077771959e9photo_2021-06-26_11-37-03.jpg
+++0aa1469c-8284-446d-8ca3-29a2ab78fc53revan-yayfest).jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\0aa1469c-8284-446d-8ca3-29a2ab78fc53revan-yayfest).jpg
+++0ccf2beb-659c-474b-b44b-d34df5b5c310revan-yayfest).jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\0ccf2beb-659c-474b-b44b-d34df5b5c310revan-yayfest).jpg
+++14f124d5-43e3-4972-a948-f5ab5124fb7dyayfest-video.mp4
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\14f124d5-43e3-4972-a948-f5ab5124fb7dyayfest-video.mp4
+++1881def8-2a19-4ad0-8b85-da00a3694e01Screenshot 2021-12-31 100432.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\1881def8-2a19-4ad0-8b85-da00a3694e01screenshot 2021-12-31 100432.png
+++1d0812c3-f6ec-4f5b-97a2-99e1fec7ebd5revan-yayfest).jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\1d0812c3-f6ec-4f5b-97a2-99e1fec7ebd5revan-yayfest).jpg
+++226f0880-abc1-43a4-9e4e-797618b0f9ebyayfest-video.mp4
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\226f0880-abc1-43a4-9e4e-797618b0f9ebyayfest-video.mp4
+++23538533-d30f-40f7-bfaf-b2267c471e6drevan-yayfest).jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\23538533-d30f-40f7-bfaf-b2267c471e6drevan-yayfest).jpg
+++256f7bab-5839-400d-a313-d5f25f9fce5b015a1757e67f766a12621af543b3a5fd.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\256f7bab-5839-400d-a313-d5f25f9fce5b015a1757e67f766a12621af543b3a5fd.png
+++262ed121-94f8-45a5-9181-a76140cdc163about-header.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\262ed121-94f8-45a5-9181-a76140cdc163about-header.png
+++27166810-415b-4478-92ca-f059e09cc9f3yayfest.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\27166810-415b-4478-92ca-f059e09cc9f3yayfest.jpg
+++2ada4124-fc10-48c5-ba4a-0dff310f65c7photo_2021-06-26_11-37-03.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\2ada4124-fc10-48c5-ba4a-0dff310f65c7photo_2021-06-26_11-37-03.jpg
+++2befc5c8-3c81-4cd9-bf30-9fd39afac129photo_2021-08-29_18-32-14.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\2befc5c8-3c81-4cd9-bf30-9fd39afac129photo_2021-08-29_18-32-14.jpg
+++2f0a8e13-222d-4db8-9d96-4f7ed18fa3b8yayfest.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\2f0a8e13-222d-4db8-9d96-4f7ed18fa3b8yayfest.jpg
+++2faec42f-37c2-41d7-8bbf-ae452e1951f0Screenshot 2021-12-31 100432.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\2faec42f-37c2-41d7-8bbf-ae452e1951f0screenshot 2021-12-31 100432.png
+++30244bde-8d70-41a0-9416-7efedbdcc051photo_2021-08-29_18-35-24.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\30244bde-8d70-41a0-9416-7efedbdcc051photo_2021-08-29_18-35-24.jpg
+++3137a2b9-73d0-4392-a41d-3832aac8c2f2Screenshot 2021-12-31 100432.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\3137a2b9-73d0-4392-a41d-3832aac8c2f2screenshot 2021-12-31 100432.png
+++33080efe-7c9e-45aa-bb18-07bc4bf2aeacrevan-travel.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\33080efe-7c9e-45aa-bb18-07bc4bf2aeacrevan-travel.jpg
+++36679596-539b-4174-8b94-a699edf17f61revan-yayfest).jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\36679596-539b-4174-8b94-a699edf17f61revan-yayfest).jpg
+++3e911234-6326-4b1d-9810-5590026ed8b1Screenshot 2021-11-29 095921.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\3e911234-6326-4b1d-9810-5590026ed8b1screenshot 2021-11-29 095921.png
+++3f0e92b9-3f5c-4639-9f1d-a91cb0217bbcphoto_2021-08-29_18-32-25.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\3f0e92b9-3f5c-4639-9f1d-a91cb0217bbcphoto_2021-08-29_18-32-25.jpg
+++4054189b-e75a-4f3f-b17e-3959317c4a38Screenshot 2021-11-29 095921.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\4054189b-e75a-4f3f-b17e-3959317c4a38screenshot 2021-11-29 095921.png
+++420c3548-ab8c-4dfe-b3e6-7d7325cbef75photo_2021-08-29_18-35-24.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\420c3548-ab8c-4dfe-b3e6-7d7325cbef75photo_2021-08-29_18-35-24.jpg
+++4231c9cb-a462-4ce6-a518-b1e72ec9f913Screenshot 2021-11-29 095921.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\4231c9cb-a462-4ce6-a518-b1e72ec9f913screenshot 2021-11-29 095921.png
+++4244eb67-4aee-4f04-87e2-bd0413570035yayfest.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\4244eb67-4aee-4f04-87e2-bd0413570035yayfest.jpg
+++43349804-8b1b-4529-b100-b7774f8efbdeScreenshot 2021-12-31 100432.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\43349804-8b1b-4529-b100-b7774f8efbdescreenshot 2021-12-31 100432.png
+++447d6417-f484-4b8d-9c49-81d817fbe0a1Screenshot 2021-12-31 100432.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\447d6417-f484-4b8d-9c49-81d817fbe0a1screenshot 2021-12-31 100432.png
+++484356b6-857f-452d-8d67-eb09ca5ffa9cabout-header.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\484356b6-857f-452d-8d67-eb09ca5ffa9cabout-header.png
+++490f1448-5a92-4f36-8c7b-0bb52e83396dabout-header.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\490f1448-5a92-4f36-8c7b-0bb52e83396dabout-header.png
+++49cf080c-d8dd-4688-8064-b4606a3ad684revan-travel.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\49cf080c-d8dd-4688-8064-b4606a3ad684revan-travel.jpg
+++52696eda-3d8f-45fd-8f84-9b5b6c5aabf6Screenshot 2021-12-31 100432.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\52696eda-3d8f-45fd-8f84-9b5b6c5aabf6screenshot 2021-12-31 100432.png
+++53b3b9b5-341b-423c-b54c-3ebe22ad9e1bScreenshot 2021-12-31 100432.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\53b3b9b5-341b-423c-b54c-3ebe22ad9e1bscreenshot 2021-12-31 100432.png
+++542931df-e552-4bcf-9f57-2b170a8ec9f2photo_2021-08-29_18-32-14.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\542931df-e552-4bcf-9f57-2b170a8ec9f2photo_2021-08-29_18-32-14.jpg
+++54b559c4-c589-485c-9a4d-17e243fb095fphoto_2021-06-26_11-37-03.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\54b559c4-c589-485c-9a4d-17e243fb095fphoto_2021-06-26_11-37-03.jpg
+++5971bbe1-cd9a-42c0-9dcb-923bb06abed8revan-yayfest).jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\5971bbe1-cd9a-42c0-9dcb-923bb06abed8revan-yayfest).jpg
+++59cdd897-bf95-4793-a9d0-ab777c65614aphoto_2021-08-29_18-35-24.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\59cdd897-bf95-4793-a9d0-ab777c65614aphoto_2021-08-29_18-35-24.jpg
+++5a6a3937-cafd-4049-accd-374897102e9aScreenshot 2021-12-31 100432.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\5a6a3937-cafd-4049-accd-374897102e9ascreenshot 2021-12-31 100432.png
+++5ba8566c-dad4-4c9a-9022-876074d08d79yayfest.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\5ba8566c-dad4-4c9a-9022-876074d08d79yayfest.jpg
+++5bfbb5e6-fe75-4491-ac6d-86966df79434about-header.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\5bfbb5e6-fe75-4491-ac6d-86966df79434about-header.png
+++5cecbee4-d7f0-4a22-8b36-7b1b2b81078brevan-travel.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\5cecbee4-d7f0-4a22-8b36-7b1b2b81078brevan-travel.jpg
+++5d0ae02d-50e3-4fdc-9ace-cada7c6c2b73Screenshot 2021-12-31 100432.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\5d0ae02d-50e3-4fdc-9ace-cada7c6c2b73screenshot 2021-12-31 100432.png
+++5dec59ce-b7af-4cbb-8f3d-93087b3f2f46Screenshot 2021-11-29 095921.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\5dec59ce-b7af-4cbb-8f3d-93087b3f2f46screenshot 2021-11-29 095921.png
+++6096ffe5-13f1-4f44-827f-89f0b91f9ce6photo_2021-06-26_11-37-03.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\6096ffe5-13f1-4f44-827f-89f0b91f9ce6photo_2021-06-26_11-37-03.jpg
+++6576db2b-ce32-4164-af6c-4623e2da42fbrevan-yayfest).jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\6576db2b-ce32-4164-af6c-4623e2da42fbrevan-yayfest).jpg
+++681a80b3-ca8e-4701-ba93-62e8191f5f62Screenshot 2021-11-29 095921.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\681a80b3-ca8e-4701-ba93-62e8191f5f62screenshot 2021-11-29 095921.png
+++692e3352-63af-46c1-8b4c-cc811749290byayfest.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\692e3352-63af-46c1-8b4c-cc811749290byayfest.jpg
+++69c8bfe3-f495-4d1f-88bc-8684b74d0a0cphoto_2021-08-29_18-35-24.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\69c8bfe3-f495-4d1f-88bc-8684b74d0a0cphoto_2021-08-29_18-35-24.jpg
+++6cb4d387-9ebc-4bcb-9e08-e9c1d718fbfbphoto_2021-06-26_11-37-03.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\6cb4d387-9ebc-4bcb-9e08-e9c1d718fbfbphoto_2021-06-26_11-37-03.jpg
+++70930b32-c94e-4f3c-8837-ad0157c6b4d4photo_2021-08-29_18-32-14.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\70930b32-c94e-4f3c-8837-ad0157c6b4d4photo_2021-08-29_18-32-14.jpg
+++7115c405-eb66-43fd-b155-884cde89f31fphoto_2021-08-29_18-35-24.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\7115c405-eb66-43fd-b155-884cde89f31fphoto_2021-08-29_18-35-24.jpg
+++71db624c-f317-4992-a9cb-80bcb9c808efrevan-yayfest).jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\71db624c-f317-4992-a9cb-80bcb9c808efrevan-yayfest).jpg
+++75669915-222d-452e-8345-1277508c7463photo_2021-08-29_18-35-24.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\75669915-222d-452e-8345-1277508c7463photo_2021-08-29_18-35-24.jpg
+++761621f0-3fcc-4aa4-838d-89adbe0444ebScreenshot 2021-11-29 095921.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\761621f0-3fcc-4aa4-838d-89adbe0444ebscreenshot 2021-11-29 095921.png
+++769ff1e1-f6f3-4d13-86a0-2808b7afc9bdyayfest.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\769ff1e1-f6f3-4d13-86a0-2808b7afc9bdyayfest.jpg
+++77952c7c-3ab6-4a62-8d0f-6499cf2db5d2015a1757e67f766a12621af543b3a5fd.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\77952c7c-3ab6-4a62-8d0f-6499cf2db5d2015a1757e67f766a12621af543b3a5fd.png
+++77b6e08c-f692-4480-b71c-fa0c29ac2a00Screenshot 2021-11-29 095921.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\77b6e08c-f692-4480-b71c-fa0c29ac2a00screenshot 2021-11-29 095921.png
+++77f30fed-d3b0-488d-8a42-71509cc318a8photo_2021-08-29_18-35-24.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\77f30fed-d3b0-488d-8a42-71509cc318a8photo_2021-08-29_18-35-24.jpg
+++792a8581-c193-452a-b534-5483c1850125photo_2021-06-26_11-37-03.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\792a8581-c193-452a-b534-5483c1850125photo_2021-06-26_11-37-03.jpg
+++7978963c-7a5c-4f7b-8712-972929f21198revan-travel.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\7978963c-7a5c-4f7b-8712-972929f21198revan-travel.jpg
+++7ca777d1-88af-4540-838b-8f152290fdecScreenshot 2021-12-31 100432.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\7ca777d1-88af-4540-838b-8f152290fdecscreenshot 2021-12-31 100432.png
+++7d884d21-672d-4735-95dc-1d54d7c15c19Screenshot 2021-12-31 100432.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\7d884d21-672d-4735-95dc-1d54d7c15c19screenshot 2021-12-31 100432.png
+++7eb73c2a-70b0-4491-99b8-f020d0bc9275photo_2021-06-26_11-37-03.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\7eb73c2a-70b0-4491-99b8-f020d0bc9275photo_2021-06-26_11-37-03.jpg
+++7ef16893-7efa-42f6-bdd0-92a05ae14945revan-travel.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\7ef16893-7efa-42f6-bdd0-92a05ae14945revan-travel.jpg
+++80377ec0-8f93-464f-b651-8a4d5edf4d63Screenshot 2021-11-29 095921.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\80377ec0-8f93-464f-b651-8a4d5edf4d63screenshot 2021-11-29 095921.png
+++804b3608-1dd2-4000-90d6-105007a3f14arevan-travel.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\804b3608-1dd2-4000-90d6-105007a3f14arevan-travel.jpg
+++82b57f14-47c7-4208-9c6b-68974719ec29Screenshot 2021-12-31 100432.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\82b57f14-47c7-4208-9c6b-68974719ec29screenshot 2021-12-31 100432.png
+++83ef54b7-4846-4e17-9121-fe23b9ec7b57Screenshot 2021-11-29 095921.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\83ef54b7-4846-4e17-9121-fe23b9ec7b57screenshot 2021-11-29 095921.png
+++84774ffa-958d-418f-baf2-fbbd39fb0491Screenshot 2021-11-29 095921.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\84774ffa-958d-418f-baf2-fbbd39fb0491screenshot 2021-11-29 095921.png
+++85f107ba-0c86-4778-a4aa-02ac58ec9fcephoto_2021-08-29_18-32-25.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\85f107ba-0c86-4778-a4aa-02ac58ec9fcephoto_2021-08-29_18-32-25.jpg
+++86baaadf-1d27-4c33-a072-0fadd57e3437about-header.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\86baaadf-1d27-4c33-a072-0fadd57e3437about-header.png
+++88be0cff-1f50-4ee4-b966-126fd0498121revan-travel.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\88be0cff-1f50-4ee4-b966-126fd0498121revan-travel.jpg
+++8990e175-8891-43cc-acba-ea81f24f2f3fabout-header.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\8990e175-8891-43cc-acba-ea81f24f2f3fabout-header.png
+++91022e77-4e72-46a5-9387-7d3721dac8e8Screenshot 2021-12-31 100432.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\91022e77-4e72-46a5-9387-7d3721dac8e8screenshot 2021-12-31 100432.png
+++9111793c-ff61-45d6-93d2-2ac838a8b516revan-travel.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\9111793c-ff61-45d6-93d2-2ac838a8b516revan-travel.jpg
+++919bf7f7-6633-401c-b770-b5605b589a19Screenshot 2021-11-29 095921.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\919bf7f7-6633-401c-b770-b5605b589a19screenshot 2021-11-29 095921.png
+++96a53f48-b7e0-46dc-b78a-2fe54634a359photo_2021-08-29_18-33-22.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\96a53f48-b7e0-46dc-b78a-2fe54634a359photo_2021-08-29_18-33-22.jpg
+++978c9503-5b50-42ee-9c25-60c9cc31b51erevan-travel.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\978c9503-5b50-42ee-9c25-60c9cc31b51erevan-travel.jpg
+++97f880ff-e41c-4310-b030-9747785a644eabout-header.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\97f880ff-e41c-4310-b030-9747785a644eabout-header.png
+++9a7786fa-6dd9-42c1-bcc5-4724a3216a79yayfest.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\9a7786fa-6dd9-42c1-bcc5-4724a3216a79yayfest.jpg
+++9d63eda6-0846-4bcc-acfc-80707340e010revan-travel.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\9d63eda6-0846-4bcc-acfc-80707340e010revan-travel.jpg
+++9e24ef27-d9da-49cb-b8ec-9cb1a2e39069yayfest.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\9e24ef27-d9da-49cb-b8ec-9cb1a2e39069yayfest.jpg
+++9fee230c-a86f-41dd-86be-00cc526a5755photo_2021-08-29_18-35-24.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\9fee230c-a86f-41dd-86be-00cc526a5755photo_2021-08-29_18-35-24.jpg
+++a085ddda-c68e-4014-9bda-356566659ff8about-header.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\a085ddda-c68e-4014-9bda-356566659ff8about-header.png
+++a0c6c18e-9f29-4251-bb61-ca57971b253fphoto_2021-06-26_11-37-03.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\a0c6c18e-9f29-4251-bb61-ca57971b253fphoto_2021-06-26_11-37-03.jpg
+++a4d687fc-bd41-4013-8efe-ade3d1b93d8aphoto_2021-06-26_11-37-03.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\a4d687fc-bd41-4013-8efe-ade3d1b93d8aphoto_2021-06-26_11-37-03.jpg
+++a6befe79-9559-4294-9bc4-a79e996812b2Screenshot 2021-12-31 100432.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\a6befe79-9559-4294-9bc4-a79e996812b2screenshot 2021-12-31 100432.png
+++a6f6c51a-271b-4247-86a7-8d8602371cc6photo_2021-08-29_18-35-24.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\a6f6c51a-271b-4247-86a7-8d8602371cc6photo_2021-08-29_18-35-24.jpg
+++a823aa73-095c-46e1-b9a0-eeb770f46965Screenshot 2021-12-31 100432.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\a823aa73-095c-46e1-b9a0-eeb770f46965screenshot 2021-12-31 100432.png
+++aafdad40-9cea-4fea-9116-1d691e5e0088Screenshot 2021-12-31 100432.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\aafdad40-9cea-4fea-9116-1d691e5e0088screenshot 2021-12-31 100432.png
+++ab4723be-1070-4401-acb3-41476051f4bcrevan-travel.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\ab4723be-1070-4401-acb3-41476051f4bcrevan-travel.jpg
+++abcdb65c-2512-4add-a0d2-19fc0ab38381photo_2021-08-29_18-35-24.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\abcdb65c-2512-4add-a0d2-19fc0ab38381photo_2021-08-29_18-35-24.jpg
+++abff8bb8-1d96-459e-9370-669bfc0789d7revan-travel.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\abff8bb8-1d96-459e-9370-669bfc0789d7revan-travel.jpg
+++ac83be8b-0cec-423d-89d1-7cc1d0982b88revan-travel.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\ac83be8b-0cec-423d-89d1-7cc1d0982b88revan-travel.jpg
+++ad4271c2-2f1d-410a-bb88-4c4559496994revan-travel.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\ad4271c2-2f1d-410a-bb88-4c4559496994revan-travel.jpg
+++af7e5e06-41be-4684-bf88-c00d2a935470photo_2021-08-29_18-35-24.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\af7e5e06-41be-4684-bf88-c00d2a935470photo_2021-08-29_18-35-24.jpg
+++b122d6b8-0951-4261-b522-58ae75b46afeyayfest.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\b122d6b8-0951-4261-b522-58ae75b46afeyayfest.jpg
+++b15a089e-a976-4007-b377-5b384ef87454Screenshot 2021-12-31 100432.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\b15a089e-a976-4007-b377-5b384ef87454screenshot 2021-12-31 100432.png
+++b41c41a1-0ac4-4192-8d28-039dce375a32Screenshot 2021-11-29 095921.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\b41c41a1-0ac4-4192-8d28-039dce375a32screenshot 2021-11-29 095921.png
+++b653b1cf-802e-4dd7-a21a-d851ba24d0cdphoto_2021-08-29_18-32-25.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\b653b1cf-802e-4dd7-a21a-d851ba24d0cdphoto_2021-08-29_18-32-25.jpg
+++b9f8fb6d-596b-4a1c-bea7-167f1e6a3e75revan-travel.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\b9f8fb6d-596b-4a1c-bea7-167f1e6a3e75revan-travel.jpg
+++ba542672-6aa4-471d-9b1c-e449dddbee07revan-yayfest).jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\ba542672-6aa4-471d-9b1c-e449dddbee07revan-yayfest).jpg
+++bc4cdecc-a9b7-47f9-b540-5c99fd6476a6Screenshot 2021-11-29 095921.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\bc4cdecc-a9b7-47f9-b540-5c99fd6476a6screenshot 2021-11-29 095921.png
+++be488db3-ea45-434a-bfa8-590f88b4c5a3revan-travel.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\be488db3-ea45-434a-bfa8-590f88b4c5a3revan-travel.jpg
+++be7d4c83-a1f6-4f06-b471-576bd6c0c638Screenshot 2021-12-31 100432.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\be7d4c83-a1f6-4f06-b471-576bd6c0c638screenshot 2021-12-31 100432.png
+++bec65550-f040-43db-bafc-bf9276494656Screenshot 2021-12-31 100432.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\bec65550-f040-43db-bafc-bf9276494656screenshot 2021-12-31 100432.png
+++c09c795f-8e52-4b4d-9b60-ab92372c0543photo_2021-06-26_11-37-03.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\c09c795f-8e52-4b4d-9b60-ab92372c0543photo_2021-06-26_11-37-03.jpg
+++c44b4f2e-5ddc-48a5-b82a-30ab66b5be7fyayfest.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\c44b4f2e-5ddc-48a5-b82a-30ab66b5be7fyayfest.jpg
+++c488f4f1-76ba-45c5-bfdb-837905312691Screenshot 2021-12-31 100432.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\c488f4f1-76ba-45c5-bfdb-837905312691screenshot 2021-12-31 100432.png
+++cba502be-cc84-4bdd-8877-a8a1560c4487Screenshot 2021-12-31 100432.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\cba502be-cc84-4bdd-8877-a8a1560c4487screenshot 2021-12-31 100432.png
+++cbe91310-bd0e-4b8b-a218-bf42b8e4cc75photo_2021-06-26_11-37-03.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\cbe91310-bd0e-4b8b-a218-bf42b8e4cc75photo_2021-06-26_11-37-03.jpg
+++cd744969-e7c7-452f-b78e-a9869475fa5dphoto_2021-08-29_18-35-24.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\cd744969-e7c7-452f-b78e-a9869475fa5dphoto_2021-08-29_18-35-24.jpg
+++cddb308a-ba37-4139-bef7-525496ca3871revan-yayfest).jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\cddb308a-ba37-4139-bef7-525496ca3871revan-yayfest).jpg
+++d6ae0819-dfae-40c3-9891-f6a1c22abd20revan-yayfest).jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\d6ae0819-dfae-40c3-9891-f6a1c22abd20revan-yayfest).jpg
+++d86d37df-8488-4bfa-8d85-27fa5dea83eeabout-header.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\d86d37df-8488-4bfa-8d85-27fa5dea83eeabout-header.png
+++d98a1685-0b0e-4aef-9d56-956e93827997photo_2021-06-26_11-37-03.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\d98a1685-0b0e-4aef-9d56-956e93827997photo_2021-06-26_11-37-03.jpg
+++dccc019f-3eae-43b5-9a2b-ec9d2b0cc2e7Screenshot 2021-12-31 100432.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\dccc019f-3eae-43b5-9a2b-ec9d2b0cc2e7screenshot 2021-12-31 100432.png
+++dd9a1c5e-6b53-4e10-b36d-5e4115dd9adbrevan-travel.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\dd9a1c5e-6b53-4e10-b36d-5e4115dd9adbrevan-travel.jpg
+++df172c7e-9c5e-49b5-805a-1bc9388f855arevan-travel.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\df172c7e-9c5e-49b5-805a-1bc9388f855arevan-travel.jpg
+++e3312e56-50be-48d8-b5f4-075da1d05697photo_2021-08-29_18-35-24.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\e3312e56-50be-48d8-b5f4-075da1d05697photo_2021-08-29_18-35-24.jpg
+++e3b6b1e3-4b1a-4ed5-8701-7cbf81b91402photo_2021-08-29_18-32-25.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\e3b6b1e3-4b1a-4ed5-8701-7cbf81b91402photo_2021-08-29_18-32-25.jpg
+++e47e1f22-4029-4e35-9b89-a97342ccfb45Screenshot 2021-12-31 100432.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\e47e1f22-4029-4e35-9b89-a97342ccfb45screenshot 2021-12-31 100432.png
+++e9c00fac-44d1-4980-b6e4-67a867a2fda8photo_2021-06-26_11-37-03.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\e9c00fac-44d1-4980-b6e4-67a867a2fda8photo_2021-06-26_11-37-03.jpg
+++eecace78-9541-4838-a909-4e68dd1e703erevan-yayfest).jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\eecace78-9541-4838-a909-4e68dd1e703erevan-yayfest).jpg
+++ef543634-42f3-4e85-afeb-c55643eb29dbphoto_2021-06-26_11-37-03.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\ef543634-42f3-4e85-afeb-c55643eb29dbphoto_2021-06-26_11-37-03.jpg
+++f4df4ab4-3ec1-45ea-8a08-d0b659bf339dphoto_2021-08-29_18-33-22.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\f4df4ab4-3ec1-45ea-8a08-d0b659bf339dphoto_2021-08-29_18-33-22.jpg
+++f7a5ccce-f1e9-4ca7-9575-c192e1d5491eabout-header.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\f7a5ccce-f1e9-4ca7-9575-c192e1d5491eabout-header.png
+++fa2c7431-6c58-4add-a428-0d3ea61c267bScreenshot 2021-11-29 095921.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\fa2c7431-6c58-4add-a428-0d3ea61c267bscreenshot 2021-11-29 095921.png
+++fc5dd013-173d-4c9a-9530-11120c6adaaeScreenshot 2021-11-29 095921.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\fc5dd013-173d-4c9a-9530-11120c6adaaescreenshot 2021-11-29 095921.png
+++Microsoft.AspNetCore.Analyzers
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.analyzers.dll
+++Microsoft.AspNetCore.Components.Analyzers
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.components.analyzers.dll
+++Microsoft.AspNetCore.Mvc.Analyzers
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\program files\dotnet\sdk\6.0.200\sdks\microsoft.net.sdk.web\analyzers\cs\microsoft.aspnetcore.mvc.analyzers.dll
+++Microsoft.EntityFrameworkCore.Analyzers
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\users\admin\.nuget\packages\microsoft.entityframeworkcore.analyzers\3.1.22\analyzers\dotnet\cs\microsoft.entityframeworkcore.analyzers.dll
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\users\admin\.nuget\packages\microsoft.entityframeworkcore.analyzers\3.1.22\analyzers\dotnet\cs\microsoft.entityframeworkcore.analyzers.dll
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\users\admin\.nuget\packages\microsoft.entityframeworkcore.analyzers\3.1.22\analyzers\dotnet\cs\microsoft.entityframeworkcore.analyzers.dll
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\users\admin\.nuget\packages\microsoft.entityframeworkcore.analyzers\3.1.22\analyzers\dotnet\cs\microsoft.entityframeworkcore.analyzers.dll
+++Microsoft.AspNetCore.App
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\microsoft.aspnetcore.app
+++Microsoft.NETCore.App
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\microsoft.netcore.app
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\microsoft.netcore.app
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\microsoft.netcore.app
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\microsoft.netcore.app
+++AutoMapper.Extensions.Microsoft.DependencyInjection (11.0.0)
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:>1550
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:>1503
+++FluentValidation.AspNetCore (10.3.6)
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:>1551
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:>1532
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:>1518
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:>1504
+++Microsoft.AspNetCore.Authentication.JwtBearer (3.1.22)
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:>1554
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:>1534
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:>1520
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:>1506
+++Microsoft.AspNetCore.Http.Features (3.1.22)
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:>1547
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:>1529
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:>1515
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:>1499
+++Microsoft.AspNetCore.Identity.EntityFrameworkCore (3.1.22)
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:>1553
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:>1533
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:>1519
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:>1505
+++Microsoft.AspNetCore.Mvc.NewtonsoftJson (3.1.22)
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:>1552
+++Microsoft.EntityFrameworkCore (3.1.22)
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:>1548
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:>1530
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:>1516
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:>1500
+++Microsoft.EntityFrameworkCore.SqlServer (3.1.22)
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:>1549
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:>1531
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:>1517
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:>1502
+++Microsoft.EntityFrameworkCore.Tools (3.1.22)
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:>1555
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:>1535
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:>1521
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:>1507
+++Aniverse.Business
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\bin\debug\netcoreapp3.1\aniverse.business.dll
+i:{00000000-0000-0000-0000-000000000000}:Aniverse.Business
+++Aniverse.Core
+i:{00000000-0000-0000-0000-000000000000}:Aniverse.Core
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\bin\debug\netcoreapp3.1\aniverse.core.dll
+++Entities
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\entities\
+++Enum
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\entities\enum\
+++Animal.cs
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\entities\animal.cs
+++AnimalCategory.cs
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\entities\animalcategory.cs
+++AnimalFollow.cs
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\entities\animalfollow.cs
+++AnimalGroup.cs
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\entities\animalgroup.cs
+++AppUser.cs
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\entities\appuser.cs
+++Comment.cs
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\entities\comment.cs
+++Group.cs
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\entities\group.cs
+++Like.cs
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\entities\like.cs
+++Message.cs
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\entities\message.cs
+++MessageGroup.cs
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\entities\messagegroup.cs
+++Picture.cs
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\entities\picture.cs
+++Post.cs
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\entities\post.cs
+++Product.cs
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\entities\product.cs
+++ProductCategory.cs
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\entities\productcategory.cs
+++Setting.cs
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\entities\setting.cs
+++Story.cs
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\entities\story.cs
+++UserFriend.cs
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\entities\userfriend.cs
+++UserSM.cs
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\entities\usersm.cs
+++Interfaces
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\interfaces\
+++IAnimalCategory.cs
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\interfaces\ianimalcategory.cs
+++IAnimalFollowRepository.cs
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\interfaces\ianimalfollowrepository.cs
+++IAnimalRepository.cs
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\interfaces\ianimalrepository.cs
+++ICommentRepository.cs
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\interfaces\icommentrepository.cs
+++IFriendRepository.cs
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\interfaces\ifriendrepository.cs
+++IGroupRepository.cs
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\interfaces\igrouprepository.cs
+++ILikeRepository.cs
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\interfaces\ilikerepository.cs
+++IMessageRepository.cs
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\interfaces\imessagerepository.cs
+++IPictureRepository.cs
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\interfaces\ipicturerepository.cs
+++IPostRepository.cs
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\interfaces\ipostrepository.cs
+++IRepository.cs
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\interfaces\irepository.cs
+++IStoryRepository.cs
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\interfaces\istoryrepository.cs
+++IUserRepository.cs
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\interfaces\iuserrepository.cs
+++IUnitOfWork.cs
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\iunitofwork.cs
+++FriendRequestStatus.cs
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\entities\enum\friendrequeststatus.cs
+++Gender.cs
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\entities\enum\gender.cs
+++LikeType.cs
+i:{13ab46b3-624f-4e3e-9806-5e870566838d}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.core\entities\enum\liketype.cs
+++Aniverse.Data
+i:{00000000-0000-0000-0000-000000000000}:Aniverse.Data
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\bin\debug\netcoreapp3.1\aniverse.data.dll
+++Configuration
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\configuration\
+++DAL
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\dal\
+++Implementations
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\implementations\
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\implementations\
+++AnimalCategoryRepository.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\implementations\animalcategoryrepository.cs
+++AnimalFollowRepository.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\implementations\animalfollowrepository.cs
+++AnimalRepository.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\implementations\animalrepository.cs
+++CommentRepository.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\implementations\commentrepository.cs
+++FriendRepository.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\implementations\friendrepository.cs
+++LikeRepository.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\implementations\likerepository.cs
+++MessageRepository.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\implementations\messagerepository.cs
+++PictureRepository.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\implementations\picturerepository.cs
+++PostRepository.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\implementations\postrepository.cs
+++Repository.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\implementations\repository.cs
+++StoryRepository.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\implementations\storyrepository.cs
+++UserRepository.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\implementations\userrepository.cs
+++Migrations
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\
+++UnitOfWork.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\unitofwork.cs
+++AnimalCategoryConfiguration.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\configuration\animalcategoryconfiguration.cs
+++AnimalConfiguration.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\configuration\animalconfiguration.cs
+++AnimalFollowConfiguration.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\configuration\animalfollowconfiguration.cs
+++AppUserConfiguration.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\configuration\appuserconfiguration.cs
+++CommentConfiguration.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\configuration\commentconfiguration.cs
+++LikeConfiguration.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\configuration\likeconfiguration.cs
+++PictureConfiguration.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\configuration\pictureconfiguration.cs
+++PostConfiguration.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\configuration\postconfiguration.cs
+++StoryConfigration.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\configuration\storyconfigration.cs
+++AppDbContext.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\dal\appdbcontext.cs
+++20220208191643_CreateDB.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220208191643_createdb.cs
+++20220208231542_ModifiedDefaultValue.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220208231542_modifieddefaultvalue.cs
+++20220210081749_ModifiedAnimaltable.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220210081749_modifiedanimaltable.cs
+++20220210081948_ModifiedAnimalGroup.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220210081948_modifiedanimalgroup.cs
+++20220210094158_AddCollection.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220210094158_addcollection.cs
+++20220210101400_AddModifiedCollection.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220210101400_addmodifiedcollection.cs
+++20220210152010_ALterTableFriendRequest.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220210152010_altertablefriendrequest.cs
+++20220210152404_AddedFreindRequest.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220210152404_addedfreindrequest.cs
+++20220210162521_AddedCategoryId.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220210162521_addedcategoryid.cs
+++20220210182356_RemoveUserFrientTable.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220210182356_removeuserfrienttable.cs
+++20220210182601_AddedUserFriendTable.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220210182601_addeduserfriendtable.cs
+++20220215060629_AddedUserSocialMedia.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220215060629_addedusersocialmedia.cs
+++20220215061752_ModifiedSMTable.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220215061752_modifiedsmtable.cs
+++20220215062427_ModifiedRelation.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220215062427_modifiedrelation.cs
+++20220216023246_AddedAnimalName.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220216023246_addedanimalname.cs
+++20220216184603_ChangeStory.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220216184603_changestory.cs
+++20220217132409_AddressNotNull.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220217132409_addressnotnull.cs
+++20220220114457_ModifiedStoryEntities.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220220114457_modifiedstoryentities.cs
+++20220220121445_RemoveStoryContentColumn.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220220121445_removestorycontentcolumn.cs
+++20220220141442_ModifiedStory.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220220141442_modifiedstory.cs
+++20220223142859_PostConfiguration.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220223142859_postconfiguration.cs
+++20220223155311_CommentConfiguration.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220223155311_commentconfiguration.cs
+++20220225024203_UserGender.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220225024203_usergender.cs
+++20220227111121_ModifedDate.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220227111121_modifeddate.cs
+++20220228093644_AddedUserFriendStatus.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220228093644_addeduserfriendstatus.cs
+++20220301145857_AddedBioAnimalEntites.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220301145857_addedbioanimalentites.cs
+++20220301150819_PostAddAnimalReletion.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220301150819_postaddanimalreletion.cs
+++20220303081225_AddedAnimalFollowTable.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220303081225_addedanimalfollowtable.cs
+++20220304155556_AddedUserId.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220304155556_addeduserid.cs
+++20220305174904_AnimalChangeColumb.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220305174904_animalchangecolumb.cs
+++AppDbContextModelSnapshot.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\appdbcontextmodelsnapshot.cs
+++20220208191643_CreateDB.Designer.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220208191643_createdb.designer.cs
+++20220208231542_ModifiedDefaultValue.Designer.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220208231542_modifieddefaultvalue.designer.cs
+++20220210081749_ModifiedAnimaltable.Designer.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220210081749_modifiedanimaltable.designer.cs
+++20220210081948_ModifiedAnimalGroup.Designer.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220210081948_modifiedanimalgroup.designer.cs
+++20220210094158_AddCollection.Designer.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220210094158_addcollection.designer.cs
+++20220210101400_AddModifiedCollection.Designer.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220210101400_addmodifiedcollection.designer.cs
+++20220210152010_ALterTableFriendRequest.Designer.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220210152010_altertablefriendrequest.designer.cs
+++20220210152404_AddedFreindRequest.Designer.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220210152404_addedfreindrequest.designer.cs
+++20220210162521_AddedCategoryId.Designer.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220210162521_addedcategoryid.designer.cs
+++20220210182356_RemoveUserFrientTable.Designer.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220210182356_removeuserfrienttable.designer.cs
+++20220210182601_AddedUserFriendTable.Designer.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220210182601_addeduserfriendtable.designer.cs
+++20220215060629_AddedUserSocialMedia.Designer.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220215060629_addedusersocialmedia.designer.cs
+++20220215061752_ModifiedSMTable.Designer.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220215061752_modifiedsmtable.designer.cs
+++20220215062427_ModifiedRelation.Designer.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220215062427_modifiedrelation.designer.cs
+++20220216023246_AddedAnimalName.Designer.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220216023246_addedanimalname.designer.cs
+++20220216184603_ChangeStory.Designer.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220216184603_changestory.designer.cs
+++20220217132409_AddressNotNull.Designer.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220217132409_addressnotnull.designer.cs
+++20220220114457_ModifiedStoryEntities.Designer.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220220114457_modifiedstoryentities.designer.cs
+++20220220121445_RemoveStoryContentColumn.Designer.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220220121445_removestorycontentcolumn.designer.cs
+++20220220141442_ModifiedStory.Designer.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220220141442_modifiedstory.designer.cs
+++20220223142859_PostConfiguration.Designer.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220223142859_postconfiguration.designer.cs
+++20220223155311_CommentConfiguration.Designer.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220223155311_commentconfiguration.designer.cs
+++20220225024203_UserGender.Designer.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220225024203_usergender.designer.cs
+++20220227111121_ModifedDate.Designer.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220227111121_modifeddate.designer.cs
+++20220228093644_AddedUserFriendStatus.Designer.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220228093644_addeduserfriendstatus.designer.cs
+++20220301145857_AddedBioAnimalEntites.Designer.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220301145857_addedbioanimalentites.designer.cs
+++20220301150819_PostAddAnimalReletion.Designer.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220301150819_postaddanimalreletion.designer.cs
+++20220303081225_AddedAnimalFollowTable.Designer.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220303081225_addedanimalfollowtable.designer.cs
+++20220304155556_AddedUserId.Designer.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220304155556_addeduserid.designer.cs
+++20220305174904_AnimalChangeColumb.Designer.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220305174904_animalchangecolumb.designer.cs
+++DTO's
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\
+++Animal
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\animal\
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\validator\animal\
+++Authentication
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\authentication\
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\validator\authentication\
+++Comment
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\comment\
+++Friend
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\friend\
+++Message
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\message\
+++Picture
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\picture\
+++GetPictureDto.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\picture\getpicturedto.cs
+++Post
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\post\
+++StatusCode
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\statuscode\
+++Story
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\story\
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\validator\story\
+++StoryCreateDto.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\story\storycreatedto.cs
+++StoryGetDto.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\story\storygetdto.cs
+++User
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\user\
+++BioPatchDto.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\user\biopatchdto.cs
+++ProfileCreateDto.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\user\profilecreatedto.cs
+++UserAllDto.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\user\useralldto.cs
+++UserData.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\user\userdata.cs
+++UserGetDto.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\user\usergetdto.cs
+++Exceptions
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\exceptions\
+++AlreadyException.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\exceptions\alreadyexception.cs
+++NotFoundException.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\exceptions\notfoundexception.cs
+++Extensions
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\extensions\
+++ClaimsPrincipialExtensions.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\extensions\claimsprincipialextensions.cs
+++Helpers
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\helpers\
+++AnimalService.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\implementations\animalservice.cs
+++CommentService.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\implementations\commentservice.cs
+++FriendService.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\implementations\friendservice.cs
+++LikeService.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\implementations\likeservice.cs
+++MessageService.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\implementations\messageservice.cs
+++PostService.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\implementations\postservice.cs
+++StoryService.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\implementations\storyservice.cs
+++UnitOfWorkService.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\implementations\unitofworkservice.cs
+++UserService.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\implementations\userservice.cs
+++Interface
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\interface\
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\services\interface\
+++IAnimalService.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\interface\ianimalservice.cs
+++ICommentService.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\interface\icommentservice.cs
+++IFriendService.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\interface\ifriendservice.cs
+++ILikeService.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\interface\ilikeservice.cs
+++IMessageService.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\interface\imessageservice.cs
+++IPostService.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\interface\ipostservice.cs
+++IStoryService.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\interface\istoryservice.cs
+++IUnitOfWorkService.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\interface\iunitofworkservice.cs
+++IUserService.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\interface\iuserservice.cs
+++Profiles
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\profiles\
+++Services
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\services\
+++Validator
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\validator\
+++LoginValidation.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\validator\authentication\loginvalidation.cs
+++RegisterValidation.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\validator\authentication\registervalidation.cs
+++StoryCreateValidation.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\validator\story\storycreatevalidation.cs
+++AnimalAllDto.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\animal\animalalldto.cs
+++AnimalCreateDto.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\animal\animalcreatedto.cs
+++AnimalFollowDto.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\animal\animalfollowdto.cs
+++AnimalGetCategory.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\animal\animalgetcategory.cs
+++AnimalGetDto.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\animal\animalgetdto.cs
+++AnimalSelectGetDto.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\animal\animalselectgetdto.cs
+++AnimalUpdateDto.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\animal\animalupdatedto.cs
+++FollowDto.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\animal\followdto.cs
+++Login.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\authentication\login.cs
+++Register.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\authentication\register.cs
+++CommentCreateDto.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\comment\commentcreatedto.cs
+++CommentGetDto.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\comment\commentgetdto.cs
+++FriendConfirmDto.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\friend\friendconfirmdto.cs
+++FriendRequestDto.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\friend\friendrequestdto.cs
+++UserFriendDto.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\friend\userfrienddto.cs
+++MessageGetDto.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\message\messagegetdto.cs
+++Like
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\post\like\
+++PostCreateDto.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\post\postcreatedto.cs
+++PostFriendGetDto.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\post\postfriendgetdto.cs
+++PostGetDto.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\post\postgetdto.cs
+++PostImageDto.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\post\postimagedto.cs
+++Response.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\statuscode\response.cs
+++Helper.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\helpers\helper.cs
+++Utilities.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\helpers\utilities.cs
+++Mapper.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\profiles\mapper.cs
+++MapperServiceExtensions.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\profiles\mapperserviceextensions.cs
+++Implementaions
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\services\implementaions\
+++Microsoft.AspNetCore.JsonPatch (3.1.21)
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:>1501
+++LikeCreateDto.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\post\like\likecreatedto.cs
+++LikeGetDto.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\post\like\likegetdto.cs
+++JwtService.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\services\implementaions\jwtservice.cs
+++IJwtService.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\services\interface\ijwtservice.cs
+++20220308114746_AddedColumnStory.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220308114746_addedcolumnstory.cs
+++20220308114746_AddedColumnStory.Designer.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220308114746_addedcolumnstory.designer.cs
+++cbaf9d41-99f8-4579-8703-1706d27b240drevan-travel.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\cbaf9d41-99f8-4579-8703-1706d27b240drevan-travel.jpg
+++6260d3d1-0949-4e71-87d0-9bc407d928b8Screenshot 2021-12-31 100432.png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\6260d3d1-0949-4e71-87d0-9bc407d928b8screenshot 2021-12-31 100432.png
+++0e29674d-7cdc-4441-8368-5d6199e7eed7aforizmaizm-20210311-0001.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\0e29674d-7cdc-4441-8368-5d6199e7eed7aforizmaizm-20210311-0001.jpg
+++d3fb88ae-1d4b-4194-8ec8-936697149b26Screenshot (39).png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\d3fb88ae-1d4b-4194-8ec8-936697149b26screenshot (39).png
+++41342633-1b2b-4830-8d1e-cb01157a5dfcScreenshot (65).png
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\41342633-1b2b-4830-8d1e-cb01157a5dfcscreenshot (65).png
+++5e60b75a-9c38-44b0-84b8-3d9642847f2bIMG_20201115_100729.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\5e60b75a-9c38-44b0-84b8-3d9642847f2bimg_20201115_100729.jpg
+++3b1921db-f793-48a2-ba19-b1de28818525IMG_20210531_081808.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\3b1921db-f793-48a2-ba19-b1de28818525img_20210531_081808.jpg
+++a0e65da8-b527-4a4d-b298-10334cf361bfScreenshot_2019-12-04-16-48-38-923_com.instagram.android.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\a0e65da8-b527-4a4d-b298-10334cf361bfscreenshot_2019-12-04-16-48-38-923_com.instagram.android.jpg
+++3e099510-99fa-40d8-becc-a8d7f411dec7Screenshot_2020-12-17-01-53-20-774_com.google.android.youtube.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\3e099510-99fa-40d8-becc-a8d7f411dec7screenshot_2020-12-17-01-53-20-774_com.google.android.youtube.jpg
+++20220308140313_StoryAddedIsDeletedArchive.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220308140313_storyaddedisdeletedarchive.cs
+++20220308140313_StoryAddedIsDeletedArchive.Designer.cs
+i:{f9962fee-5fc4-4811-a2c4-b0a1710f577b}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.data\migrations\20220308140313_storyaddedisdeletedarchive.designer.cs
+++StoryDeletDto.cs
+++StoryDeleteDto.cs
+i:{a1d939c7-da0e-4cdb-b9f2-7e506cde26f0}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.business\dto's\story\storydeletedto.cs
+++83bd5304-2939-424b-87aa-62814879b63fIMG_20200406_100914.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\83bd5304-2939-424b-87aa-62814879b63fimg_20200406_100914.jpg
+++e31f23f5-d618-46cd-8b46-fde58c218b11IMG_20191210_231724.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\e31f23f5-d618-46cd-8b46-fde58c218b11img_20191210_231724.jpg
+++c28d1265-70c9-4e8c-a919-420bcc91f06dScreenshot_2020-07-24-09-13-28-945_com.miui.videoplayer.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\c28d1265-70c9-4e8c-a919-420bcc91f06dscreenshot_2020-07-24-09-13-28-945_com.miui.videoplayer.jpg
+++d8f25d6d-bd7b-4071-9280-81f48da47c9aIMG_20200131_140436.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\d8f25d6d-bd7b-4071-9280-81f48da47c9aimg_20200131_140436.jpg
+++91f91759-914e-46d2-bdae-af742ab6ad0dScreenshot_2020-11-17-20-55-29-008_lockscreen.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\91f91759-914e-46d2-bdae-af742ab6ad0dscreenshot_2020-11-17-20-55-29-008_lockscreen.jpg
+++ae5ac97b-612a-4890-8874-b21c71248c22Screenshot_2021-01-27-17-17-46-389_lockscreen.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\ae5ac97b-612a-4890-8874-b21c71248c22screenshot_2021-01-27-17-17-46-389_lockscreen.jpg
+++ed5bd718-eae5-457c-b93d-98c84051dd0dIMG_20210207_055141.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\ed5bd718-eae5-457c-b93d-98c84051dd0dimg_20210207_055141.jpg
+++4bc8b7cf-675c-48be-806e-fc446a76bb53ErmondGashi-4cf7a90f-413e-4af3-894a-f1ff9ebf876c.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\4bc8b7cf-675c-48be-806e-fc446a76bb53ermondgashi-4cf7a90f-413e-4af3-894a-f1ff9ebf876c.jpg
+++0f9fd496-e0a4-41f3-be36-2ad543cc71eb1614866965724.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\0f9fd496-e0a4-41f3-be36-2ad543cc71eb1614866965724.jpg
+++148ece81-c6fa-49e4-bb48-c242f82e2526Earth-27dfb39e-7163-3118-9aa9-9014e0560c7e.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\148ece81-c6fa-49e4-bb48-c242f82e2526earth-27dfb39e-7163-3118-9aa9-9014e0560c7e.jpg
+++f6d790df-2388-4758-9f9f-46ed8cc11a28FJIMG_20210401_181155.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\f6d790df-2388-4758-9f9f-46ed8cc11a28fjimg_20210401_181155.jpg
+++0c1c40bd-5ed7-4841-8319-499e3ef5d82bEvening_Vibes-49a9a921-a308-495c-af41-73a4bca4ecc6.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\0c1c40bd-5ed7-4841-8319-499e3ef5d82bevening_vibes-49a9a921-a308-495c-af41-73a4bca4ecc6.jpg
+++beb8b5e5-cdaf-4fc9-b304-d73e3aee0c9023-13-06-iIjrNf.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\beb8b5e5-cdaf-4fc9-b304-d73e3aee0c9023-13-06-iijrnf.jpg
+++183ced09-1a36-470d-ab6f-c5929efadb35Earth6556-f6f196ea-1959-3045-bf9d-10162cbd1648.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\183ced09-1a36-470d-ab6f-c5929efadb35earth6556-f6f196ea-1959-3045-bf9d-10162cbd1648.jpg
+++4389c28e-47fa-4ca8-8e63-82d33d740c03California_Sunset-956f16ad-3968-4548-a085-46245d92cfa6.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\4389c28e-47fa-4ca8-8e63-82d33d740c03california_sunset-956f16ad-3968-4548-a085-46245d92cfa6.jpg
+++a75cddca-697a-48c1-be13-22e5bdf76561Earth-981144c9-29ac-4a21-8c7e-3b2ed916db32.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\a75cddca-697a-48c1-be13-22e5bdf76561earth-981144c9-29ac-4a21-8c7e-3b2ed916db32.jpg
+++90124dbf-af86-4186-bf6c-954a583e2094Earth6556-f6f196ea-1959-3045-bf9d-10162cbd1648.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\90124dbf-af86-4186-bf6c-954a583e2094earth6556-f6f196ea-1959-3045-bf9d-10162cbd1648.jpg
+++2cde554c-d250-4765-b00a-f134675235bb23-13-06-iIjrNf.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\2cde554c-d250-4765-b00a-f134675235bb23-13-06-iijrnf.jpg
+++b45f0561-0bec-466f-ad87-8e45a73f9148California_Sunset-956f16ad-3968-4548-a085-46245d92cfa6.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\b45f0561-0bec-466f-ad87-8e45a73f9148california_sunset-956f16ad-3968-4548-a085-46245d92cfa6.jpg
+++4556cbc3-76cb-4a7f-a356-501159386db1Earth-981144c9-29ac-4a21-8c7e-3b2ed916db32.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\4556cbc3-76cb-4a7f-a356-501159386db1earth-981144c9-29ac-4a21-8c7e-3b2ed916db32.jpg
+++b7583a86-2eb1-4dfd-9704-06b349d544371614866965729.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\b7583a86-2eb1-4dfd-9704-06b349d544371614866965729.jpg
+++ad5bd2e9-aaf6-4c78-89e6-992f45a123c823-08-10-prisoner-of-azkaban-daniel-radcliffe-emma-watson-Favim.com-6910382.jpg
+i:{8c34212f-ad31-4ffa-9b13-d052ab3db78a}:c:\codeacademyfinalproject\aniverse.webapi\aniverse.webapi\aniverse.webapi\aniverse.ui\images\ad5bd2e9-aaf6-4c78-89e6-992f45a123c823-08-10-prisoner-of-azkaban-daniel-radcliffe-emma-watson-favim.com-6910382.jpg

@@ -7,7 +7,7 @@ namespace Aniverse.Business.Interface
 {
     public interface ICommentService
     {
-        Task<List<CommentGetDto>> GetAllAsync(int id);
         Task CreateAsync(CommentCreateDto commentCreate);
+        Task<List<CommentGetDto>> GetPostComments(int id);
     }
 }

@@ -39,7 +39,7 @@ namespace Aniverse.Business.Implementations
         }
         public async Task<List<StoryGetDto>> GetAllAsync()
         {
-            return _mapper.Map<List<StoryGetDto>>(await _unitOfWork.StoryRepository.GetAllAsync(s=>!s.IsDeleted, "User"));
+            return _mapper.Map<List<StoryGetDto>>(await _unitOfWork.StoryRepository.GetAllAsync(s=>!s.IsDeleted && !s.IsArchive, "User"));
         }
         public async Task<List<StoryGetDto>> GetUserAsync(string username, HttpRequest request)
         {
@@ -65,7 +65,7 @@ namespace Aniverse.Business.Implementations
             {
                 picture.ImageName = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{picture.ImageName}");
             }
-            var stories = _mapper.Map<List<StoryGetDto>>(await _unitOfWork.StoryRepository.GetAllAsync(s => !s.IsDeleted && !s.IsArchive && friendsId.Contains(s.UserId) || usersId.Contains(s.UserId), "User"));
+            var stories = _mapper.Map<List<StoryGetDto>>(await _unitOfWork.StoryRepository.GetAllAsync(s => !s.IsDeleted && !s.IsArchive && friendsId.Contains(s.UserId) || !s.IsDeleted && !s.IsArchive && usersId.Contains(s.UserId), "User"));
             foreach (var story in stories)
             {
                 if (pictures.Any(p => p.UserId == story.User.Id))

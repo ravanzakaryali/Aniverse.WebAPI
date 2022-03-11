@@ -18,7 +18,7 @@ namespace Aniverse.UI.Controllers
 
     public class StoryController : Controller
     {
-        private IUnitOfWorkService _unitOfWorkService { get; }
+        private readonly IUnitOfWorkService _unitOfWorkService;
         public StoryController(IUnitOfWorkService unitOfWorkService)
         {
             _unitOfWorkService = unitOfWorkService;
@@ -53,6 +53,7 @@ namespace Aniverse.UI.Controllers
             var request = HttpContext.Request;
             return await _unitOfWorkService.StoryService.GetFriendAsync(request);
         }
+
         [HttpPatch("delete/{id}")]
         public async Task<ActionResult> DeleteAsync(int id)
         {

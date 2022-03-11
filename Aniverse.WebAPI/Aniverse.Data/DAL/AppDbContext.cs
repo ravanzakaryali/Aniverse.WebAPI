@@ -1,4 +1,5 @@
 ﻿using Aniverse.Core.Entites;
+using Aniverse.Core.Entities;
 using Aniverse.Data.Configuration;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -25,6 +26,7 @@ namespace Aniverse.Data.DAL
         public DbSet<UserFriend> UserFriends { get; set; }
         public DbSet<UserSM> UserSM { get; set; }
         public DbSet<AnimalFollow> AnimalFollows { get; set; }
+        public DbSet<SavePost> SavePosts { get; set; }
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new AnimalCategoryConfiguration());
@@ -35,6 +37,7 @@ namespace Aniverse.Data.DAL
             builder.ApplyConfiguration(new PostConfiguration());
             builder.ApplyConfiguration(new CommentConfiguration());
             builder.ApplyConfiguration(new AnimalFollowConfiguration());
+            builder.ApplyConfiguration(new SavePostConfiguration());
 
             base.OnModelCreating(builder);
         }

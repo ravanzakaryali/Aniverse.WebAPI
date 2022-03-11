@@ -26,9 +26,9 @@ namespace Aniverse.Business.Implementations
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public async Task<List<CommentGetDto>> GetAllAsync(int id)
+        public async Task<List<CommentGetDto>> GetPostComments(int id)
         {
-            return _mapper.Map<List<CommentGetDto>>(await _unitOfWork.CommentRepository.GetAllAsync(c=>c.PostId == id));
+            return _mapper.Map<List<CommentGetDto>>(await _unitOfWork.CommentRepository.GetAllAsync(c=>c.PostId == id && c.CommentId == null, "ReplyComment","User"));
         }
         public async Task CreateAsync(CommentCreateDto commentCreate)
         {

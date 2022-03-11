@@ -608,6 +608,35 @@ namespace Animalgram.Data.Migrations
                     b.ToTable("UserSM");
                 });
 
+            modelBuilder.Entity("Aniverse.Core.Entities.SavePost", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("CreationDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("nvarchar(max)")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<string>("PostId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("PostId1")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PostId1");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("SavePosts");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -908,6 +937,19 @@ namespace Animalgram.Data.Migrations
                     b.HasOne("Aniverse.Core.Entites.AppUser", "User")
                         .WithOne("UserSM")
                         .HasForeignKey("Aniverse.Core.Entites.UserSM", "UserId");
+                });
+
+            modelBuilder.Entity("Aniverse.Core.Entities.SavePost", b =>
+                {
+                    b.HasOne("Aniverse.Core.Entites.Post", "Post")
+                        .WithMany()
+                        .HasForeignKey("PostId1");
+
+                    b.HasOne("Aniverse.Core.Entites.AppUser", "User")
+                        .WithMany("SavePosts")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

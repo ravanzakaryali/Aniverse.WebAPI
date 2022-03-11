@@ -1,11 +1,11 @@
-﻿using Aniverse.Core.Entites;
+﻿using Aniverse.Core.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace Aniverse.Core.Interfaces
 {
-    public interface IAnimalCategory : IRepository<AnimalCategory>
+    public interface ISavePostRepository : IRepository<SavePost>
     {
     }
 }

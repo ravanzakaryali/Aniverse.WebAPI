@@ -8,6 +8,7 @@ using Aniverse.Core.Entites;
 using Aniverse.Core.Entites.Enum;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -44,7 +45,7 @@ namespace Aniverse.Business.Implementations
             await _unitOfWork.SaveAsync();
         }
 
-        public async Task<List<UserGetDto>> GetAllAsync(string username)
+        public async Task<List<UserGetDto>> GetAllAsync(string username, HttpRequest request)
         {
             var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
             var friends = await _unitOfWork.FriendRepository.GetAllAsync(u => u.User.UserName == username || u.Friend.UserName == username && u.Status == FriendRequestStatus.Accepted, "Friend");
@@ -54,7 +55,18 @@ namespace Aniverse.Business.Implementations
             }
             var friendIds = friends.Select(x => x.FriendId);
             var userIds = friends.Select(x => x.UserId);
-            return _mapper.Map<List<UserGetDto>>(await _unitOfWork.UserRepository.GetAllAsync(u => u.UserName != username && friendIds.Contains(u.Id) || userIds.Contains(u.Id)));
+            var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => userIds.Contains(p.UserId) || friendIds.Contains(p.UserId));
+            foreach (var picture in pictures)
+            {
+                picture.ImageName = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{picture.ImageName}");
+            }
+            var friendsMap = _mapper.Map<List<UserGetDto>>(friends.Select(f=>f.Friend));
+            foreach (var friend in friendsMap)
+            {
+                if (pictures.Any(p => p.UserId == friend.Id && p.IsProfilePicture))
+                    friend.ProfilPicture = pictures.Where(p => p.UserId == friend.Id && p.IsProfilePicture).FirstOrDefault().ImageName;
+            }
+            return friendsMap;
         }
 
         public async Task<List<UserGetDto>> GetUserFriendRequestAsync()

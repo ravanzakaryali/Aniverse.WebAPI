@@ -106,7 +106,7 @@ namespace Aniverse.Business.Implementations
         }
         public async Task<List<AnimalGetCategory>> GetAnimalCategory()
         {
-            var animalCategory = await _unitOfWork.AnimalCategory.GetAllAsync();
+            var animalCategory = await _unitOfWork.AnimalCategoryRepository.GetAllAsync();
             if(animalCategory is null)
             {
                 throw new NotFoundException("Animal category is not found");

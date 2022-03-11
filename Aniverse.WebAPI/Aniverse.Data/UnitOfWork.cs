@@ -22,7 +22,8 @@ namespace Aniverse.Data
         private ILikeRepository _likeRepository;
         private IAnimalFollowRepository _animalFollowRepository;
         private IPictureRepository _pictureRepository;
-        private IAnimalCategory _animalCategory;
+        private IAnimalCategoryRepository _animalCategoryRepository;
+        private ISavePostRepository _savePostRepository;
         public UnitOfWork(AppDbContext context)
         {
             _context = context;
@@ -37,7 +38,9 @@ namespace Aniverse.Data
         public ILikeRepository LikeRepository => _likeRepository ??= new LikeRepository(_context);
         public IAnimalFollowRepository AnimalFollowRepository => _animalFollowRepository ??= new AnimalFollowRepository(_context);
         public IPictureRepository PictureRepository => _pictureRepository ??= new PictureRepository(_context);
-        public IAnimalCategory AnimalCategory => _animalCategory ??= new AnimalCategoryRepository(_context);
+        public IAnimalCategoryRepository AnimalCategoryRepository => _animalCategoryRepository ??= new AnimalCategoryRepository(_context);
+        public ISavePostRepository SavePostRepository => _savePostRepository ??= new SavePostRepository(_context);
+
 
         public async Task SaveAsync()
         {

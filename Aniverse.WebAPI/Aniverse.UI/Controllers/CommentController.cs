@@ -20,11 +20,6 @@ namespace Aniverse.UI.Controllers
         {
             _unitOfWorkService = unitOfWorkService;
         }
-        [HttpGet("{id}")]
-        public async Task<ActionResult<List<CommentGetDto>>> GetAllAsync(int id)
-        {
-            return await _unitOfWorkService.CommentService.GetAllAsync(id);
-        }
         [HttpPost]
         public async Task<ActionResult> Create([FromBody] CommentCreateDto commentCreate)
         {
@@ -38,5 +33,11 @@ namespace Aniverse.UI.Controllers
                 return StatusCode(StatusCodes.Status502BadGateway, new  Response { Status = "Error", Message = ex.Message });
             }
         }
+        [HttpGet("{id}")]
+        public async Task<ActionResult<CommentGetDto>> GetCommentAsync(int id)
+        {
+            return Ok(await _unitOfWorkService.CommentService.GetPostComments(id));
+        }
+
     }
 }

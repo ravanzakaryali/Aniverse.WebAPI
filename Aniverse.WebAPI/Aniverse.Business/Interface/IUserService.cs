@@ -18,5 +18,6 @@ namespace Aniverse.Business.Interface
         Task CoverCreate(ProfileCreateDto profilCreate);
         Task<List<GetPictureDto>> GetPhotos(string username, HttpRequest request, int page, int size);
         Task<List<UserGetDto>> GetBlcokUsersAsync();
+        Task<UserGetDto> GetLoginUser();
     }
 }

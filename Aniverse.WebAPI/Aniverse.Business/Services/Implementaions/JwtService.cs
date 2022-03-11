@@ -26,7 +26,7 @@ namespace Aniverse.Business.Services.Implementaions
                 new Claim(ClaimTypes.NameIdentifier, user.Id),
                 new Claim(ClaimTypes.Name, user.UserName),
                 new Claim(ClaimTypes.Email, user.Email),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                //new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
                 
             };
 
@@ -38,7 +38,7 @@ namespace Aniverse.Business.Services.Implementaions
                 issuer: _config.GetSection("Jwt:issuer").Value,
                 audience: _config.GetSection("Jwt:audience").Value,
                 claims: claims,
-                expires: DateTime.UtcNow.AddMonths(1),
+                expires: DateTime.UtcNow.AddMonths(2),
                 signingCredentials: credentials);
             return new JwtSecurityTokenHandler().WriteToken(securityToken);
         }

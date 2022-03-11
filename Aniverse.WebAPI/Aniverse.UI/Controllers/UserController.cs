@@ -34,6 +34,11 @@ namespace Aniverse.UI.Controllers
             var request = HttpContext.Request;
             return Ok(await _unitOfWorkService.UserService.GetAsync(id, request));
         }
+        [HttpGet("login")]
+        public async Task<ActionResult<UserGetDto>> GetLoginUser()
+        {
+            return Ok(await _unitOfWorkService.UserService.GetLoginUser());
+        }
         [HttpPatch("bio")]
         public async Task<ActionResult> BioUpdate([FromBody] JsonPatchDocument<AppUser> bioChange)
         {

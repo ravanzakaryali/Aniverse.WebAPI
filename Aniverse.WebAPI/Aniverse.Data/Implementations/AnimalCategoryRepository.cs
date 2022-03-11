@@ -4,7 +4,7 @@ using Aniverse.Data.DAL;
 
 namespace Aniverse.Data.Implementations
 {
-    public class AnimalCategoryRepository : Repository<AnimalCategory>, IAnimalCategory
+    public class AnimalCategoryRepository : Repository<AnimalCategory>, IAnimalCategoryRepository
     {
         private readonly AppDbContext _context;
         public AnimalCategoryRepository(AppDbContext context) : base(context)

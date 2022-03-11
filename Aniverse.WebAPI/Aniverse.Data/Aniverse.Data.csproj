@@ -47,6 +47,8 @@
     <Compile Remove="Migrations\20220302214537_AddedAnimalFollow.Designer.cs" />
     <Compile Remove="Migrations\20220302214750_AddedAnimalFollow.cs" />
     <Compile Remove="Migrations\20220302214750_AddedAnimalFollow.Designer.cs" />
+    <Compile Remove="Migrations\20220310062426_AddedCommentId.cs" />
+    <Compile Remove="Migrations\20220310062426_AddedCommentId.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

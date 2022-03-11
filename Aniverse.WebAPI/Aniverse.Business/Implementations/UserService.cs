@@ -54,7 +54,7 @@ namespace Aniverse.Business.Implementations
             }
             var friendsId = friends.Select(f=>f.FriendId);
             var usersId = friends.Select(f=>f.UserId);
-            var users = await _unitOfWork.UserRepository.GetAllAsync(u => !friendsId.Contains(u.Id) && !usersId.Contains(u.Id) && u.Id != userLoginId, "Images");
+            var users = await _unitOfWork.UserRepository.GetAllAsync(u => !friendsId.Contains(u.Id) && !usersId.Contains(u.Id) && u.Id != userLoginId);
             return _mapper.Map<List<UserAllDto>>(users);
         }
         public async Task<UserGetDto> GetAsync(string id, HttpRequest request)
@@ -73,7 +73,11 @@ namespace Aniverse.Business.Implementations
             }
             return user;
         }
-
+        public async Task<UserGetDto> GetLoginUser()
+        {
+            var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
+            return _mapper.Map<UserGetDto>(await _unitOfWork.UserRepository.GetAsync(u => u.Id == userLoginId));
+        }
         public async Task ProfileCreate(ProfileCreateDto profilCreate)
         {
             var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
