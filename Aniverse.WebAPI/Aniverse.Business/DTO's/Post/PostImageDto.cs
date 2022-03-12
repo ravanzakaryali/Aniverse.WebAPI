@@ -8,6 +8,7 @@ namespace Aniverse.Business.DTO_s.Post
         public string ImageName { get; set; }
         public int? PostId { get; set; }
         public string UserId { get; set; }
+        public int? AnimalId { get; set; } 
         public IFormFile ImageFile { get; set; }
     }
 }

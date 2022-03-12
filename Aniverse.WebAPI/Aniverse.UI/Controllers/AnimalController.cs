@@ -95,5 +95,6 @@ namespace Aniverse.UI.Controllers
                 return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
             }
         }
+        
     }
 }

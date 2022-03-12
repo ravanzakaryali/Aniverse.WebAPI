@@ -1,4 +1,6 @@
-﻿using Aniverse.Business.DTO_s.Picture;
+﻿using Aniverse.Business.DTO_s.Animal;
+using Aniverse.Business.DTO_s.Picture;
+using Aniverse.Business.DTO_s.StatusCode;
 using Aniverse.Business.DTO_s.User;
 using Aniverse.Business.Interface;
 using Aniverse.Core.Entites;
@@ -51,11 +53,11 @@ namespace Aniverse.UI.Controllers
             try
             {
                 await _unitOfWorkService.UserService.ProfileCreate(profilePicture);
-                return StatusCode(StatusCodes.Status204NoContent, new { Status = "Successs", Message = "Story successfully posted" });
+                return StatusCode(StatusCodes.Status204NoContent, new Response { Status = "Successs", Message = "Story successfully posted" });
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status502BadGateway, new { Status = "Error", Message = ex.ToString() });
+                return StatusCode(StatusCodes.Status502BadGateway, new Response{ Status = "Error", Message = ex.ToString() });
             }
         }
         [HttpPost("cover")]
@@ -83,6 +85,18 @@ namespace Aniverse.UI.Controllers
         public async Task<ActionResult<List<UserGetDto>>> GetBlockUsers()
         {
             return Ok(await _unitOfWorkService.UserService.GetBlcokUsersAsync());
+        }
+        [HttpGet("{username}/follows/animal")]
+        public async Task<ActionResult<List<AnimalAllDto>>> AnimalUserFollows(string username)
+        {
+            try
+            {
+                return Ok(await _unitOfWorkService.AnimalService.AnimalUserFollows(username));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
+            }
         }
     }
 }

@@ -41,6 +41,7 @@ namespace Aniverse.Business.Implementations
                 var image = new PostImageDto
                 {
                     UserId = userLoginId,
+                    AnimalId = postCreate.AnimalId,  
                     ImageName = await picture.FileSaveAsync(_hostEnvironment.ContentRootPath, "Images"),
                 };
                 postCreate.Pictures.Add(image);

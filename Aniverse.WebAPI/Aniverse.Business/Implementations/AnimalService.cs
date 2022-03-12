@@ -79,7 +79,6 @@ namespace Aniverse.Business.Implementations
             }
             return posts;
         }
-
         public async Task FollowCreate(FollowDto follow)
         {
 
@@ -113,7 +112,6 @@ namespace Aniverse.Business.Implementations
             }
             return _mapper.Map<List<AnimalGetCategory>>(animalCategory);
         }
-
         public async Task AnimalCreateAsync(AnimalCreateDto animalCreate)
         {
             var animalnameDb = await _unitOfWork.AnimalRepository.GetAsync(a => a.Animalname == animalCreate.Animalname);
@@ -131,7 +129,6 @@ namespace Aniverse.Business.Implementations
             var UserId = _httpContextAccessor.HttpContext.User.GetUserId();
             return _mapper.Map<List<AnimalSelectGetDto>>(await _unitOfWork.AnimalRepository.GetAllAsync(a => a.UserId == UserId));
         }
-
         public async Task UpdateAnimalAsync(int id, AnimalUpdateDto animalUpdate)
         {
             var UserLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
@@ -145,6 +142,16 @@ namespace Aniverse.Business.Implementations
             animal.Breed = animalUpdate.Breed;
             _unitOfWork.AnimalRepository.Update(animal);
             await _unitOfWork.SaveAsync();
+        }
+        public async Task<List<AnimalAllDto>> AnimalUserFollows(string username)
+        {
+            var userDb = await _unitOfWork.UserRepository.GetAsync(u=>u.UserName == username);
+            if(userDb is null)
+            {
+                throw new Exception();
+            }
+            var animalFollow = await _unitOfWork.AnimalFollowRepository.GetAllAsync(a=>a.UserId == userDb.Id, "Animal");
+            return _mapper.Map<List<AnimalAllDto>>(animalFollow.Select(a=>a.Animal).ToList());   
         }
     }
 }
