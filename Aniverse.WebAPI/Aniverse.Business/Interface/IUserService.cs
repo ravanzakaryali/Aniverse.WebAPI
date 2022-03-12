@@ -16,8 +16,9 @@ namespace Aniverse.Business.Interface
         Task ChangeBio(JsonPatchDocument<AppUser> bioChange);
         Task ProfileCreate(ProfileCreateDto profilCreate);
         Task CoverCreate(ProfileCreateDto profilCreate);
-        Task<List<GetPictureDto>> GetPhotos(string username, HttpRequest request, int page, int size);
         Task<List<UserGetDto>> GetBlcokUsersAsync();
         Task<UserGetDto> GetLoginUser();
+        Task<List<GetPictureDto>> GetPhotos(string username, HttpRequest request, int page, int size);
+        Task<List<GetPictureDto>> GetUserPhotos(string username, HttpRequest request, int page, int size);
     }
 }

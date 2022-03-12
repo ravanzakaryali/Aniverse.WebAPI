@@ -113,6 +113,17 @@ namespace Aniverse.Business.Implementations
             }
             await _unitOfWork.SaveAsync();
         }
+        public async Task<List<UserGetDto>> GetBlcokUsersAsync()
+        {
+            var userLoginId  = _httpContextAccessor.HttpContext.User.GetUserId();
+            var frineds = await _unitOfWork.FriendRepository.GetAllAsync(u => u.UserId == userLoginId && u.Status == FriendRequestStatus.Blocked, "Friend");
+            if(frineds is null)
+            {
+                throw new NotFoundException("Friend is not found");
+            }
+            var friendsId = frineds.Select(f => f.FriendId);
+            return _mapper.Map<List<UserGetDto>>(await _unitOfWork.UserRepository.GetAllAsync(u => friendsId.Contains(u.Id)));
+        }
         public async Task<List<GetPictureDto>> GetPhotos(string username, HttpRequest request, int page = 1, int size = 1)
         {
             var photos = await _unitOfWork.PictureRepository.GetAllPaginateAsync(page, size, p => p.User.UserName == username);
@@ -125,16 +136,17 @@ namespace Aniverse.Business.Implementations
             }
             return photosMap;
         }
-        public async Task<List<UserGetDto>> GetBlcokUsersAsync()
+        public async Task<List<GetPictureDto>> GetUserPhotos(string username, HttpRequest request, int page=1,int size = 1)
         {
-            var userLoginId  = _httpContextAccessor.HttpContext.User.GetUserId();
-            var frineds = await _unitOfWork.FriendRepository.GetAllAsync(u => u.UserId == userLoginId && u.Status == FriendRequestStatus.Blocked, "Friend");
-            if(frineds is null)
+            var photos = await _unitOfWork.PictureRepository.GetAllPaginateAsync(page, size, p => p.User.UserName == username && p.AnimalId == null);
+            var photosMap = _mapper.Map<List<GetPictureDto>>(photos);
+
+            for (int i = 0; i < photosMap.Count; i++)
             {
-                throw new NotFoundException("Friend is not found");
+                photosMap[i].ImageName = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{photos[0].ImageName}");
+
             }
-            var friendsId = frineds.Select(f => f.FriendId);
-            return _mapper.Map<List<UserGetDto>>(await _unitOfWork.UserRepository.GetAllAsync(u => friendsId.Contains(u.Id)));
+            return photosMap;
         }
     }
 }

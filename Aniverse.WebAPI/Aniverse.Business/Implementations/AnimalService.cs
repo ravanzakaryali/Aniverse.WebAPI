@@ -153,5 +153,6 @@ namespace Aniverse.Business.Implementations
             var animalFollow = await _unitOfWork.AnimalFollowRepository.GetAllAsync(a=>a.UserId == userDb.Id, "Animal");
             return _mapper.Map<List<AnimalAllDto>>(animalFollow.Select(a=>a.Animal).ToList());   
         }
+
     }
 }

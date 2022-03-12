@@ -75,12 +75,6 @@ namespace Aniverse.UI.Controllers
                 return StatusCode(StatusCodes.Status502BadGateway, new { Status = "Error", Message = ex.ToString() });
             }
         }
-        [HttpGet("photos/{id}")]
-        public async Task<ActionResult<List<GetPictureDto>>> GetPhotos(string id,[FromQuery] int page, [FromQuery] int size)
-        {
-            var request = HttpContext.Request;
-            return Ok(await _unitOfWorkService.UserService.GetPhotos(id,request,page,size));
-        }
         [HttpGet("block")]
         public async Task<ActionResult<List<UserGetDto>>> GetBlockUsers()
         {
@@ -97,6 +91,18 @@ namespace Aniverse.UI.Controllers
             {
                 return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
             }
+        }
+        [HttpGet("photos/{id}")]
+        public async Task<ActionResult<List<GetPictureDto>>> GetPhotos(string id, [FromQuery] int page, [FromQuery] int size)
+        {
+            var request = HttpContext.Request;
+            return Ok(await _unitOfWorkService.UserService.GetPhotos(id, request, page, size));
+        }
+        [HttpGet("user/photos/{id}")]
+        public async Task<ActionResult<List<GetPictureDto>>> GetUserPhotos(string id, [FromQuery] int page, [FromQuery] int size)
+        {
+            var request = HttpContext.Request;
+            return Ok(await _unitOfWorkService.UserService.GetUserPhotos(id, request, page, size));
         }
     }
 }
