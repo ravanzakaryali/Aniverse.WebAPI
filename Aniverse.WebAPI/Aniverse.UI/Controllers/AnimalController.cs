@@ -1,4 +1,5 @@
 ﻿using Aniverse.Business.DTO_s.Animal;
+using Aniverse.Business.DTO_s.Picture;
 using Aniverse.Business.DTO_s.Post;
 using Aniverse.Business.DTO_s.StatusCode;
 using Aniverse.Business.Interface;
@@ -95,6 +96,12 @@ namespace Aniverse.UI.Controllers
                 return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
             }
         }
-        
+        [HttpGet("photos/{animalname}")]
+        public async Task<ActionResult<List<GetPictureDto>>> GetAnimalPhotos(string animalname, [FromQuery] int page, [FromQuery] int size)
+        {
+            var request = HttpContext.Request;
+            return Ok(await _unitOfWorkService.AnimalService.GetAnimalPhotos(animalname, request, page, size));
+        }
+
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Aniverse.Business.DTO_s.Animal;
+using Aniverse.Business.DTO_s.Picture;
 using Aniverse.Business.DTO_s.Post;
 using Aniverse.Business.Exceptions;
 using Aniverse.Business.Extensions;
@@ -153,6 +154,17 @@ namespace Aniverse.Business.Implementations
             var animalFollow = await _unitOfWork.AnimalFollowRepository.GetAllAsync(a=>a.UserId == userDb.Id, "Animal");
             return _mapper.Map<List<AnimalAllDto>>(animalFollow.Select(a=>a.Animal).ToList());   
         }
+        public async Task<List<GetPictureDto>> GetAnimalPhotos(string animalname, HttpRequest request, int page = 1, int size = 1)
+        {
+            var photos = await _unitOfWork.PictureRepository.GetAllPaginateAsync(page, size, p => p.Animal.Animalname == animalname);
+            var photosMap = _mapper.Map<List<GetPictureDto>>(photos);
 
+            for (int i = 0; i < photosMap.Count; i++)
+            {
+                photosMap[i].ImageName = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{photos[0].ImageName}");
+
+            }
+            return photosMap;
+        }
     }
 }

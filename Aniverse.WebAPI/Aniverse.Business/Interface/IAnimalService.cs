@@ -1,4 +1,5 @@
 ﻿using Aniverse.Business.DTO_s.Animal;
+using Aniverse.Business.DTO_s.Picture;
 using Aniverse.Business.DTO_s.Post;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
@@ -20,5 +21,6 @@ namespace Aniverse.Business.Interface
         Task<List<AnimalSelectGetDto>> SelectAnimal();
         Task UpdateAnimalAsync(int id, AnimalUpdateDto animalUpdate);
         Task<List<AnimalAllDto>> AnimalUserFollows(string username);
+        Task<List<GetPictureDto>> GetAnimalPhotos(string animalname, HttpRequest request, int page, int size);
     }
 }
