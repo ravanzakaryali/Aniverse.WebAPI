@@ -161,7 +161,7 @@ namespace Aniverse.Business.Implementations
 
             for (int i = 0; i < photosMap.Count; i++)
             {
-                photosMap[i].ImageName = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{photos[0].ImageName}");
+                photosMap[i].ImageName = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{photos[i].ImageName}");
 
             }
             return photosMap;

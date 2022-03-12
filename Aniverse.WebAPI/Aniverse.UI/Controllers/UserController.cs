@@ -98,11 +98,23 @@ namespace Aniverse.UI.Controllers
             var request = HttpContext.Request;
             return Ok(await _unitOfWorkService.UserService.GetPhotos(id, request, page, size));
         }
-        [HttpGet("user/photos/{id}")]
+        [HttpGet("only/photos/{id}")]
         public async Task<ActionResult<List<GetPictureDto>>> GetUserPhotos(string id, [FromQuery] int page, [FromQuery] int size)
         {
             var request = HttpContext.Request;
             return Ok(await _unitOfWorkService.UserService.GetUserPhotos(id, request, page, size));
+        }
+        [HttpGet("search")]
+        public async Task<ActionResult<List<UserAllDto>>> SearchAsync(SearchDto search)
+        {
+            try
+            {
+                return Ok(await _unitOfWorkService.UserService.SearchAsync(search));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
+            }
         }
     }
 }
