@@ -15,5 +15,6 @@ namespace Aniverse.Business.Interface
         Task CreateAsync(PostCreateDto postCreate);
         Task PostSaveAsync(PostSaveDto postSave);
         Task PostUpdateAsync(int id, PostCreateDto postCreate);
+        Task PostDeleteAsync(int id);
     }
 }

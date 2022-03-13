@@ -167,5 +167,16 @@ namespace Aniverse.Business.Implementations
             _unitOfWork.PostRepository.Update(postDb);
             await _unitOfWork.SaveAsync();
         }
+        public async Task PostDeleteAsync(int id)
+        {
+            var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
+            var postDb = await _unitOfWork.PostRepository.GetAsync(p => p.Id == id && p.UserId == userLoginId);
+            if (postDb is null)
+            {
+                throw new Exception("Post is not found");
+            };
+            _unitOfWork.PostRepository.Delete(postDb);
+            await _unitOfWork.SaveAsync();
+        }
     }
 }

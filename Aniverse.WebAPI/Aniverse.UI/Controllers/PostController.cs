@@ -92,6 +92,19 @@ namespace Aniverse.UI.Controllers
                 return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
             }
         }
+        [HttpPatch("delete/{id}")]
+        public async Task<ActionResult> PostDeleteAsync(int id)
+        {
+            try
+            {
+                await _unitOfWorkService.PostService.PostDeleteAsync(id);
+                return StatusCode(StatusCodes.Status204NoContent, new Response { Status = "Successs", Message = "Post delete success" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
+            }
+        }
     }
 }
 
