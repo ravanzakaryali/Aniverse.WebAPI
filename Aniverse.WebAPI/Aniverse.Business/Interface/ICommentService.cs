@@ -9,5 +9,6 @@ namespace Aniverse.Business.Interface
     {
         Task CreateAsync(CommentCreateDto commentCreate);
         Task<List<CommentGetDto>> GetPostComments(int id);
+        Task CommentDeleteAsync(int id);
     }
 }

@@ -1,10 +1,12 @@
 ﻿using Aniverse.Business.DTO_s.Comment;
+using Aniverse.Business.Exceptions;
 using Aniverse.Business.Extensions;
 using Aniverse.Business.Interface;
 using Aniverse.Core;
 using Aniverse.Core.Entites;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
@@ -37,5 +39,15 @@ namespace Aniverse.Business.Implementations
             await _unitOfWork.CommentRepository.CreateAsync(_mapper.Map<Comment>(commentCreate));
             await _unitOfWork.SaveAsync();
         }
+
+        public async Task CommentDeleteAsync(int id)
+        {
+            var userLoginId  = _httpContextAccessor.HttpContext.User.GetUserId();
+            var commentDb = await _unitOfWork.CommentRepository.GetAsync(c => c.UserId == userLoginId && c.Id == id);    
+            if (commentDb is null)
+            {
+                throw new NotFoundException("Comment is not found");
+            }
+         }
     }
 }

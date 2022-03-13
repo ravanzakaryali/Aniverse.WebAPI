@@ -160,7 +160,7 @@ namespace Aniverse.Business.Implementations
             var postDb = await _unitOfWork.PostRepository.GetAsync(p => p.Id == id && p.UserId == userLoginId);
             if(postDb is null)
             {
-                throw new Exception("Post is not found");
+                throw new NotFoundException("Post is not found");
             };
             postDb.IsModified = true;
             postDb.Content = postCreate.Content;
@@ -173,7 +173,7 @@ namespace Aniverse.Business.Implementations
             var postDb = await _unitOfWork.PostRepository.GetAsync(p => p.Id == id && p.UserId == userLoginId);
             if (postDb is null)
             {
-                throw new Exception("Post is not found");
+                throw new NotFoundException("Post is not found");
             };
             _unitOfWork.PostRepository.Delete(postDb);
             await _unitOfWork.SaveAsync();

@@ -26,7 +26,7 @@ namespace Aniverse.UI.Controllers
             try
             {
                 await _unitOfWorkService.CommentService.CreateAsync(commentCreate);
-                return StatusCode(StatusCodes.Status204NoContent, new Response { Status = "Successs", Message = "Story successfully posted" });
+                return StatusCode(StatusCodes.Status204NoContent, new Response { Status = "Successs", Message = "Comment create successfully" });
             }
             catch (Exception ex)
             {
@@ -38,6 +38,18 @@ namespace Aniverse.UI.Controllers
         {
             return Ok(await _unitOfWorkService.CommentService.GetPostComments(id));
         }
-
+        [HttpPatch("delete/{id}")]
+        public async Task<ActionResult> CommentDeleteAsync(int id)
+        {
+            try
+            {
+                await _unitOfWorkService.CommentService.CommentDeleteAsync(id);
+                return StatusCode(StatusCodes.Status204NoContent, new Response { Status = "Successs", Message = "Comment delete successfully" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
+            }
+        }
     }
 }
