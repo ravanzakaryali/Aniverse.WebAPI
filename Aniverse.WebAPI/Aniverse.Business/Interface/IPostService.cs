@@ -14,5 +14,6 @@ namespace Aniverse.Business.Interface
         Task<List<PostGetDto>> GetFriendPost(HttpRequest request, int page, int size);
         Task CreateAsync(PostCreateDto postCreate);
         Task PostSaveAsync(PostSaveDto postSave);
+        Task PostUpdateAsync(int id, PostCreateDto postCreate);
     }
 }

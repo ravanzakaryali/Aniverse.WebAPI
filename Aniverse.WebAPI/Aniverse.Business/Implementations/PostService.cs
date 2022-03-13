@@ -106,8 +106,14 @@ namespace Aniverse.Business.Implementations
             }
             var postMap = _mapper.Map<List<PostGetDto>>(posts);
             var comments = _mapper.Map<List<CommentGetDto>>(await _unitOfWork.CommentRepository.GetAllAsync(c => postsIds.Contains(c.PostId), "User"));
+            var postSave = await _unitOfWork.SavePostRepository.GetAllAsync(p=>p.UserId == userLoginId);
+            var postSaveIds = postSave.Select(p=>p.PostId);
             foreach (var post in postMap)
             {
+                if(postSaveIds.Contains(post.Id))
+                {
+                    post.IsSave = true;
+                }   
                 post.Comments = comments.Where(c => c.PostId == post.Id).ToList();
                 if (pictures.Any(p => p.UserId == post.UserId && p.IsProfilePicture))
                     post.User.ProfilPicture = pictures.Where(p => p.UserId == post.UserId && p.IsProfilePicture).FirstOrDefault().ImageName;
@@ -117,11 +123,12 @@ namespace Aniverse.Business.Implementations
                 if (pictures.Any(p => p.UserId == comment.UserId && p.IsProfilePicture))
                     comment.User.ProfilPicture = pictures.Where(p => p.UserId == comment.UserId && p.IsProfilePicture).FirstOrDefault().ImageName;
             }
+            
             return postMap;
         }
         public async Task PostSaveAsync(PostSaveDto postSave)
         {
-            var postDb = _unitOfWork.PostRepository.GetAsync(p => p.Id == postSave.PostId);
+            var postDb = await _unitOfWork.PostRepository.GetAsync(p => p.Id == postSave.PostId);
             if (postDb is null)
             {
                 throw new NotFoundException("Post is not found");
@@ -138,13 +145,26 @@ namespace Aniverse.Business.Implementations
             }
             else
             {
-                var posSaveDb = await _unitOfWork.SavePostRepository.GetAsync(s => s.UserId == userLoginId && s.PostId == postSave.PostId);
+                SavePost posSaveDb = await _unitOfWork.SavePostRepository.GetAsync(s => s.UserId == userLoginId && s.PostId == postSave.PostId);
                 if(posSaveDb is null)
                 {
                     throw new NotFoundException("Post is not found");
                 }
                 _unitOfWork.SavePostRepository.Delete(posSaveDb);
             }
+            await _unitOfWork.SaveAsync();
+        }
+        public async Task PostUpdateAsync(int id, PostCreateDto postCreate)
+        {
+            var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
+            var postDb = await _unitOfWork.PostRepository.GetAsync(p => p.Id == id && p.UserId == userLoginId);
+            if(postDb is null)
+            {
+                throw new Exception("Post is not found");
+            };
+            postDb.IsModified = true;
+            postDb.Content = postCreate.Content;
+            _unitOfWork.PostRepository.Update(postDb);
             await _unitOfWork.SaveAsync();
         }
     }

@@ -50,7 +50,7 @@ namespace Aniverse.UI.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.ToString() });
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
             }
         } 
         [HttpPost("like")]
@@ -63,7 +63,7 @@ namespace Aniverse.UI.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.ToString() });
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
             }
         }
         [HttpPost("save")]
@@ -72,11 +72,24 @@ namespace Aniverse.UI.Controllers
             try
             {
                 await _unitOfWorkService.PostService.PostSaveAsync(postSaveDto);
-                return StatusCode(StatusCodes.Status204NoContent, new Response { Status = "Successs", Message = "Successf" });
+                return StatusCode(StatusCodes.Status204NoContent, new Response { Status = "Successs", Message = "Success" });
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.ToString() });
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
+            }
+        }
+        [HttpPost("update/{id}")]
+        public async Task<ActionResult> PostUpdateAsync(int id, PostCreateDto postCreate)
+        {
+            try
+            {
+                await _unitOfWorkService.PostService.PostUpdateAsync(id, postCreate);
+                return StatusCode(StatusCodes.Status204NoContent, new Response { Status = "Successs", Message = "Post update success" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
             }
         }
     }

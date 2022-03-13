@@ -18,6 +18,7 @@ namespace Aniverse.Business.DTO_s.Post
         public DateTime CreationDate { get; set; }
         public bool IsModified { get; set; }
         public string UserId { get; set; }
+        public bool IsSave { get; set; } = false;
         public UserGetDto User { get; set; }
         public ICollection<GetPictureDto> Pictures { get; set; }
         public ICollection<LikeGetDto> Likes { get; set; }
