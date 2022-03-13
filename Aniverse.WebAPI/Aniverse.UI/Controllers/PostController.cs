@@ -66,6 +66,19 @@ namespace Aniverse.UI.Controllers
                 return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.ToString() });
             }
         }
+        [HttpPost("save")]
+        public async Task<ActionResult> SavePostAsync([FromBody] PostSaveDto postSaveDto)
+        {
+            try
+            {
+                await _unitOfWorkService.PostService.PostSaveAsync(postSaveDto);
+                return StatusCode(StatusCodes.Status204NoContent, new Response { Status = "Successs", Message = "Successf" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.ToString() });
+            }
+        }
     }
 }
 

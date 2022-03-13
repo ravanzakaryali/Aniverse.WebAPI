@@ -2,9 +2,6 @@
 using Aniverse.Core.Interfaces;
 using Aniverse.Data.DAL;
 using Aniverse.Data.Implementations;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Aniverse.Data

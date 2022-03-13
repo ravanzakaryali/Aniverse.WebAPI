@@ -51,6 +51,10 @@
     <Compile Remove="Migrations\20220310062426_AddedCommentId.Designer.cs" />
     <Compile Remove="Migrations\20220312125906_added animalId.cs" />
     <Compile Remove="Migrations\20220312125906_added animalId.Designer.cs" />
+    <Compile Remove="Migrations\20220313035134_SavePOstId.cs" />
+    <Compile Remove="Migrations\20220313035134_SavePOstId.Designer.cs" />
+    <Compile Remove="Migrations\20220313035238_SavePOstId.cs" />
+    <Compile Remove="Migrations\20220313035238_SavePOstId.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

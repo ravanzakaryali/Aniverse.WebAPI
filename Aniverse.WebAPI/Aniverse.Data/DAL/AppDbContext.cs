@@ -3,9 +3,6 @@ using Aniverse.Core.Entities;
 using Aniverse.Data.Configuration;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Aniverse.Data.DAL
 {

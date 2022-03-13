@@ -13,6 +13,7 @@ using Aniverse.Business.Extensions;
 using Aniverse.Business.Exceptions;
 using System.Linq;
 using Aniverse.Business.DTO_s.Comment;
+using Aniverse.Core.Entities;
 
 namespace Aniverse.Business.Implementations
 {
@@ -41,7 +42,7 @@ namespace Aniverse.Business.Implementations
                 var image = new PostImageDto
                 {
                     UserId = userLoginId,
-                    AnimalId = postCreate.AnimalId,  
+                    AnimalId = postCreate.AnimalId,
                     ImageName = await picture.FileSaveAsync(_hostEnvironment.ContentRootPath, "Images"),
                 };
                 postCreate.Pictures.Add(image);
@@ -54,7 +55,7 @@ namespace Aniverse.Business.Implementations
         {
             var posts = await _unitOfWork.PostRepository.GetAllAsync(null, "User", "Likes");
             var postsIds = posts.Select(f => f.Id);
-            var userIds = posts.Select(p=>p.UserId);
+            var userIds = posts.Select(p => p.UserId);
             var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => posts.Contains(p.Post) || userIds.Contains(p.UserId));
             foreach (var picture in pictures)
             {
@@ -96,18 +97,18 @@ namespace Aniverse.Business.Implementations
             {
                 throw new NotFoundException("Friends is null");
             }
-            var posts = await _unitOfWork.PostRepository.GetAllAsync(p => friendsId.Contains(p.UserId) , "User", "Likes", "Animal");
+            var posts = await _unitOfWork.PostRepository.GetAllAsync(p => friendsId.Contains(p.UserId), "User", "Likes", "Animal");
             var postsIds = posts.Select(f => f.Id);
-            var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => posts.Contains(p.Post) || friendsId.Contains(p.UserId) || p.UserId == userLoginId );
+            var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => posts.Contains(p.Post) || friendsId.Contains(p.UserId) || p.UserId == userLoginId);
             foreach (var picture in pictures)
             {
                 picture.ImageName = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{picture.ImageName}");
             }
             var postMap = _mapper.Map<List<PostGetDto>>(posts);
-            var comments = _mapper.Map<List<CommentGetDto>>(await _unitOfWork.CommentRepository.GetAllAsync(c=> postsIds.Contains(c.PostId),"User"));
+            var comments = _mapper.Map<List<CommentGetDto>>(await _unitOfWork.CommentRepository.GetAllAsync(c => postsIds.Contains(c.PostId), "User"));
             foreach (var post in postMap)
             {
-                post.Comments = comments.Where(c=>c.PostId == post.Id).ToList();
+                post.Comments = comments.Where(c => c.PostId == post.Id).ToList();
                 if (pictures.Any(p => p.UserId == post.UserId && p.IsProfilePicture))
                     post.User.ProfilPicture = pictures.Where(p => p.UserId == post.UserId && p.IsProfilePicture).FirstOrDefault().ImageName;
             }
@@ -118,6 +119,33 @@ namespace Aniverse.Business.Implementations
             }
             return postMap;
         }
-
+        public async Task PostSaveAsync(PostSaveDto postSave)
+        {
+            var postDb = _unitOfWork.PostRepository.GetAsync(p => p.Id == postSave.PostId);
+            if (postDb is null)
+            {
+                throw new NotFoundException("Post is not found");
+            };
+            var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
+            if (postSave.IsSave)
+            {
+                var savePost = new SavePost
+                {
+                    PostId = postSave.PostId,
+                    UserId = userLoginId
+                };
+                await _unitOfWork.SavePostRepository.CreateAsync(savePost);
+            }
+            else
+            {
+                var posSaveDb = await _unitOfWork.SavePostRepository.GetAsync(s => s.UserId == userLoginId && s.PostId == postSave.PostId);
+                if(posSaveDb is null)
+                {
+                    throw new NotFoundException("Post is not found");
+                }
+                _unitOfWork.SavePostRepository.Delete(posSaveDb);
+            }
+            await _unitOfWork.SaveAsync();
+        }
     }
 }
