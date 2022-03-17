@@ -28,27 +28,12 @@ namespace Aniverse.Business.Implementations
             _httpContextAccessor = httpContextAccessor;
         }
 
-        public async Task ConfirmFriend(FriendConfirmDto friendDto)
+       
+
+        public async Task<List<UserGetDto>> GetAllAsync(string username, HttpRequest request, int page=1, int size=4)
         {
             var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
-            var friend = await _unitOfWork.FriendRepository.GetAsync(u => u.UserId == userLoginId && u.FriendId == friendDto.FriendId);
-            if (friendDto.IsConfirm)
-            {
-                friend.Status = FriendRequestStatus.Accepted;
-            }
-            else
-            {
-                friend.Status = FriendRequestStatus.Declined;
-            }
-            _unitOfWork.FriendRepository.Update(friend);
-
-            await _unitOfWork.SaveAsync();
-        }
-
-        public async Task<List<UserGetDto>> GetAllAsync(string username, HttpRequest request)
-        {
-            var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
-            var friends = await _unitOfWork.FriendRepository.GetAllAsync(u => u.User.UserName == username || u.Friend.UserName == username && u.Status == FriendRequestStatus.Accepted, "Friend");
+            var friends = await _unitOfWork.FriendRepository.GetAllPaginateAsync(page,size,u=>u.SenderDate,u => (u.User.UserName == username || u.Friend.UserName == username) && u.Status == FriendRequestStatus.Accepted);
             if(friends is null)
             {
                 throw new NotFoundException("Friend is not found");
@@ -60,7 +45,7 @@ namespace Aniverse.Business.Implementations
             {
                 picture.ImageName = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{picture.ImageName}");
             }
-            var friendsMap = _mapper.Map<List<UserGetDto>>(friends.Select(f=>f.Friend));
+            var friendsMap = _mapper.Map<List<UserGetDto>>(await _unitOfWork.UserRepository.GetAllAsync(u=> friendIds.Contains(u.Id) || userIds.Contains(u.Id)));
             foreach (var friend in friendsMap)
             {
                 if (pictures.Any(p => p.UserId == friend.Id && p.IsProfilePicture))
@@ -80,10 +65,23 @@ namespace Aniverse.Business.Implementations
             var friendsId = frineds.Select(f => f.FriendId);
             return _mapper.Map<List<UserGetDto>>(await _unitOfWork.UserRepository.GetAllAsync(u => friendsId.Contains(u.Id)));
         }
-        public async Task AddFriendAsync(FriendRequestDto addFriend)
+        public async Task ConfirmFriend(string id)
+        {
+            var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
+            var friend = await _unitOfWork.FriendRepository.GetAsync(u => u.UserId == userLoginId && u.FriendId == id);
+            if (friend is null)
+            {
+                throw new NotFoundException("User is not found");
+            }
+            friend.Status = FriendRequestStatus.Accepted;
+            _unitOfWork.FriendRepository.Update(friend);
+
+            await _unitOfWork.SaveAsync();
+        }
+        public async Task AddFriendAsync(string id)
         {
             var userLoginId  = _httpContextAccessor.HttpContext.User.GetUserId();
-            var user = await _unitOfWork.UserRepository.GetAsync(u => u.Id == addFriend.Id);
+            var user = await _unitOfWork.UserRepository.GetAsync(u => u.Id == id);
             if (user is null)
             {
                 throw new NotFoundException("User is not found");
@@ -95,38 +93,39 @@ namespace Aniverse.Business.Implementations
             }
             UserFriend userFriend = new UserFriend
             {
-                UserId = addFriend.Id,
+                UserId = id,
                 FriendId = userLoginId,
                 Status = FriendRequestStatus.Pending
             };
             await _unitOfWork.FriendRepository.CreateAsync(userFriend);
             await _unitOfWork.SaveAsync();
         }
-        public async Task DeleteFriendAsync(FriendRequestDto deleteFriend)
+        public async Task DeleteFriendAsync(string id)
         {
             var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
-            var user = await _unitOfWork.UserRepository.GetAsync(u => u.Id == deleteFriend.Id);
+            var user = await _unitOfWork.UserRepository.GetAsync(u => u.Id == id);
             if (user is null)
             {
                 throw new NotFoundException("User is not found");
             }
-            var userfriends = await _unitOfWork.FriendRepository.GetAsync(f => f.UserId == user.Id && f.FriendId == userLoginId);
+            var userfriends = await _unitOfWork.FriendRepository.GetAsync(f => (f.UserId == userLoginId && f.FriendId == id) || 
+                                                                               (f.UserId == id && f.FriendId == userLoginId));
             if (userfriends is null)
             {
-                throw new AlreadyException("Friend is not found");
+                throw new NotFoundException("Friend is not found");
             }
             _unitOfWork.FriendRepository.Delete(userfriends);
             await _unitOfWork.SaveAsync();
         }
-        public async Task FriendBlockAsync(FriendRequestDto friendBlock)
+        public async Task FriendBlockAsync(string id)
         {
             var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
-            var user = await _unitOfWork.UserRepository.GetAsync(u => u.Id == friendBlock.Id);
+            var user = await _unitOfWork.UserRepository.GetAsync(u => u.Id == id);
             if (user is null)
             {
                 throw new NotFoundException("User is not found");
             }
-            var userfriends = await _unitOfWork.FriendRepository.GetAsync(f => f.UserId == user.Id && f.FriendId == userLoginId);
+            var userfriends = await _unitOfWork.FriendRepository.GetAsync(f => f.UserId == userLoginId && f.FriendId == id);
             if (userfriends is null)
             {
                 throw new AlreadyException("Friend is not found");
@@ -135,10 +134,10 @@ namespace Aniverse.Business.Implementations
             _unitOfWork.FriendRepository.Update(userfriends);
             await _unitOfWork.SaveAsync();
         }
-        public async Task FriendUnBlockAsync(FriendRequestDto friendBlock)
+        public async Task FriendUnBlockAsync(string id)
         {
             var UserId = _httpContextAccessor.HttpContext.User.GetUserId();
-            var user = await _unitOfWork.UserRepository.GetAsync(u => u.Id == friendBlock.Id);
+            var user = await _unitOfWork.UserRepository.GetAsync(u => u.Id == id);
             if (user is null)
             {
                 throw new NotFoundException("User is not found");
@@ -152,6 +151,22 @@ namespace Aniverse.Business.Implementations
             _unitOfWork.FriendRepository.Update(userfriends);
             await _unitOfWork.SaveAsync();
         }
-
+        public async Task Declined(string id)
+        {
+            var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
+            var user = await _unitOfWork.UserRepository.GetAsync(u => u.Id == id);
+            if (user is null)
+            {
+                throw new NotFoundException("User is not found");
+            }
+            var userfriends = await _unitOfWork.FriendRepository.GetAsync(f => f.UserId == userLoginId && f.FriendId == id);
+            if (userfriends is null)
+            {
+                throw new AlreadyException("Friend is not found");
+            }
+            userfriends.Status = FriendRequestStatus.Declined;
+            _unitOfWork.FriendRepository.Update(userfriends);
+            await _unitOfWork.SaveAsync();
+        }
     }
 }

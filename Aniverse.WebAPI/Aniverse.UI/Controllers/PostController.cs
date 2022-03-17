@@ -79,7 +79,7 @@ namespace Aniverse.UI.Controllers
                 return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
             }
         }
-        [HttpPost("update/{id}")]
+        [HttpPut("update/{id}")]
         public async Task<ActionResult> PostUpdateAsync(int id, PostCreateDto postCreate)
         {
             try

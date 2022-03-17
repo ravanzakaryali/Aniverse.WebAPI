@@ -35,6 +35,7 @@ namespace Aniverse.Data.DAL
             builder.ApplyConfiguration(new CommentConfiguration());
             builder.ApplyConfiguration(new AnimalFollowConfiguration());
             builder.ApplyConfiguration(new SavePostConfiguration());
+            builder.ApplyConfiguration(new UserFriendConfiguration());
 
             base.OnModelCreating(builder);
         }

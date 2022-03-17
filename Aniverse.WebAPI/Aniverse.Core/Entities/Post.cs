@@ -10,6 +10,8 @@ namespace Aniverse.Core.Entites
         public string Hastag { get; set; }
         public DateTime CreationDate { get; set; }
         public bool IsModified { get; set; }
+        public bool IsArchive { get; set; }
+        public bool IsDelete { get; set; }
         public string UserId { get; set; }
         public AppUser User { get; set; }
         public int? AnimalId { get; set; }

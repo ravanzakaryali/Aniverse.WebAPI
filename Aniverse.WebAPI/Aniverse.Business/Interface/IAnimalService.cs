@@ -12,7 +12,7 @@ namespace Aniverse.Business.Interface
     {
         Task<AnimalGetDto> GetAsync(string id);
         Task<List<AnimalAllDto>> GetAllAsync();
-        Task<List<AnimalAllDto>> GetFriendAsync(string username);
+        Task<List<AnimalAllDto>> GetFriendAnimals(string username, int page, int size);
         Task<List<AnimalAllDto>> GetAnimalUserAsync(string username);
         Task<List<PostGetDto>> GetAnimalPosts(string animalname, HttpRequest request);
         Task FollowCreate(FollowDto follow);
@@ -22,5 +22,7 @@ namespace Aniverse.Business.Interface
         Task UpdateAnimalAsync(int id, AnimalUpdateDto animalUpdate);
         Task<List<AnimalAllDto>> AnimalUserFollows(string username);
         Task<List<GetPictureDto>> GetAnimalPhotos(string animalname, HttpRequest request, int page, int size);
+        Task ChangeCoverPicture(int id, AnimalPictureChangeDto cover);
+        Task ChangeProfilePicture(int id, AnimalPictureChangeDto profile);
     }
 }

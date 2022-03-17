@@ -12,12 +12,13 @@ namespace Aniverse.Business.Interface
 {
     public interface IFriendService
     {
-        Task<List<UserGetDto>> GetAllAsync(string username, HttpRequest request);
+        Task<List<UserGetDto>> GetAllAsync(string username, HttpRequest request, int page,int size);
         Task<List<UserGetDto>> GetUserFriendRequestAsync();
-        Task ConfirmFriend(FriendConfirmDto friend);
-        Task AddFriendAsync(FriendRequestDto addFriend);
-        Task DeleteFriendAsync(FriendRequestDto friend);
-        Task FriendBlockAsync(FriendRequestDto friend);
-        Task FriendUnBlockAsync(FriendRequestDto friend);
+        Task ConfirmFriend(string id);
+        Task AddFriendAsync(string id);
+        Task DeleteFriendAsync(string id);
+        Task FriendBlockAsync(string id);
+        Task FriendUnBlockAsync(string id);
+        Task Declined(string id);
     }
 }

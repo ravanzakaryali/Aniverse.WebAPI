@@ -14,6 +14,7 @@ using Aniverse.Business.Exceptions;
 using System.Linq;
 using Aniverse.Business.DTO_s.Comment;
 using Aniverse.Core.Entities;
+using Aniverse.Core.Entites.Enum;
 
 namespace Aniverse.Business.Implementations
 {
@@ -53,77 +54,57 @@ namespace Aniverse.Business.Implementations
 
         public async Task<List<PostGetDto>> GetAllAsync(HttpRequest request)
         {
-            var posts = await _unitOfWork.PostRepository.GetAllAsync(null, "User", "Likes");
+            var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
+            var posts = await _unitOfWork.PostRepository.GetAllAsync(p=>!p.IsDelete && !p.IsArchive, "User", "Likes","Animal");
             var postsIds = posts.Select(f => f.Id);
             var userIds = posts.Select(p => p.UserId);
             var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => posts.Contains(p.Post) || userIds.Contains(p.UserId));
-            foreach (var picture in pictures)
-            {
-                picture.ImageName = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{picture.ImageName}");
-            }
+            PictureDbName(pictures, request);
             var postMap = _mapper.Map<List<PostGetDto>>(posts);
             var comments = _mapper.Map<List<CommentGetDto>>(await _unitOfWork.CommentRepository.GetAllAsync(c => postsIds.Contains(c.PostId), "User"));
-            foreach (var post in postMap)
-            {
-                post.Comments = comments.Where(c => c.PostId == post.Id).ToList();
-                if (pictures.Any(p => p.UserId == post.UserId && p.IsProfilePicture))
-                    post.User.ProfilPicture = pictures.Where(p => p.UserId == post.UserId && p.IsProfilePicture).FirstOrDefault().ImageName;
-            }
-            foreach (var comment in comments)
-            {
-                if (pictures.Any(p => p.UserId == comment.UserId && p.IsProfilePicture))
-                    comment.User.ProfilPicture = pictures.Where(p => p.UserId == comment.UserId && p.IsProfilePicture).FirstOrDefault().ImageName;
-            }
+            var postSave = await _unitOfWork.SavePostRepository.GetAllAsync(p => p.UserId == userLoginId);
+            var postSaveIds = postSave.Select(p => p.PostId);
+            PostUserProfilePicture(postMap, postSaveIds, comments, pictures);
+            CommentUserProfilePicture(pictures, comments);
             return postMap;
         }
         public async Task<List<PostGetDto>> GetAsync(string id, HttpRequest request)
         {
-            var posts = _mapper.Map<List<PostGetDto>>(await _unitOfWork.PostRepository.GetAllAsync(p => p.User.UserName == id, "User", "Likes", "Pictures"));
-            foreach (var post in posts)
-            {
-                foreach (var picture in post.Pictures)
-                {
-                    picture.ImageName = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{picture.ImageName}");
-                }
-            }
-            return posts;
+            var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
+            var posts = await _unitOfWork.PostRepository.GetAllAsync(p => p.User.UserName == id && !p.IsArchive && !p.IsDelete, "User", "Likes", "Pictures");
+            var postsIds = posts.Select(f => f.Id);
+            var userIds = posts.Select(p => p.UserId);
+            var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => posts.Contains(p.Post) || userIds.Contains(p.UserId));
+            PictureDbName(pictures, request);
+            var postMap = _mapper.Map<List<PostGetDto>>(posts);
+            var comments = _mapper.Map<List<CommentGetDto>>(await _unitOfWork.CommentRepository.GetAllAsync(c => postsIds.Contains(c.PostId), "User"));
+            var postSave = await _unitOfWork.SavePostRepository.GetAllAsync(p => p.UserId == userLoginId);
+            var postSaveIds = postSave.Select(p => p.PostId);
+            PostUserProfilePicture(postMap, postSaveIds, comments, pictures);
+            CommentUserProfilePicture(pictures, comments);
+            return postMap;
         }
         public async Task<List<PostGetDto>> GetFriendPost(HttpRequest request, int page = 1, int size = 4)
         {
             var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
-            var friends = await _unitOfWork.FriendRepository.GetAllAsync(f => f.UserId == userLoginId);
-            var friendsId = friends.Select(f => f.FriendId);
+            var friends = await _unitOfWork.FriendRepository.GetAllAsync(f => f.UserId == userLoginId || f.FriendId == userLoginId && f.Status == FriendRequestStatus.Accepted);
+
             if (friends is null)
             {
                 throw new NotFoundException("Friends is null");
             }
-            var posts = await _unitOfWork.PostRepository.GetAllAsync(p => friendsId.Contains(p.UserId), "User", "Likes", "Animal");
+            var userIds = friends.Select(f => f.UserId);
+            var friendsId = friends.Select(f => f.FriendId);
+            var posts = await _unitOfWork.PostRepository.GetAllPaginateAsync(page, size,p=>p.Id ,p => !p.IsArchive && !p.IsDelete && (friendsId.Contains(p.UserId) || userIds.Contains(p.UserId)), "User", "Likes", "Animal");
             var postsIds = posts.Select(f => f.Id);
             var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => posts.Contains(p.Post) || friendsId.Contains(p.UserId) || p.UserId == userLoginId);
-            foreach (var picture in pictures)
-            {
-                picture.ImageName = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{picture.ImageName}");
-            }
+            PictureDbName(pictures,request);
             var postMap = _mapper.Map<List<PostGetDto>>(posts);
             var comments = _mapper.Map<List<CommentGetDto>>(await _unitOfWork.CommentRepository.GetAllAsync(c => postsIds.Contains(c.PostId), "User"));
-            var postSave = await _unitOfWork.SavePostRepository.GetAllAsync(p=>p.UserId == userLoginId);
-            var postSaveIds = postSave.Select(p=>p.PostId);
-            foreach (var post in postMap)
-            {
-                if(postSaveIds.Contains(post.Id))
-                {
-                    post.IsSave = true;
-                }   
-                post.Comments = comments.Where(c => c.PostId == post.Id).ToList();
-                if (pictures.Any(p => p.UserId == post.UserId && p.IsProfilePicture))
-                    post.User.ProfilPicture = pictures.Where(p => p.UserId == post.UserId && p.IsProfilePicture).FirstOrDefault().ImageName;
-            }
-            foreach (var comment in comments)
-            {
-                if (pictures.Any(p => p.UserId == comment.UserId && p.IsProfilePicture))
-                    comment.User.ProfilPicture = pictures.Where(p => p.UserId == comment.UserId && p.IsProfilePicture).FirstOrDefault().ImageName;
-            }
-            
+            var postSave = await _unitOfWork.SavePostRepository.GetAllAsync(p => p.UserId == userLoginId);
+            var postSaveIds = postSave.Select(p => p.PostId);
+            PostUserProfilePicture(postMap,postSaveIds,comments,pictures);
+            CommentUserProfilePicture(pictures, comments);
             return postMap;
         }
         public async Task PostSaveAsync(PostSaveDto postSave)
@@ -146,7 +127,7 @@ namespace Aniverse.Business.Implementations
             else
             {
                 SavePost posSaveDb = await _unitOfWork.SavePostRepository.GetAsync(s => s.UserId == userLoginId && s.PostId == postSave.PostId);
-                if(posSaveDb is null)
+                if (posSaveDb is null)
                 {
                     throw new NotFoundException("Post is not found");
                 }
@@ -158,7 +139,7 @@ namespace Aniverse.Business.Implementations
         {
             var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
             var postDb = await _unitOfWork.PostRepository.GetAsync(p => p.Id == id && p.UserId == userLoginId);
-            if(postDb is null)
+            if (postDb is null)
             {
                 throw new NotFoundException("Post is not found");
             };
@@ -175,8 +156,36 @@ namespace Aniverse.Business.Implementations
             {
                 throw new NotFoundException("Post is not found");
             };
-            _unitOfWork.PostRepository.Delete(postDb);
+            postDb.IsDelete =true;
             await _unitOfWork.SaveAsync();
+        }
+        private void CommentUserProfilePicture(List<Picture> pictures, List<CommentGetDto> comments)
+        {
+            foreach (var comment in comments)
+            {
+                if (pictures.Any(p => p.UserId == comment.UserId && p.IsProfilePicture))
+                    comment.User.ProfilPicture = pictures.Where(p => p.UserId == comment.UserId && p.IsProfilePicture).FirstOrDefault().ImageName;
+            }
+        }
+        private void PictureDbName(List<Picture> pictures, HttpRequest request)
+        {
+            foreach (var picture in pictures)
+            {
+                picture.ImageName = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{picture.ImageName}");
+            }
+        }
+        private void PostUserProfilePicture(List<PostGetDto> postMap, IEnumerable<int> postSaveIds,List<CommentGetDto> comments, List<Picture> pictures)
+        {
+            foreach (var post in postMap)
+            {
+                if (postSaveIds.Contains(post.Id))
+                {
+                    post.IsSave = true;
+                }
+                post.Comments = comments.Where(c => c.PostId == post.Id).ToList();
+                if (pictures.Any(p => p.UserId == post.UserId && p.IsProfilePicture))
+                    post.User.ProfilPicture = pictures.Where(p => p.UserId == post.UserId && p.IsProfilePicture).FirstOrDefault().ImageName;
+            }
         }
     }
 }

@@ -32,9 +32,9 @@ namespace Aniverse.UI.Controllers
             return await _unitOfWorkService.AnimalService.GetAllAsync();
         }
         [HttpGet("friends/{id}")]
-        public async Task<ActionResult<List<AnimalAllDto>>> GetFriendAsync(string id)
+        public async Task<ActionResult<List<AnimalAllDto>>> GetFriendAnimals(string id, [FromQuery] int page, [FromQuery] int size)
         {
-            return Ok(await _unitOfWorkService.AnimalService.GetFriendAsync(id));
+            return Ok(await _unitOfWorkService.AnimalService.GetFriendAnimals(id,page,size));
         }
         [HttpGet("user/{id}")]
         public async Task<ActionResult<List<AnimalAllDto>>> GetAnimalUserAsync(string id)
@@ -101,6 +101,32 @@ namespace Aniverse.UI.Controllers
         {
             var request = HttpContext.Request;
             return Ok(await _unitOfWorkService.AnimalService.GetAnimalPhotos(animalname, request, page, size));
+        }
+        [HttpPost("coverPicture/{id}")]
+        public async Task<ActionResult> ChangeCoverPicture(int id, [FromForm] AnimalPictureChangeDto cover)
+        {
+            try
+            {
+                await _unitOfWorkService.AnimalService.ChangeCoverPicture(id, cover);
+                return StatusCode(StatusCodes.Status204NoContent, new Response { Status = "Successs", Message = "Animal cover pictre change successfully" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
+            }
+        }
+        [HttpPost("profilePicture/{id}")]
+        public async Task<ActionResult> ChangeProfilePicture(int id, [FromForm] AnimalPictureChangeDto profile)
+        {
+            try
+            {
+                await _unitOfWorkService.AnimalService.ChangeProfilePicture(id, profile);
+                return StatusCode(StatusCodes.Status204NoContent, new Response { Status = "Successs", Message = "Animal cover pictre change successfully" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
+            }
         }
 
     }

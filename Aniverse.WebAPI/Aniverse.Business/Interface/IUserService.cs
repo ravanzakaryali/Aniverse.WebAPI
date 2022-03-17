@@ -20,6 +20,6 @@ namespace Aniverse.Business.Interface
         Task<UserGetDto> GetLoginUser();
         Task<List<GetPictureDto>> GetPhotos(string username, HttpRequest request, int page, int size);
         Task<List<GetPictureDto>> GetUserPhotos(string username, HttpRequest request, int page, int size);
-        Task<List<UserAllDto>> SearchAsync(SearchDto search);
+        Task<List<UserAllDto>> SearchAsync(string search);
     }
 }

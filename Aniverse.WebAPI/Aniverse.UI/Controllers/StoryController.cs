@@ -26,7 +26,8 @@ namespace Aniverse.UI.Controllers
         [HttpGet]
         public async Task<ActionResult<List<StoryGetDto>>> GetAllAsync()
         {
-            return await _unitOfWorkService.StoryService.GetAllAsync();
+            var request = HttpContext.Request;
+            return await _unitOfWorkService.StoryService.GetAllAsync(request);
         }
         [HttpGet("{username}")]
         public async Task<ActionResult<List<StoryGetDto>>> GetUserStories(string username)

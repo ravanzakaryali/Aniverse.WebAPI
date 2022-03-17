@@ -37,9 +37,13 @@ namespace Aniverse.Business.Implementations
             await _unitOfWork.StoryRepository.CreateAsync(_mapper.Map<Story>(storyCreate));
             await _unitOfWork.SaveAsync();
         }
-        public async Task<List<StoryGetDto>> GetAllAsync()
+        public async Task<List<StoryGetDto>> GetAllAsync(HttpRequest request)
         {
-            return _mapper.Map<List<StoryGetDto>>(await _unitOfWork.StoryRepository.GetAllAsync(s=>!s.IsDeleted && !s.IsArchive, "User"));
+            var pictures = await _unitOfWork.PictureRepository.GetAllAsync(u => u.IsProfilePicture);
+            PictureNameDb(pictures, request);
+            var stories = _mapper.Map<List<StoryGetDto>>(await _unitOfWork.StoryRepository.GetAllAsync(s=>!s.IsDeleted && !s.IsArchive, "User"));
+            UserStoryPictureNameDb(pictures,request, stories);
+            return stories;
         }
         public async Task<List<StoryGetDto>> GetUserAsync(string username, HttpRequest request)
         {
@@ -61,20 +65,9 @@ namespace Aniverse.Business.Implementations
             var usersId = friends.Select(f => f.UserId);
             var friendsId = friends.Select(f => f.FriendId);
             var pictures = await _unitOfWork.PictureRepository.GetAllAsync(u => u.IsProfilePicture && usersId.Contains(u.UserId) && friendsId.Contains(u.UserId));
-            foreach (var picture in pictures)
-            {
-                picture.ImageName = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{picture.ImageName}");
-            }
+            PictureNameDb(pictures, request);
             var stories = _mapper.Map<List<StoryGetDto>>(await _unitOfWork.StoryRepository.GetAllAsync(s => !s.IsDeleted && !s.IsArchive && friendsId.Contains(s.UserId) || !s.IsDeleted && !s.IsArchive && usersId.Contains(s.UserId), "User"));
-            foreach (var story in stories)
-            {
-                if (pictures.Any(p => p.UserId == story.User.Id))
-                {
-                    story.User.ProfilPicture = pictures.Where(p => p.UserId == story.User.Id).First().ImageName;
-                }
-
-                story.ImageSrc = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{story.StoryFileName}");
-            }
+            UserStoryPictureNameDb(pictures,request,stories);
             return stories;
         }
         public async Task DeleteAsync(int id)
@@ -100,6 +93,24 @@ namespace Aniverse.Business.Implementations
             await _unitOfWork.SaveAsync();
         }
 
+        private void PictureNameDb(List<Picture> pictures, HttpRequest request)
+        {
+            foreach (var picture in pictures)
+            {
+                picture.ImageName = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{picture.ImageName}");
+            }
+        }
+        private void UserStoryPictureNameDb(List<Picture> pictures, HttpRequest request,List<StoryGetDto> stories)
+        {
+            foreach (var story in stories)
+            {
+                if (pictures.Any(p => p.UserId == story.User.Id))
+                {
+                    story.User.ProfilPicture = pictures.Where(p => p.UserId == story.User.Id).First().ImageName;
+                }
 
+                story.ImageSrc = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{story.StoryFileName}");
+            }
+        }
     }
 }

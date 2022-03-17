@@ -3,11 +3,14 @@ using Aniverse.Business.DTO_s.Picture;
 using Aniverse.Business.DTO_s.Post;
 using Aniverse.Business.Exceptions;
 using Aniverse.Business.Extensions;
+using Aniverse.Business.Helpers;
 using Aniverse.Business.Interface;
 using Aniverse.Core;
 using Aniverse.Core.Entites;
+using Aniverse.Core.Entites.Enum;
 using AutoMapper;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,10 +24,13 @@ namespace Aniverse.Business.Implementations
         public readonly IUnitOfWork _unitOfWork;
         public readonly IMapper _mapper;
         public readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IHostEnvironment _hostEnvironment;
 
-        public AnimalService(IUnitOfWork unitOfWork, IMapper mapper, IHttpContextAccessor httpContextAccessor)
+
+        public AnimalService(IUnitOfWork unitOfWork, IMapper mapper, IHostEnvironment hostEnvironment, IHttpContextAccessor httpContextAccessor)
         {
             _unitOfWork = unitOfWork;
+            _hostEnvironment = hostEnvironment;
             _mapper = mapper;
             _httpContextAccessor = httpContextAccessor;
         }
@@ -54,9 +60,18 @@ namespace Aniverse.Business.Implementations
         {
             return _mapper.Map<List<AnimalAllDto>>(await _unitOfWork.AnimalRepository.GetAllAsync());
         }
-        public async Task<List<AnimalAllDto>> GetFriendAsync(string username)
+        public async Task<List<AnimalAllDto>> GetFriendAnimals(string username, int page=1, int size=3)
         {
-            return _mapper.Map<List<AnimalAllDto>>(await _unitOfWork.AnimalRepository.GetFriendAnimals(username));
+            var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
+            var friends = await _unitOfWork.FriendRepository.GetAllAsync(u => (u.User.UserName == username || u.Friend.UserName == username) && u.Status == FriendRequestStatus.Accepted);
+            if (friends is null)
+            {
+                throw new NotFoundException("Friend is not found");
+            }
+            var friendIds = friends.Select(x => x.FriendId);
+            var userIds = friends.Select(x => x.UserId);
+            var animals = await _unitOfWork.AnimalRepository.GetAllPaginateAsync(page, size, a => a.Birthday, a => friendIds.Contains(a.UserId) || userIds.Contains(a.UserId));
+            return _mapper.Map<List<AnimalAllDto>>(animals);
         }
         public async Task<List<AnimalAllDto>> GetAnimalUserAsync(string username)
         {
@@ -156,7 +171,7 @@ namespace Aniverse.Business.Implementations
         }
         public async Task<List<GetPictureDto>> GetAnimalPhotos(string animalname, HttpRequest request, int page = 1, int size = 1)
         {
-            var photos = await _unitOfWork.PictureRepository.GetAllPaginateAsync(page, size, p => p.Animal.Animalname == animalname);
+            var photos = await _unitOfWork.PictureRepository.GetAllPaginateAsync(page , size,p=>p.Id, p => p.Animal.Animalname == animalname);
             var photosMap = _mapper.Map<List<GetPictureDto>>(photos);
 
             for (int i = 0; i < photosMap.Count; i++)
@@ -166,5 +181,42 @@ namespace Aniverse.Business.Implementations
             }
             return photosMap;
         }
+        public async Task ChangeCoverPicture(int id, AnimalPictureChangeDto coverCreate)
+        {
+            var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
+            var picture = new Picture
+            {
+                IsCoverPicture = true,
+                AnimalId = id,
+                ImageName = await coverCreate.ImageFile.FileSaveAsync(_hostEnvironment.ContentRootPath, "Images"),
+                UserId = userLoginId,
+            };
+            var coverPictureDb = await _unitOfWork.PictureRepository.GetAsync(p => p.UserId == userLoginId && p.AnimalId == id && p.IsAnimalCoverPicture == true);
+            await _unitOfWork.PictureRepository.CreateAsync(picture);
+            if (coverPictureDb != null)
+            {
+                coverPictureDb.IsAnimalCoverPicture = false;
+            }
+            await _unitOfWork.SaveAsync();
+        }
+        public async Task ChangeProfilePicture(int id, AnimalPictureChangeDto coverCreate)
+        {
+            var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
+            var picture = new Picture
+            {
+                IsCoverPicture = true,
+                AnimalId = id,
+                ImageName = await coverCreate.ImageFile.FileSaveAsync(_hostEnvironment.ContentRootPath, "Images"),
+                UserId = userLoginId,
+            };
+            var coverPictureDb = await _unitOfWork.PictureRepository.GetAsync(p => p.UserId == userLoginId && p.AnimalId == id && p.IsAnimalProfilePicture == true);
+            await _unitOfWork.PictureRepository.CreateAsync(picture);
+            if (coverPictureDb != null)
+            {
+                coverPictureDb.IsAnimalCoverPicture = false;
+            }
+            await _unitOfWork.SaveAsync();
+        }
+
     }
 }

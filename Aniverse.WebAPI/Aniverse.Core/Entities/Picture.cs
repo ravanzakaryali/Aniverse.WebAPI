@@ -9,6 +9,8 @@ namespace Aniverse.Core.Entites
         public bool IsDeleted { get; set; }
         public bool IsProfilePicture { get; set; }
         public bool IsCoverPicture { get; set; }
+        public bool IsAnimalProfilePicture { get; set; }
+        public bool IsAnimalCoverPicture { get; set; }
         public int? AnimalId { get; set; }
         public Animal Animal { get; set; }
         public int? PostId { get; set; }

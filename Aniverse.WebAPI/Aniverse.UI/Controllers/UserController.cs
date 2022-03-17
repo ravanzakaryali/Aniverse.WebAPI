@@ -105,7 +105,7 @@ namespace Aniverse.UI.Controllers
             return Ok(await _unitOfWorkService.UserService.GetUserPhotos(id, request, page, size));
         }
         [HttpGet("search")]
-        public async Task<ActionResult<List<UserAllDto>>> SearchAsync(SearchDto search)
+        public async Task<ActionResult<List<UserAllDto>>> SearchAsync([FromQuery] string search)
         {
             try
             {

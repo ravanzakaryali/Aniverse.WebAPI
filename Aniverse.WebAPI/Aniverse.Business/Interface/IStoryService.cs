@@ -9,7 +9,7 @@ namespace Aniverse.Business.Interface
 {
     public interface IStoryService
     {
-        Task<List<StoryGetDto>> GetAllAsync();
+        Task<List<StoryGetDto>> GetAllAsync(HttpRequest request);
         Task<List<StoryGetDto>> GetUserAsync(string username, HttpRequest request);
         Task CreateAsync(StoryCreateDto storyCreate);
         Task<List<StoryGetDto>> GetFriendAsync(HttpRequest request);

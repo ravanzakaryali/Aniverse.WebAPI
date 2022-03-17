@@ -126,7 +126,7 @@ namespace Aniverse.Business.Implementations
         }
         public async Task<List<GetPictureDto>> GetPhotos(string username, HttpRequest request, int page = 1, int size = 1)
         {
-            var photos = await _unitOfWork.PictureRepository.GetAllPaginateAsync(page, size, p => p.User.UserName == username);
+            var photos = await _unitOfWork.PictureRepository.GetAllPaginateAsync(page, size,p=>p.Id ,p => p.User.UserName == username);
             var photosMap = _mapper.Map<List<GetPictureDto>>(photos);
 
             for (int i = 0; i < photosMap.Count; i++)
@@ -138,7 +138,7 @@ namespace Aniverse.Business.Implementations
         }
         public async Task<List<GetPictureDto>> GetUserPhotos(string username, HttpRequest request, int page=1,int size = 1)
         {
-            var photos = await _unitOfWork.PictureRepository.GetAllPaginateAsync(page, size, p => p.User.UserName == username && p.AnimalId == null);
+            var photos = await _unitOfWork.PictureRepository.GetAllPaginateAsync(page, size,p=>p.Id ,p => p.User.UserName == username && p.AnimalId == null);
             var photosMap = _mapper.Map<List<GetPictureDto>>(photos);
 
             for (int i = 0; i < photosMap.Count; i++)
@@ -148,9 +148,9 @@ namespace Aniverse.Business.Implementations
             }
             return photosMap;
         }
-        public async Task<List<UserAllDto>> SearchAsync(SearchDto search)
+        public async Task<List<UserAllDto>> SearchAsync(string search)
         {
-            return _mapper.Map<List<UserAllDto>>(await _unitOfWork.UserRepository.GetAllAsync(u => u.UserName.Contains(search.SearchContent) || u.Firstname.Contains(search.SearchContent) || u.Lastname.Contains(search.SearchContent)));
+            return _mapper.Map<List<UserAllDto>>(await _unitOfWork.UserRepository.GetAllAsync(u => u.UserName.Contains(search) || u.Firstname.Contains(search) || u.Lastname.Contains(search)));
         } 
     }
 }
