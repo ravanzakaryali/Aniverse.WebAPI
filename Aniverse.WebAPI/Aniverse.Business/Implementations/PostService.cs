@@ -118,6 +118,20 @@ namespace Aniverse.Business.Implementations
             return _mapper.Map<List<PostGetDto>>(posts);
 
         }
+        public async Task<List<PostGetDto>> GetAllRecycle(HttpRequest request, int page, int size)
+        {
+            var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
+            var posts = await _unitOfWork.PostRepository.GetAllPaginateAsync(page, size, p => p.CreationDate, p => p.UserId == userLoginId && p.IsDelete == true, "User", "Pictures", "Animal");
+            if (posts is null)
+            {
+                throw new NotFoundException("Animal post not found");
+            }
+            var postsIds = posts.Select(f => f.Id);
+            var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => posts.Contains(p.Post));
+            PictureDbName(pictures, request);
+            return _mapper.Map<List<PostGetDto>>(posts);
+
+        }
         public async Task<List<PostGetDto>> GetFriendPost(HttpRequest request, int page = 1, int size = 4)
         {
             var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
@@ -191,6 +205,17 @@ namespace Aniverse.Business.Implementations
                 throw new NotFoundException("Post is not found");
             };
             postDb.IsDelete =true;
+            await _unitOfWork.SaveAsync();
+        }
+        public async Task PostDbDeleteAsync(int id)
+        {
+            var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
+            var postDb = await _unitOfWork.PostRepository.GetAsync(p => p.Id == id && p.UserId == userLoginId);
+            if (postDb is null)
+            {
+                throw new NotFoundException("Post is not found");
+            };
+            _unitOfWork.PostRepository.Delete(postDb);
             await _unitOfWork.SaveAsync();
         }
         private void CommentUserProfilePicture(List<Picture> pictures, List<CommentGetDto> comments)

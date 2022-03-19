@@ -11,6 +11,8 @@ namespace Aniverse.Business.Interface
     {
         Task<List<StoryGetDto>> GetAllAsync(HttpRequest request);
         Task<List<StoryGetDto>> GetUserAsync(string username, HttpRequest request);
+        Task<List<StoryGetDto>> GetAllArchive(HttpRequest request, int page, int size);
+        Task<List<StoryGetDto>> GetAllRecycle(HttpRequest request, int page, int size);
         Task CreateAsync(StoryCreateDto storyCreate);
         Task<List<StoryGetDto>> GetFriendAsync(HttpRequest request);
         Task DeleteAsync(int id);

@@ -81,5 +81,31 @@ namespace Aniverse.UI.Controllers
                 return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
             }
         }
+        [HttpGet("archive")]
+        public async Task<ActionResult<List<StoryGetDto>>> GetArchiveStory([FromQuery] int page, [FromQuery] int size)
+        {
+            try
+            {
+                var request = HttpContext.Request;
+                return Ok(await _unitOfWorkService.StoryService.GetAllArchive(request, page, size));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
+            }
+        }
+        [HttpGet("recycle")]
+        public async Task<ActionResult<List<StoryGetDto>>> GetRecycleStory([FromQuery] int page, [FromQuery] int size)
+        {
+            try
+            {
+                var request = HttpContext.Request;
+                return Ok(await _unitOfWorkService.StoryService.GetAllRecycle(request, page, size));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
+            }
+        }
     }
 }

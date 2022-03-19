@@ -41,13 +41,13 @@ namespace Aniverse.Business.Implementations
         {
             var pictures = await _unitOfWork.PictureRepository.GetAllAsync(u => u.IsProfilePicture);
             PictureNameDb(pictures, request);
-            var stories = _mapper.Map<List<StoryGetDto>>(await _unitOfWork.StoryRepository.GetAllAsync(s=>!s.IsDeleted && !s.IsArchive, "User"));
-            UserStoryPictureNameDb(pictures,request, stories);
+            var stories = _mapper.Map<List<StoryGetDto>>(await _unitOfWork.StoryRepository.GetAllAsync(s => !s.IsDeleted && !s.IsArchive, "User"));
+            UserStoryPictureNameDb(pictures, request, stories);
             return stories;
         }
         public async Task<List<StoryGetDto>> GetUserAsync(string username, HttpRequest request)
         {
-            var stories = _mapper.Map<List<StoryGetDto>>(await _unitOfWork.StoryRepository.GetAllAsync(s => s.User.UserName == username && !s.IsDeleted && !s.IsArchive ,"User"));
+            var stories = _mapper.Map<List<StoryGetDto>>(await _unitOfWork.StoryRepository.GetAllAsync(s => s.User.UserName == username && !s.IsDeleted && !s.IsArchive, "User"));
             foreach (var story in stories)
             {
                 story.ImageSrc = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{story.StoryFileName}");
@@ -67,14 +67,38 @@ namespace Aniverse.Business.Implementations
             var pictures = await _unitOfWork.PictureRepository.GetAllAsync(u => u.IsProfilePicture && usersId.Contains(u.UserId) && friendsId.Contains(u.UserId));
             PictureNameDb(pictures, request);
             var stories = _mapper.Map<List<StoryGetDto>>(await _unitOfWork.StoryRepository.GetAllAsync(s => !s.IsDeleted && !s.IsArchive && friendsId.Contains(s.UserId) || !s.IsDeleted && !s.IsArchive && usersId.Contains(s.UserId), "User"));
-            UserStoryPictureNameDb(pictures,request,stories);
+            UserStoryPictureNameDb(pictures, request, stories);
             return stories;
+        }
+        public async Task<List<StoryGetDto>> GetAllArchive(HttpRequest request, int page, int size)
+        {
+            var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
+            var stories = _mapper.Map<List<StoryGetDto>>(await _unitOfWork.StoryRepository.GetAllPaginateAsync(page, size, p => p.CreatedDate, p => p.UserId == userLoginId && p.IsArchive == true));
+            if (stories is null)
+            {
+                throw new NotFoundException("Story is not found");
+            }
+            UserStoryPictureNameDb(null,request, stories);
+            return stories;
+
+        }
+        public async Task<List<StoryGetDto>> GetAllRecycle(HttpRequest request, int page, int size)
+        {
+            var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
+            var stories = _mapper.Map<List<StoryGetDto>>(await _unitOfWork.StoryRepository.GetAllPaginateAsync(page, size, p => p.CreatedDate, p => p.UserId == userLoginId && p.IsDeleted == true));
+            if (stories is null)
+            {
+                throw new NotFoundException("Story is not found");
+            }
+            UserStoryPictureNameDb(null, request, stories);
+            return stories;
+
         }
         public async Task DeleteAsync(int id)
         {
             string userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
             var story = await _unitOfWork.StoryRepository.GetAsync(s => s.Id == id && s.UserId == userLoginId);
-            if(story is null)
+            if (story is null)
             {
                 throw new NotFoundException("Story is not found");
             }
@@ -100,14 +124,15 @@ namespace Aniverse.Business.Implementations
                 picture.ImageName = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{picture.ImageName}");
             }
         }
-        private void UserStoryPictureNameDb(List<Picture> pictures, HttpRequest request,List<StoryGetDto> stories)
+        private void UserStoryPictureNameDb(List<Picture> pictures, HttpRequest request, List<StoryGetDto> stories)
         {
             foreach (var story in stories)
             {
-                if (pictures.Any(p => p.UserId == story.User.Id))
-                {
-                    story.User.ProfilPicture = pictures.Where(p => p.UserId == story.User.Id).First().ImageName;
-                }
+                if (pictures != null)
+                    if (pictures.Any(p => p.UserId == story.User.Id))
+                    {
+                        story.User.ProfilPicture = pictures.Where(p => p.UserId == story.User.Id).First().ImageName;
+                    }
 
                 story.ImageSrc = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{story.StoryFileName}");
             }

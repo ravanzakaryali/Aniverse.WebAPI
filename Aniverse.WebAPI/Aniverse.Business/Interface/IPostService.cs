@@ -12,11 +12,13 @@ namespace Aniverse.Business.Interface
         Task<List<PostGetDto>> GetAllAsync(HttpRequest request);
         Task<List<PostGetDto>> GetAsync(string id, HttpRequest request);
         Task<List<PostGetDto>> GetFriendPost(HttpRequest request, int page, int size);
+        Task<List<PostGetDto>> GetAllArchive(HttpRequest request,int page,int size);
+        Task<List<PostGetDto>> GetAllRecycle(HttpRequest request,int page,int size);
         Task CreateAsync(PostCreateDto postCreate);
         Task PostSaveAsync(PostSaveDto postSave);
         Task PostUpdateAsync(int id, PostCreateDto postCreate);
         Task<List<PostGetDto>> GetAnimalPosts(string animalname, HttpRequest request);
-        Task<List<PostGetDto>> GetAllArchive(HttpRequest request,int page,int size);
-        Task PostDeleteAsync(int id);
+        Task PostDeleteAsync(int id); 
+        Task PostDbDeleteAsync(int id);
     }
 }

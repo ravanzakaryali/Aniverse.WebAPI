@@ -105,6 +105,19 @@ namespace Aniverse.UI.Controllers
                 return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
             }
         }
+        [HttpPost("delete/{id}")]
+        public async Task<ActionResult> PostForoverDeleteAsync(int id)
+        {
+            try
+            {
+                await _unitOfWorkService.PostService.PostDbDeleteAsync(id);
+                return StatusCode(StatusCodes.Status204NoContent, new Response { Status = "Successs", Message = "Post delete success" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
+            }
+        }
         [HttpGet("archive")]
         public async Task<ActionResult<List<PostGetDto>>> GetArchivePost([FromQuery] int page, [FromQuery] int size)
         {
@@ -112,6 +125,19 @@ namespace Aniverse.UI.Controllers
             {
                 var request = HttpContext.Request;
                 return Ok(await _unitOfWorkService.PostService.GetAllArchive(request,page,size));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
+            }
+        }
+        [HttpGet("recycle")]
+        public async Task<ActionResult<List<PostGetDto>>> GetRecyclePost([FromQuery] int page, [FromQuery] int size)
+        {
+            try
+            {
+                var request = HttpContext.Request;
+                return Ok(await _unitOfWorkService.PostService.GetAllRecycle(request, page, size));
             }
             catch (Exception ex)
             {
