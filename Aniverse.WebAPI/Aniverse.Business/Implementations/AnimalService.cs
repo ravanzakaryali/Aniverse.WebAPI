@@ -34,8 +34,9 @@ namespace Aniverse.Business.Implementations
             _mapper = mapper;
             _httpContextAccessor = httpContextAccessor;
         }
-        public async Task<AnimalGetDto> GetAsync(string id)
+        public async Task<AnimalGetDto> GetAsync(string id, HttpRequest request)
         {
+            var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
             var animals = await _unitOfWork.AnimalRepository.GetAsync(a => a.Animalname == id, "User");
             if(animals is null)
             {
@@ -50,28 +51,64 @@ namespace Aniverse.Business.Implementations
             {
                 throw new NotFoundException("Follow is not found");
             }
+            var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => p.Animal.Animalname == id && (p.IsAnimalCoverPicture == true|| p.IsAnimalProfilePicture));
+            
+            foreach (var picture in pictures)
+            {
+                if (picture.IsAnimalProfilePicture)
+                {
+                    animal.ProfilPicture = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{picture.ImageName}");
+                }
+                if (picture.IsAnimalCoverPicture)
+                {
+                    animal.CoverPicture = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{picture.ImageName}");
+
+                }
+            }
 
             animal.AnimalFollow = _mapper.Map<List<AnimalFollowDto>>(follow);
-
             animal.PostCount = PostCount.Count;
+            animal.IsFollow = animal.AnimalFollow.Any(a=>a.User.Id == userLoginId);
             return animal;
         }
-        public async Task<List<AnimalAllDto>> GetAllAsync()
+        public async Task<List<AnimalAllDto>> GetAllAsync(HttpRequest request,int page = 1, int size = 3)
         {
-            return _mapper.Map<List<AnimalAllDto>>(await _unitOfWork.AnimalRepository.GetAllAsync());
+            var animals = _mapper.Map<List<AnimalAllDto>>(await _unitOfWork.AnimalRepository.GetAllPaginateAsync(page, size, a => a.Id));
+            var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => p.IsAnimalCoverPicture == true || p.IsAnimalProfilePicture);
+
+            foreach (var picture in pictures)
+            {
+                picture.ImageName = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{picture.ImageName}");
+            }
+            foreach (var animal in animals)
+            {
+                if (pictures.Any(p => animal.Id == p.AnimalId && p.IsAnimalProfilePicture))
+                    animal.ProfilePicture = pictures.Where(p => animal.Id == p.AnimalId && p.IsAnimalProfilePicture).FirstOrDefault().ImageName;
+            }
+            return animals;
         }
-        public async Task<List<AnimalAllDto>> GetFriendAnimals(string username, int page=1, int size=3)
+        public async Task<List<AnimalAllDto>> GetFriendAnimals(HttpRequest request,string username, int page=1, int size=3)
         {
             var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
             var friends = await _unitOfWork.FriendRepository.GetAllAsync(u => (u.User.UserName == username || u.Friend.UserName == username) && u.Status == FriendRequestStatus.Accepted);
+            var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => p.IsAnimalCoverPicture == true || p.IsAnimalProfilePicture);
             if (friends is null)
             {
                 throw new NotFoundException("Friend is not found");
             }
             var friendIds = friends.Select(x => x.FriendId);
             var userIds = friends.Select(x => x.UserId);
-            var animals = await _unitOfWork.AnimalRepository.GetAllPaginateAsync(page, size, a => a.Birthday, a => friendIds.Contains(a.UserId) || userIds.Contains(a.UserId));
-            return _mapper.Map<List<AnimalAllDto>>(animals);
+            var animals = _mapper.Map<List<AnimalAllDto>>( await _unitOfWork.AnimalRepository.GetAllPaginateAsync(page, size, a => a.Birthday, a => friendIds.Contains(a.UserId) || userIds.Contains(a.UserId)));
+            foreach (var picture in pictures)
+            {
+                picture.ImageName = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{picture.ImageName}");
+            }
+            foreach (var animal in animals)
+            {
+                if (pictures.Any(p => animal.Id == p.AnimalId && p.IsAnimalProfilePicture))
+                    animal.ProfilePicture = pictures.Where(p => animal.Id == p.AnimalId && p.IsAnimalProfilePicture).FirstOrDefault().ImageName;
+            }
+            return animals;
         }
         public async Task<List<AnimalAllDto>> GetAnimalUserAsync(string username)
         {
@@ -85,17 +122,10 @@ namespace Aniverse.Business.Implementations
                 throw new NotFoundException("Animal post not found");
             }
             var posts = _mapper.Map<List<PostGetDto>>(animalPost);
-            foreach (var post in posts)
-            {
-                foreach (var item in post.Pictures)
-                {
-                    item.ImageName = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{item.ImageName}");
-                    var name = item.ImageName;
-                }
-            }
+            
             return posts;
         }
-        public async Task FollowCreate(FollowDto follow)
+        public async Task FollowCreate(int id,FollowDto follow)
         {
 
             var UserLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
@@ -103,14 +133,14 @@ namespace Aniverse.Business.Implementations
             {
                 var followEntity = new AnimalFollow
                 {
-                    AnimalId = follow.AnimalId,
+                    AnimalId = id,
                     UserId = UserLoginId,
                 };
                 await _unitOfWork.AnimalFollowRepository.CreateAsync(followEntity);
             }
             else
             {
-                var followDelete = await _unitOfWork.AnimalFollowRepository.GetAsync(a => a.UserId == UserLoginId && a.AnimalId == follow.AnimalId);
+                var followDelete = await _unitOfWork.AnimalFollowRepository.GetAsync(a => a.UserId == UserLoginId && a.AnimalId == id);
                 if(followDelete is null)
                 {
                     throw new NotFoundException("Follow is not found");
@@ -186,7 +216,7 @@ namespace Aniverse.Business.Implementations
             var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
             var picture = new Picture
             {
-                IsCoverPicture = true,
+                IsAnimalCoverPicture = true,
                 AnimalId = id,
                 ImageName = await coverCreate.ImageFile.FileSaveAsync(_hostEnvironment.ContentRootPath, "Images"),
                 UserId = userLoginId,
@@ -204,7 +234,7 @@ namespace Aniverse.Business.Implementations
             var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
             var picture = new Picture
             {
-                IsCoverPicture = true,
+                IsAnimalProfilePicture = true,
                 AnimalId = id,
                 ImageName = await coverCreate.ImageFile.FileSaveAsync(_hostEnvironment.ContentRootPath, "Images"),
                 UserId = userLoginId,
@@ -213,10 +243,9 @@ namespace Aniverse.Business.Implementations
             await _unitOfWork.PictureRepository.CreateAsync(picture);
             if (coverPictureDb != null)
             {
-                coverPictureDb.IsAnimalCoverPicture = false;
+                coverPictureDb.IsAnimalProfilePicture = false;
             }
             await _unitOfWork.SaveAsync();
         }
-
     }
 }

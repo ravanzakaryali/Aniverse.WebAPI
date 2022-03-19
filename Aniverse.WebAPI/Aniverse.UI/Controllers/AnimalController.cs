@@ -25,16 +25,20 @@ namespace Aniverse.UI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<AnimalGetDto>> GetAsync(string id)
         {
-            return await _unitOfWorkService.AnimalService.GetAsync(id);
+            var request = HttpContext.Request;
+            return await _unitOfWorkService.AnimalService.GetAsync(id, request);
         }
-        public async Task<ActionResult<List<AnimalAllDto>>> GetAllAsync()
+        [HttpGet]
+        public async Task<ActionResult<List<AnimalAllDto>>> GetAllAsync([FromQuery] int page, [FromQuery] int size )
         {
-            return await _unitOfWorkService.AnimalService.GetAllAsync();
+            var request = HttpContext.Request;
+            return await _unitOfWorkService.AnimalService.GetAllAsync(request,page,size);
         }
         [HttpGet("friends/{id}")]
         public async Task<ActionResult<List<AnimalAllDto>>> GetFriendAnimals(string id, [FromQuery] int page, [FromQuery] int size)
         {
-            return Ok(await _unitOfWorkService.AnimalService.GetFriendAnimals(id,page,size));
+            var request = HttpContext.Request;
+            return Ok(await _unitOfWorkService.AnimalService.GetFriendAnimals(HttpContext.Request,id, page,size));
         }
         [HttpGet("user/{id}")]
         public async Task<ActionResult<List<AnimalAllDto>>> GetAnimalUserAsync(string id)
@@ -45,14 +49,14 @@ namespace Aniverse.UI.Controllers
         public async Task<ActionResult<List<PostGetDto>>> GetAnimalPosts(string id)
         {
             var request = HttpContext.Request;
-            return Ok(await _unitOfWorkService.AnimalService.GetAnimalPosts(id, request));
+            return Ok(await _unitOfWorkService.PostService.GetAnimalPosts(id, request));
         }
-        [HttpPost("follow")]
-        public async Task<ActionResult> FollowCreate([FromBody] FollowDto follow)
+        [HttpPost("follow/{id}")]
+        public async Task<ActionResult> FollowCreate(int id,[FromBody] FollowDto follow)
         {
             try
             {
-                await _unitOfWorkService.AnimalService.FollowCreate(follow);
+                await _unitOfWorkService.AnimalService.FollowCreate(id,follow);
                 return StatusCode(StatusCodes.Status204NoContent, new Response { Status = "Successs", Message = "User follow successfully" });
             }
             catch (Exception ex)
@@ -128,6 +132,6 @@ namespace Aniverse.UI.Controllers
                 return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
             }
         }
-
+        
     }
 }

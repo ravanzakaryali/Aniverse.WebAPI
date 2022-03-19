@@ -15,6 +15,8 @@ namespace Aniverse.Business.Interface
         Task CreateAsync(PostCreateDto postCreate);
         Task PostSaveAsync(PostSaveDto postSave);
         Task PostUpdateAsync(int id, PostCreateDto postCreate);
+        Task<List<PostGetDto>> GetAnimalPosts(string animalname, HttpRequest request);
+        Task<List<PostGetDto>> GetAllArchive(HttpRequest request,int page,int size);
         Task PostDeleteAsync(int id);
     }
 }

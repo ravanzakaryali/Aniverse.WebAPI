@@ -19,6 +19,7 @@ namespace Aniverse.Business.DTO_s.Animal
         public string ProfilPicture { get; set; }
         public string CoverPicture { get; set; }
         public int PostCount { get; set; }
+        public bool IsFollow { get; set; }
         public ICollection<AnimalFollowDto> AnimalFollow { get; set; }
         public AnimalCategory AnimalCategory { get; set; }
     }

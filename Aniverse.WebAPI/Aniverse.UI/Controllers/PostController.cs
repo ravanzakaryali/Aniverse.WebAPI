@@ -105,6 +105,19 @@ namespace Aniverse.UI.Controllers
                 return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
             }
         }
+        [HttpGet("archive")]
+        public async Task<ActionResult<List<PostGetDto>>> GetArchivePost([FromQuery] int page, [FromQuery] int size)
+        {
+            try
+            {
+                var request = HttpContext.Request;
+                return Ok(await _unitOfWorkService.PostService.GetAllArchive(request,page,size));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
+            }
+        }
     }
 }
 

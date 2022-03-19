@@ -6,9 +6,28 @@ namespace Aniverse.Business.Validator.Authentication
     {
         public RegisterValidation()
         {
-            RuleFor(u=>u.Firstname).NotEmpty().NotNull();
-            RuleFor(u=>u.Lastname).NotEmpty().NotNull();
-            RuleFor(u=>u.Password).NotEmpty().NotNull().Equal(u=>u.ConfirmPasword);
+            RuleFor(u => u.Firstname)
+                .NotEmpty()
+                .NotNull()
+                .MinimumLength(3)
+                .MaximumLength(30);
+            RuleFor(u => u.Lastname)
+                .NotEmpty()
+                .NotNull()
+                .MinimumLength(3)
+                .MaximumLength(30);
+            RuleFor(u => u.Password)
+                .NotEmpty()
+                .NotNull()
+                .Equal(u => u.ConfirmPasword);
+            RuleFor(u => u.Gender)
+                .NotEmpty()
+                .NotNull();
+            RuleFor(u => u.Username)
+                .NotEmpty()
+                .NotNull()
+                .MinimumLength(3)
+                .MaximumLength(30); 
         }
     }
 }

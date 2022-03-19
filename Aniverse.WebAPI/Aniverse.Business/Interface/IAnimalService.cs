@@ -10,12 +10,12 @@ namespace Aniverse.Business.Interface
 {
     public interface IAnimalService
     {
-        Task<AnimalGetDto> GetAsync(string id);
-        Task<List<AnimalAllDto>> GetAllAsync();
-        Task<List<AnimalAllDto>> GetFriendAnimals(string username, int page, int size);
+        Task<AnimalGetDto> GetAsync(string id, HttpRequest request);
+        Task<List<AnimalAllDto>> GetAllAsync(HttpRequest request,int page,int size);
+        Task<List<AnimalAllDto>> GetFriendAnimals(HttpRequest request,string username, int page, int size);
         Task<List<AnimalAllDto>> GetAnimalUserAsync(string username);
         Task<List<PostGetDto>> GetAnimalPosts(string animalname, HttpRequest request);
-        Task FollowCreate(FollowDto follow);
+        Task FollowCreate(int id,FollowDto follow);
         Task<List<AnimalGetCategory>> GetAnimalCategory();
         Task AnimalCreateAsync(AnimalCreateDto animalCreate);
         Task<List<AnimalSelectGetDto>> SelectAnimal();

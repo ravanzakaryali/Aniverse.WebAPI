@@ -23,6 +23,7 @@ using Aniverse.UI.Hubs;
 using FluentValidation.AspNetCore;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
+using Aniverse.Business.Validator.Authentication;
 
 namespace Aniverse
 {
@@ -56,8 +57,23 @@ namespace Aniverse
             });
             services.AddControllers().AddNewtonsoftJson(options =>
              options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore)
-                .AddFluentValidation(fl => fl.RegisterValidatorsFromAssemblyContaining<Startup>());
-            services.AddIdentity<AppUser, IdentityRole>()
+                .AddFluentValidation(fl => fl.RegisterValidatorsFromAssemblyContaining<RegisterValidation>());
+            services.AddIdentity<AppUser, IdentityRole>(options =>
+            {
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequiredLength = 6;
+                options.Password.RequiredUniqueChars = 1;
+
+                options.Lockout.MaxFailedAccessAttempts = 5;
+                options.Lockout.AllowedForNewUsers = false;
+
+                options.User.RequireUniqueEmail = true;
+                options.SignIn.RequireConfirmedAccount = true;
+            })
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<AppDbContext>();
             services.AddAuthentication(options =>
