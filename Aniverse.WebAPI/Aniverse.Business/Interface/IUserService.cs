@@ -11,13 +11,13 @@ namespace Aniverse.Business.Interface
 {
     public interface IUserService
     {
-        Task<List<UserAllDto>> GetAllAsync();
+        Task<List<UserAllDto>> GetAllAsync(HttpRequest request);
         Task<UserGetDto> GetAsync(string id, HttpRequest request);
         Task ChangeBio(JsonPatchDocument<AppUser> bioChange);
         Task ProfileCreate(ProfileCreateDto profilCreate);
         Task CoverCreate(ProfileCreateDto profilCreate);
         Task<List<UserGetDto>> GetBlcokUsersAsync();
-        Task<UserGetDto> GetLoginUser();
+        Task<UserGetDto> GetLoginUser(HttpRequest request);
         Task<List<GetPictureDto>> GetPhotos(string username, HttpRequest request, int page, int size);
         Task<List<GetPictureDto>> GetUserPhotos(string username, HttpRequest request, int page, int size);
         Task<List<UserAllDto>> SearchAsync(string search);

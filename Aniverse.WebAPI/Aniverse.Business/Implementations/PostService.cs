@@ -71,7 +71,7 @@ namespace Aniverse.Business.Implementations
         public async Task<List<PostGetDto>> GetAsync(string id, HttpRequest request)
         {
             var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
-            var posts = await _unitOfWork.PostRepository.GetAllAsync(p => p.User.UserName == id && !p.IsArchive && !p.IsDelete, "User", "Likes", "Pictures");
+            var posts = await _unitOfWork.PostRepository.GetAllAsync(p => p.User.UserName == id && !p.IsArchive && !p.IsDelete, "User", "Likes");
             var postsIds = posts.Select(f => f.Id);
             var userIds = posts.Select(p => p.UserId);
             var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => posts.Contains(p.Post) || userIds.Contains(p.UserId));
@@ -85,7 +85,7 @@ namespace Aniverse.Business.Implementations
             return postMap;
         }
         public async Task<List<PostGetDto>> GetAnimalPosts(string animalname, HttpRequest request)
-        {
+            {
             var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
             var animalPost = await _unitOfWork.PostRepository.GetAllAsync(p => p.Animal.Animalname == animalname, "User", "Likes", "Comments", "Comments.User", "Pictures", "Animal");
             if (animalPost is null)
@@ -107,40 +107,52 @@ namespace Aniverse.Business.Implementations
         public async Task<List<PostGetDto>> GetAllArchive(HttpRequest request, int page, int size)
         {
             var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
-            var posts = await _unitOfWork.PostRepository.GetAllPaginateAsync(page,size,p=>p.CreationDate,p => p.UserId == userLoginId && p.IsArchive == true, "User", "Pictures", "Animal");
+            var posts = await _unitOfWork.PostRepository.GetAllPaginateAsync(page,size,p=>p.CreationDate,p => p.UserId == userLoginId && p.IsArchive == true, "User", "Likes", "Comments", "Comments.User", "Pictures", "Animal");
             if (posts is null)
             {
-                throw new NotFoundException("Animal post not found");
+                throw new NotFoundException("Post is not found");
             }
             var postsIds = posts.Select(f => f.Id);
-            var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => posts.Contains(p.Post));
+            var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => posts.Contains(p.Post) || p.UserId == userLoginId);
             PictureDbName(pictures, request);
-            return _mapper.Map<List<PostGetDto>>(posts);
+            var postMap = _mapper.Map<List<PostGetDto>>(posts);
+            var comments = _mapper.Map<List<CommentGetDto>>(await _unitOfWork.CommentRepository.GetAllAsync(c => postsIds.Contains(c.PostId), "User"));
+            var postSave = await _unitOfWork.SavePostRepository.GetAllAsync(p => p.UserId == userLoginId );
+            var postSaveIds = postSave.Select(p => p.PostId);
+            PostUserProfilePicture(postMap, postSaveIds, comments, pictures);
+            CommentUserProfilePicture(pictures, comments);
+            return postMap;
 
         }
         public async Task<List<PostGetDto>> GetAllRecycle(HttpRequest request, int page, int size)
         {
             var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
-            var posts = await _unitOfWork.PostRepository.GetAllPaginateAsync(page, size, p => p.CreationDate, p => p.UserId == userLoginId && p.IsDelete == true, "User", "Pictures", "Animal");
+            var posts = await _unitOfWork.PostRepository.GetAllPaginateAsync(page, size, p => p.CreationDate, p => p.UserId == userLoginId && p.IsDelete == true, "User", "Likes", "Comments", "Comments.User", "Pictures", "Animal");
             if (posts is null)
             {
                 throw new NotFoundException("Animal post not found");
             }
             var postsIds = posts.Select(f => f.Id);
-            var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => posts.Contains(p.Post));
+            var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => posts.Contains(p.Post) || p.UserId == userLoginId);
             PictureDbName(pictures, request);
-            return _mapper.Map<List<PostGetDto>>(posts);
+            var postMap = _mapper.Map<List<PostGetDto>>(posts);
+            var comments = _mapper.Map<List<CommentGetDto>>(await _unitOfWork.CommentRepository.GetAllAsync(c => postsIds.Contains(c.PostId), "User"));
+            var postSave = await _unitOfWork.SavePostRepository.GetAllAsync(p => p.UserId == userLoginId);
+            var postSaveIds = postSave.Select(p => p.PostId);
+            PostUserProfilePicture(postMap, postSaveIds, comments, pictures);
+            CommentUserProfilePicture(pictures, comments);
+            return postMap;
 
         }
         public async Task<List<PostGetDto>> GetFriendPost(HttpRequest request, int page = 1, int size = 4)
         {
             var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
             var friends = await _unitOfWork.FriendRepository.GetAllAsync(f => f.UserId == userLoginId || f.FriendId == userLoginId && f.Status == FriendRequestStatus.Accepted);
-
             if (friends is null)
             {
                 throw new NotFoundException("Friends is null");
             }
+
             var userIds = friends.Select(f => f.UserId);
             var friendsId = friends.Select(f => f.FriendId);
             var posts = await _unitOfWork.PostRepository.GetAllPaginateAsync(page, size,p=>p.Id ,p => !p.IsArchive && !p.IsDelete && (friendsId.Contains(p.UserId) || userIds.Contains(p.UserId)), "User", "Likes", "Animal");

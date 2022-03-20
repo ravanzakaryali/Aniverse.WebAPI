@@ -24,6 +24,7 @@ namespace Aniverse.Core.Entites
         public ICollection<Message> MessagesReceive { get; set; }
         public ICollection<UserFriend> Friends { get; set; }
         public ICollection<Comment> Comments { get; set; }
+        public ICollection<Page> Pages { get; set; }
         public UserSM UserSM { get; set; }
     }
 }

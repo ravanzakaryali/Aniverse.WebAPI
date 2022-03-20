@@ -91,6 +91,8 @@ namespace Aniverse.Business.Implementations
         {
             var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
             var friends = await _unitOfWork.FriendRepository.GetAllAsync(u => (u.User.UserName == username || u.Friend.UserName == username) && u.Status == FriendRequestStatus.Accepted);
+            var animalFollow = await _unitOfWork.AnimalFollowRepository.GetAllAsync(a=>a.User.UserName == username );
+            var anialFollowIds = animalFollow.Select(a => a.AnimalId);
             var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => p.IsAnimalCoverPicture == true || p.IsAnimalProfilePicture);
             if (friends is null)
             {
@@ -98,7 +100,7 @@ namespace Aniverse.Business.Implementations
             }
             var friendIds = friends.Select(x => x.FriendId);
             var userIds = friends.Select(x => x.UserId);
-            var animals = _mapper.Map<List<AnimalAllDto>>( await _unitOfWork.AnimalRepository.GetAllPaginateAsync(page, size, a => a.Birthday, a => friendIds.Contains(a.UserId) || userIds.Contains(a.UserId)));
+            var animals = _mapper.Map<List<AnimalAllDto>>( await _unitOfWork.AnimalRepository.GetAllPaginateAsync(page, size, a => a.Birthday, a => friendIds.Contains(a.UserId) || userIds.Contains(a.UserId) || anialFollowIds.Contains(a.Id)));
             foreach (var picture in pictures)
             {
                 picture.ImageName = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{picture.ImageName}");
@@ -110,9 +112,20 @@ namespace Aniverse.Business.Implementations
             }
             return animals;
         }
-        public async Task<List<AnimalAllDto>> GetAnimalUserAsync(string username)
+        public async Task<List<AnimalAllDto>> GetAnimalUserAsync(string username,HttpRequest request)
         {
-            return _mapper.Map<List<AnimalAllDto>>(await _unitOfWork.AnimalRepository.GetAllAsync(a => a.User.UserName == username, "User"));
+            var animals = _mapper.Map<List<AnimalAllDto>>(await _unitOfWork.AnimalRepository.GetAllAsync(a => a.User.UserName == username, "User"));
+            var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => p.IsAnimalCoverPicture == true || p.IsAnimalProfilePicture);
+            foreach (var picture in pictures)
+            {
+                picture.ImageName = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{picture.ImageName}");
+            }
+            foreach (var animal in animals)
+            {
+                if (pictures.Any(p => animal.Id == p.AnimalId && p.IsAnimalProfilePicture))
+                    animal.ProfilePicture = pictures.Where(p => animal.Id == p.AnimalId && p.IsAnimalProfilePicture).FirstOrDefault().ImageName;
+            }
+            return animals;
         }
         public async Task<List<PostGetDto>> GetAnimalPosts(string animalname, HttpRequest request)
         {
@@ -189,7 +202,7 @@ namespace Aniverse.Business.Implementations
             _unitOfWork.AnimalRepository.Update(animal);
             await _unitOfWork.SaveAsync();
         }
-        public async Task<List<AnimalAllDto>> AnimalUserFollows(string username)
+        public async Task<List<AnimalAllDto>> AnimalUserFollows(HttpRequest request,string username)
         {
             var userDb = await _unitOfWork.UserRepository.GetAsync(u=>u.UserName == username);
             if(userDb is null)
@@ -197,7 +210,18 @@ namespace Aniverse.Business.Implementations
                 throw new Exception();
             }
             var animalFollow = await _unitOfWork.AnimalFollowRepository.GetAllAsync(a=>a.UserId == userDb.Id, "Animal");
-            return _mapper.Map<List<AnimalAllDto>>(animalFollow.Select(a=>a.Animal).ToList());   
+            var animals = _mapper.Map<List<AnimalAllDto>>(animalFollow.Select(a => a.Animal).ToList());
+            var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => p.IsAnimalCoverPicture == true || p.IsAnimalProfilePicture);
+            foreach (var picture in pictures)
+            {
+                picture.ImageName = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{picture.ImageName}");
+            }
+            foreach (var animal in animals)
+            {
+                if (pictures.Any(p => animal.Id == p.AnimalId && p.IsAnimalProfilePicture))
+                    animal.ProfilePicture = pictures.Where(p => animal.Id == p.AnimalId && p.IsAnimalProfilePicture).FirstOrDefault().ImageName;
+            }
+            return animals;   
         }
         public async Task<List<GetPictureDto>> GetAnimalPhotos(string animalname, HttpRequest request, int page = 1, int size = 1)
         {

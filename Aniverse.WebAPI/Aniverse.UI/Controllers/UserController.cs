@@ -28,7 +28,8 @@ namespace Aniverse.UI.Controllers
         [HttpGet]
         public async Task<ActionResult<List<UserAllDto>>> GetAllAsync()
         {
-            return await _unitOfWorkService.UserService.GetAllAsync();
+            var request = HttpContext.Request;
+            return await _unitOfWorkService.UserService.GetAllAsync(request);
         }
         [HttpGet("{id}")]
         public async Task<ActionResult<UserGetDto>> GetAsync(string id)
@@ -39,7 +40,8 @@ namespace Aniverse.UI.Controllers
         [HttpGet("login")]
         public async Task<ActionResult<UserGetDto>> GetLoginUser()
         {
-            return Ok(await _unitOfWorkService.UserService.GetLoginUser());
+            var request = HttpContext.Request;
+            return Ok(await _unitOfWorkService.UserService.GetLoginUser(request));
         }
         [HttpPatch("bio")]
         public async Task<ActionResult> BioUpdate([FromBody] JsonPatchDocument<AppUser> bioChange)
@@ -85,7 +87,8 @@ namespace Aniverse.UI.Controllers
         {
             try
             {
-                return Ok(await _unitOfWorkService.AnimalService.AnimalUserFollows(username));
+                var request = HttpContext.Request;
+                return Ok(await _unitOfWorkService.AnimalService.AnimalUserFollows(request, username));
             }
             catch (Exception ex)
             {

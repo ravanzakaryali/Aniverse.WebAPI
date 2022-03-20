@@ -44,7 +44,7 @@ namespace Aniverse.Business.Implementations
             await _unitOfWork.SaveAsync();
         }
 
-        public async Task<List<UserAllDto>> GetAllAsync()
+        public async Task<List<UserAllDto>> GetAllAsync(HttpRequest request)
         {
             var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
             var friends = await _unitOfWork.FriendRepository.GetAllAsync(f=>f.UserId == userLoginId || f.FriendId== userLoginId);
@@ -52,10 +52,21 @@ namespace Aniverse.Business.Implementations
             {
                 throw new NotFoundException("Friends is not found");
             }
-            var friendsId = friends.Select(f=>f.FriendId);
-            var usersId = friends.Select(f=>f.UserId);
-            var users = await _unitOfWork.UserRepository.GetAllAsync(u => !friendsId.Contains(u.Id) && !usersId.Contains(u.Id) && u.Id != userLoginId);
-            return _mapper.Map<List<UserAllDto>>(users);
+            var friendIds = friends.Select(f=>f.FriendId);
+            var userIds = friends.Select(f=>f.UserId);
+            var users = _mapper.Map<List<UserAllDto>>(await _unitOfWork.UserRepository.GetAllAsync(u => !friendIds.Contains(u.Id) && !userIds.Contains(u.Id) && u.Id != userLoginId));
+            var returnUserIds = users.Select(u => u.Id);
+            var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => returnUserIds.Contains(p.UserId));
+            foreach (var picture in pictures)
+            {
+                picture.ImageName = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{picture.ImageName}");
+            }
+            foreach (var user in users)
+            {
+                if (pictures.Any(p => p.UserId == user.Id && p.IsProfilePicture))
+                    user.ProfilPicture = pictures.Where(p => p.UserId == user.Id && p.IsProfilePicture).FirstOrDefault().ImageName;
+            }
+            return users;
         }
         public async Task<UserGetDto> GetAsync(string id, HttpRequest request)
         {
@@ -73,10 +84,23 @@ namespace Aniverse.Business.Implementations
             }
             return user;
         }
-        public async Task<UserGetDto> GetLoginUser()
+        public async Task<UserGetDto> GetLoginUser(HttpRequest request)
         {
             var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
-            return _mapper.Map<UserGetDto>(await _unitOfWork.UserRepository.GetAsync(u => u.Id == userLoginId));
+            var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => p.UserId == userLoginId && (p.IsProfilePicture || p.IsCoverPicture));
+            var userLogin = _mapper.Map<UserGetDto>(await _unitOfWork.UserRepository.GetAsync(u => u.Id == userLoginId));
+            foreach (var picture in pictures)
+            {
+                if (picture.IsProfilePicture)
+                {
+                    userLogin.ProfilPicture = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{picture.ImageName}");
+                }
+                if (picture.IsCoverPicture)
+                {
+                    userLogin.CoverPicture = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{picture.ImageName}");
+                }
+            }
+            return userLogin;
         }
         public async Task ProfileCreate(ProfileCreateDto profilCreate)
         {

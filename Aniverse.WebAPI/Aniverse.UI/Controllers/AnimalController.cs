@@ -38,12 +38,13 @@ namespace Aniverse.UI.Controllers
         public async Task<ActionResult<List<AnimalAllDto>>> GetFriendAnimals(string id, [FromQuery] int page, [FromQuery] int size)
         {
             var request = HttpContext.Request;
-            return Ok(await _unitOfWorkService.AnimalService.GetFriendAnimals(HttpContext.Request,id, page,size));
+            return Ok(await _unitOfWorkService.AnimalService.GetFriendAnimals(request,id, page,size));
         }
         [HttpGet("user/{id}")]
         public async Task<ActionResult<List<AnimalAllDto>>> GetAnimalUserAsync(string id)
         {
-            return Ok(await _unitOfWorkService.AnimalService.GetAnimalUserAsync(id));
+            var request = HttpContext.Request;
+            return Ok(await _unitOfWorkService.AnimalService.GetAnimalUserAsync(id, request));
         }
         [HttpGet("post/{id}")]
         public async Task<ActionResult<List<PostGetDto>>> GetAnimalPosts(string id)
