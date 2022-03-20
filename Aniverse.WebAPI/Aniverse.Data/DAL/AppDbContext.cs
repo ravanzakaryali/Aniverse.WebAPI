@@ -24,6 +24,7 @@ namespace Aniverse.Data.DAL
         public DbSet<UserSM> UserSM { get; set; }
         public DbSet<AnimalFollow> AnimalFollows { get; set; }
         public DbSet<SavePost> SavePosts { get; set; }
+        public DbSet<PageFollow> PageFollows { get; set; }
         public DbSet<Page> Page { get; set; } 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -38,6 +39,7 @@ namespace Aniverse.Data.DAL
             builder.ApplyConfiguration(new SavePostConfiguration());
             builder.ApplyConfiguration(new UserFriendConfiguration());
             builder.ApplyConfiguration(new PageConfiguration());
+            builder.ApplyConfiguration(new PageFollowConfiguration());
 
             base.OnModelCreating(builder);
         }

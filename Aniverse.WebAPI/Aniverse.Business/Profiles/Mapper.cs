@@ -1,12 +1,14 @@
 ﻿using Aniverse.Business.DTO_s.Animal;
 using Aniverse.Business.DTO_s.Comment;
 using Aniverse.Business.DTO_s.Friend;
+using Aniverse.Business.DTO_s.Page;
 using Aniverse.Business.DTO_s.Picture;
 using Aniverse.Business.DTO_s.Post;
 using Aniverse.Business.DTO_s.Post.Like;
 using Aniverse.Business.DTO_s.Story;
 using Aniverse.Business.DTO_s.User;
 using Aniverse.Core.Entites;
+using Aniverse.Core.Entities;
 using AutoMapper;
 
 namespace Aniverse.Business.Profiles
@@ -36,6 +38,8 @@ namespace Aniverse.Business.Profiles
             CreateMap<AnimalCreateDto, Animal>();
             CreateMap<Animal, AnimalSelectGetDto>();
             CreateMap<AnimalUpdateDto, Animal>();
+            CreateMap<Page, PageGetDto>();
+
         }
     }
 }

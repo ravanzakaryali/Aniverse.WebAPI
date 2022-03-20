@@ -21,6 +21,8 @@ namespace Aniverse.Data
         private IPictureRepository _pictureRepository;
         private IAnimalCategoryRepository _animalCategoryRepository;
         private ISavePostRepository _savePostRepository;
+        private IPageRepository _pageRepository;
+        private IPageFollowRepository _pageFollowRepository;
         public UnitOfWork(AppDbContext context)
         {
             _context = context;
@@ -37,8 +39,8 @@ namespace Aniverse.Data
         public IPictureRepository PictureRepository => _pictureRepository ??= new PictureRepository(_context);
         public IAnimalCategoryRepository AnimalCategoryRepository => _animalCategoryRepository ??= new AnimalCategoryRepository(_context);
         public ISavePostRepository SavePostRepository => _savePostRepository ??= new SavePostRepository(_context);
-
-
+        public IPageRepository PageRepository => _pageRepository ??= new PageRepository(_context);
+        public IPageFollowRepository PageFollowRepository => _pageFollowRepository ??= new PageFollowRepository(_context);
         public async Task SaveAsync()
         {
             await _context.SaveChangesAsync();

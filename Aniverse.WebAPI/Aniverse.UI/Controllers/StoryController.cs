@@ -26,14 +26,29 @@ namespace Aniverse.UI.Controllers
         [HttpGet]
         public async Task<ActionResult<List<StoryGetDto>>> GetAllAsync()
         {
-            var request = HttpContext.Request;
-            return await _unitOfWorkService.StoryService.GetAllAsync(request);
+            try
+            {
+                var request = HttpContext.Request;
+                return Ok(await _unitOfWorkService.StoryService.GetAllAsync(request));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
+            }
+            
         }
         [HttpGet("{username}")]
         public async Task<ActionResult<List<StoryGetDto>>> GetUserStories(string username)
         {
-            var request = HttpContext.Request;
-            return await _unitOfWorkService.StoryService.GetUserAsync(username, request);
+            try
+            {
+                var request = HttpContext.Request;
+                return Ok(await _unitOfWorkService.StoryService.GetUserAsync(username, request));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
+            }
         }
         [HttpPost]
         public async Task<ActionResult> CreateAsync([FromForm] StoryCreateDto storyCreate)
@@ -51,8 +66,16 @@ namespace Aniverse.UI.Controllers
         [HttpGet("friend")]
         public async Task<ActionResult<List<StoryGetDto>>> GetFriendStoriesAsync()
         {
-            var request = HttpContext.Request;
-            return await _unitOfWorkService.StoryService.GetFriendAsync(request);
+            try
+            {
+                var request = HttpContext.Request;
+                return Ok(await _unitOfWorkService.StoryService.GetFriendAsync(request));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
+            }
+            
         }
 
         [HttpPatch("delete/{id}")]

@@ -10,5 +10,6 @@
         IAnimalService AnimalService { get; }
         IStoryService StoryService { get; }
         ILikeService LikeService { get; }
+        IPageService PageService { get; }
     }
 }

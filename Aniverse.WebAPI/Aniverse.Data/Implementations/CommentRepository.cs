@@ -6,7 +6,7 @@ namespace Aniverse.Data.Implementations
 {
     public class CommentRepository : Repository<Comment>, ICommentRepository
     {
-        private AppDbContext _context { get;}
+        private readonly AppDbContext _context;
         public CommentRepository(AppDbContext context) : base(context)
         {
             _context = context;

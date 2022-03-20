@@ -25,13 +25,28 @@ namespace Aniverse.UI.Controllers
         [HttpGet("{username}")]
         public async Task<ActionResult<List<UserGetDto>>> GetAllFriends(string username, [FromQuery] int page, [FromQuery] int size)
         {
-            var request = HttpContext.Request;
-            return Ok(await _unitOfWorkService.FriendService.GetAllAsync(username,request,page,size));
+            try
+            {
+                var request = HttpContext.Request;
+                return Ok(await _unitOfWorkService.FriendService.GetAllAsync(username, request, page, size));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
+            }
         }
         [HttpGet("request")]
         public async Task<ActionResult<List<UserGetDto>>> GetFriendRequestAsync()
         {
-            return Ok(await _unitOfWorkService.FriendService.GetUserFriendRequestAsync());
+            try
+            {
+                return Ok(await _unitOfWorkService.FriendService.GetUserFriendRequestAsync());
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
+            }
+           
         }
         [HttpPost("confirm/{id}")]
         public async Task<ActionResult> ConfirmFriend(string id)

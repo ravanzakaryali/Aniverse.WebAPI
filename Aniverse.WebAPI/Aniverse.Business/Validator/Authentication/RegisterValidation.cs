@@ -13,16 +13,13 @@ namespace Aniverse.Business.Validator.Authentication
                 .MaximumLength(30);
             RuleFor(u => u.Lastname)
                 .NotEmpty()
-                .NotNull()
+                .NotNull()  
                 .MinimumLength(3)
                 .MaximumLength(30);
             RuleFor(u => u.Password)
                 .NotEmpty()
                 .NotNull()
                 .Equal(u => u.ConfirmPasword);
-            RuleFor(u => u.Gender)
-                .NotEmpty()
-                .NotNull();
             RuleFor(u => u.Username)
                 .NotEmpty()
                 .NotNull()

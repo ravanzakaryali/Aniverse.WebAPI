@@ -6,6 +6,6 @@ namespace Aniverse.Core.Interfaces
 {
     public interface IAnimalRepository : IRepository<Animal>
     {
-        public Task<List<Animal>> GetFriendAnimals(string username);
+        //public Task<List<Animal>> GetFriendAnimals(string username);
     }
 }

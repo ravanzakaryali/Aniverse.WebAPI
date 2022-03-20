@@ -24,6 +24,12 @@ using FluentValidation.AspNetCore;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Http;
 using Aniverse.Business.Validator.Authentication;
+using FluentValidation;
+using Aniverse.Business.DTO_s.Authentication;
+using Aniverse.Business.DTO_s.Post;
+using Aniverse.Business.Validator.Post;
+using Aniverse.Business.DTO_s.Page;
+using Aniverse.Business.Validator.Page;
 
 namespace Aniverse
 {
@@ -57,7 +63,12 @@ namespace Aniverse
             });
             services.AddControllers().AddNewtonsoftJson(options =>
              options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore)
-                .AddFluentValidation(fl => fl.RegisterValidatorsFromAssemblyContaining<RegisterValidation>());
+                .AddFluentValidation(fl => fl.RegisterValidatorsFromAssemblyContaining<Startup>());
+            services.AddTransient<IValidator<Register>, RegisterValidation>();
+            services.AddTransient<IValidator<Login>, LoginValidation>();
+            services.AddTransient<IValidator<PostCreateDto>, PostCreateValidation>();
+            services.AddTransient<IValidator<PageCreateDto>, PageCreateValidation>();
+
             services.AddIdentity<AppUser, IdentityRole>(options =>
             {
                 options.Password.RequireDigit = true;

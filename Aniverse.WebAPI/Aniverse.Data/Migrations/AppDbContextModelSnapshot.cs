@@ -651,7 +651,7 @@ namespace Animalgram.Data.Migrations
                     b.Property<string>("About")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("BusinessName")
+                    b.Property<string>("Category")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreationDate")
@@ -667,6 +667,9 @@ namespace Animalgram.Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Pagename")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
 
@@ -678,6 +681,34 @@ namespace Animalgram.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("Page");
+                });
+
+            modelBuilder.Entity("Aniverse.Core.Entities.PageFollow", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("FollowDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<int>("PageId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PageId")
+                        .IsUnique();
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("PageFollows");
                 });
 
             modelBuilder.Entity("Aniverse.Core.Entities.SavePost", b =>
@@ -1022,6 +1053,19 @@ namespace Animalgram.Data.Migrations
                 {
                     b.HasOne("Aniverse.Core.Entites.AppUser", "User")
                         .WithMany("Pages")
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("Aniverse.Core.Entities.PageFollow", b =>
+                {
+                    b.HasOne("Aniverse.Core.Entities.Page", "Page")
+                        .WithOne("PageFollow")
+                        .HasForeignKey("Aniverse.Core.Entities.PageFollow", "PageId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Aniverse.Core.Entites.AppUser", "User")
+                        .WithMany()
                         .HasForeignKey("UserId");
                 });
 

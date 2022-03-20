@@ -36,7 +36,15 @@ namespace Aniverse.UI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<CommentGetDto>> GetCommentAsync(int id)
         {
-            return Ok(await _unitOfWorkService.CommentService.GetPostComments(id));
+            try
+            {
+                return Ok(await _unitOfWorkService.CommentService.GetPostComments(id));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
+            }
+            
         }
         [HttpPatch("delete/{id}")]
         public async Task<ActionResult> CommentDeleteAsync(int id)

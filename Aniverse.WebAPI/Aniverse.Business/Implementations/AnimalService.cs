@@ -2,6 +2,7 @@
 using Aniverse.Business.DTO_s.Picture;
 using Aniverse.Business.DTO_s.Post;
 using Aniverse.Business.Exceptions;
+using Aniverse.Business.Exceptions.FileExtensions;
 using Aniverse.Business.Extensions;
 using Aniverse.Business.Helpers;
 using Aniverse.Business.Interface;
@@ -238,6 +239,10 @@ namespace Aniverse.Business.Implementations
         public async Task ChangeCoverPicture(int id, AnimalPictureChangeDto coverCreate)
         {
             var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
+            if (coverCreate.ImageFile.CheckFileSize(10000))
+                throw new FileTypeException("File max size 10 mb");
+            if (coverCreate.ImageFile.CheckFileType("image/"))
+                throw new FileSizeException("File type must be image");
             var picture = new Picture
             {
                 IsAnimalCoverPicture = true,
@@ -248,19 +253,21 @@ namespace Aniverse.Business.Implementations
             var coverPictureDb = await _unitOfWork.PictureRepository.GetAsync(p => p.UserId == userLoginId && p.AnimalId == id && p.IsAnimalCoverPicture == true);
             await _unitOfWork.PictureRepository.CreateAsync(picture);
             if (coverPictureDb != null)
-            {
                 coverPictureDb.IsAnimalCoverPicture = false;
-            }
             await _unitOfWork.SaveAsync();
         }
-        public async Task ChangeProfilePicture(int id, AnimalPictureChangeDto coverCreate)
+        public async Task ChangeProfilePicture(int id, AnimalPictureChangeDto profileCreate)
         {
+            if (profileCreate.ImageFile.CheckFileSize(10000))
+                throw new FileTypeException("File max size 10 mb");
+            if (profileCreate.ImageFile.CheckFileType("image/"))
+                throw new FileSizeException("File type must be image");
             var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
             var picture = new Picture
             {
                 IsAnimalProfilePicture = true,
                 AnimalId = id,
-                ImageName = await coverCreate.ImageFile.FileSaveAsync(_hostEnvironment.ContentRootPath, "Images"),
+                ImageName = await profileCreate.ImageFile.FileSaveAsync(_hostEnvironment.ContentRootPath, "Images"),
                 UserId = userLoginId,
             };
             var coverPictureDb = await _unitOfWork.PictureRepository.GetAsync(p => p.UserId == userLoginId && p.AnimalId == id && p.IsAnimalProfilePicture == true);

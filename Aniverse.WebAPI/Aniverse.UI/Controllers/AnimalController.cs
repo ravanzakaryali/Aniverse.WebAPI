@@ -25,32 +25,69 @@ namespace Aniverse.UI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<AnimalGetDto>> GetAsync(string id)
         {
-            var request = HttpContext.Request;
-            return await _unitOfWorkService.AnimalService.GetAsync(id, request);
+            try
+            {
+                var request = HttpContext.Request;
+                return Ok(await _unitOfWorkService.AnimalService.GetAsync(id, request));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
+            }
+            
         }
         [HttpGet]
         public async Task<ActionResult<List<AnimalAllDto>>> GetAllAsync([FromQuery] int page, [FromQuery] int size )
         {
-            var request = HttpContext.Request;
-            return await _unitOfWorkService.AnimalService.GetAllAsync(request,page,size);
+            try
+            {
+                var request = HttpContext.Request;
+                return Ok(await _unitOfWorkService.AnimalService.GetAllAsync(request, page, size));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
+            }
         }
         [HttpGet("friends/{id}")]
         public async Task<ActionResult<List<AnimalAllDto>>> GetFriendAnimals(string id, [FromQuery] int page, [FromQuery] int size)
         {
-            var request = HttpContext.Request;
-            return Ok(await _unitOfWorkService.AnimalService.GetFriendAnimals(request,id, page,size));
+            try
+            {
+                var request = HttpContext.Request;
+                return Ok(await _unitOfWorkService.AnimalService.GetFriendAnimals(request, id, page, size));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
+            }
+            
         }
         [HttpGet("user/{id}")]
         public async Task<ActionResult<List<AnimalAllDto>>> GetAnimalUserAsync(string id)
         {
-            var request = HttpContext.Request;
-            return Ok(await _unitOfWorkService.AnimalService.GetAnimalUserAsync(id, request));
+            try
+            {
+                var request = HttpContext.Request;
+                return Ok(await _unitOfWorkService.AnimalService.GetAnimalUserAsync(id, request));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
+            }
         }
         [HttpGet("post/{id}")]
         public async Task<ActionResult<List<PostGetDto>>> GetAnimalPosts(string id)
         {
-            var request = HttpContext.Request;
-            return Ok(await _unitOfWorkService.PostService.GetAnimalPosts(id, request));
+            try
+            {
+                var request = HttpContext.Request;
+                return Ok(await _unitOfWorkService.PostService.GetAnimalPosts(id, request));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
+            }
         }
         [HttpPost("follow/{id}")]
         public async Task<ActionResult> FollowCreate(int id,[FromBody] FollowDto follow)
@@ -62,13 +99,21 @@ namespace Aniverse.UI.Controllers
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status502BadGateway, new { Status = "Error", Message = ex.ToString() });
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
             }
         }
         [HttpGet("category")]
         public async Task<ActionResult<List<AnimalGetCategory>>> GetAnimalCategory()
         {
-            return Ok(await _unitOfWorkService.AnimalService.GetAnimalCategory());
+            try
+            {
+                return Ok(await _unitOfWorkService.AnimalService.GetAnimalCategory());
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
+            }
+            
         }
         [HttpPost("create")]
         public async Task<ActionResult> AnimalCreateAsync([FromBody] AnimalCreateDto animalCreate)
@@ -86,7 +131,15 @@ namespace Aniverse.UI.Controllers
         [HttpGet("select")]
         public async Task<ActionResult<List<AnimalSelectGetDto>>> GetSelectAnimal()
         {
-            return await _unitOfWorkService.AnimalService.SelectAnimal();
+            try
+            {
+                return Ok(await _unitOfWorkService.AnimalService.SelectAnimal());
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
+            }
+            
         } 
         [HttpPut("update/{id}")]    
         public async Task<ActionResult> UpdateAnimal(int id, AnimalUpdateDto animalUpdate)
@@ -104,8 +157,16 @@ namespace Aniverse.UI.Controllers
         [HttpGet("photos/{animalname}")]
         public async Task<ActionResult<List<GetPictureDto>>> GetAnimalPhotos(string animalname, [FromQuery] int page, [FromQuery] int size)
         {
-            var request = HttpContext.Request;
-            return Ok(await _unitOfWorkService.AnimalService.GetAnimalPhotos(animalname, request, page, size));
+            try
+            {
+                var request = HttpContext.Request;
+                return Ok(await _unitOfWorkService.AnimalService.GetAnimalPhotos(animalname, request, page, size));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
+            }
+            
         }
         [HttpPost("coverPicture/{id}")]
         public async Task<ActionResult> ChangeCoverPicture(int id, [FromForm] AnimalPictureChangeDto cover)

@@ -28,26 +28,56 @@ namespace Aniverse.UI.Controllers
         [HttpGet]
         public async Task<ActionResult<List<UserAllDto>>> GetAllAsync()
         {
-            var request = HttpContext.Request;
-            return await _unitOfWorkService.UserService.GetAllAsync(request);
+            try
+            {
+                var request = HttpContext.Request;
+                return await _unitOfWorkService.UserService.GetAllAsync(request);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.ToString() });
+            }
         }
         [HttpGet("{id}")]
         public async Task<ActionResult<UserGetDto>> GetAsync(string id)
         {
-            var request = HttpContext.Request;
-            return Ok(await _unitOfWorkService.UserService.GetAsync(id, request));
+            try
+            {
+                var request = HttpContext.Request;
+                return Ok(await _unitOfWorkService.UserService.GetAsync(id, request));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.ToString() });
+            }
         }
         [HttpGet("login")]
         public async Task<ActionResult<UserGetDto>> GetLoginUser()
         {
-            var request = HttpContext.Request;
-            return Ok(await _unitOfWorkService.UserService.GetLoginUser(request));
+            try
+            {
+                var request = HttpContext.Request;
+                return Ok(await _unitOfWorkService.UserService.GetLoginUser(request));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.ToString() });
+            }
         }
         [HttpPatch("bio")]
         public async Task<ActionResult> BioUpdate([FromBody] JsonPatchDocument<AppUser> bioChange)
         {
-            await _unitOfWorkService.UserService.ChangeBio(bioChange);
-            return NoContent();
+            try
+            {
+                await _unitOfWorkService.UserService.ChangeBio(bioChange);
+                return StatusCode(StatusCodes.Status204NoContent, new Response { Status = "Success", Message = "Change bio success"});
+
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.ToString() });
+            }
+            
         }
         [HttpPost("profile")]
         public async Task<ActionResult> ChangeProfileImage([FromForm] ProfileCreateDto profilePicture)
@@ -70,17 +100,25 @@ namespace Aniverse.UI.Controllers
             {
 
                 await _unitOfWorkService.UserService.CoverCreate(coverPicture);
-                return StatusCode(StatusCodes.Status204NoContent, new { Status = "Successs", Message = "Story successfully posted" });
+                return StatusCode(StatusCodes.Status204NoContent, new Response { Status = "Successs", Message = "Story successfully posted" });
             }
             catch (Exception ex)
             {
-                return StatusCode(StatusCodes.Status502BadGateway, new { Status = "Error", Message = ex.ToString() });
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
             }
         }
         [HttpGet("block")]
         public async Task<ActionResult<List<UserGetDto>>> GetBlockUsers()
         {
-            return Ok(await _unitOfWorkService.UserService.GetBlcokUsersAsync());
+            try
+            {
+                return Ok(await _unitOfWorkService.UserService.GetBlcokUsersAsync());
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
+            }
+           
         }
         [HttpGet("{username}/follows/animal")]
         public async Task<ActionResult<List<AnimalAllDto>>> AnimalUserFollows(string username)
@@ -98,14 +136,28 @@ namespace Aniverse.UI.Controllers
         [HttpGet("photos/{id}")]
         public async Task<ActionResult<List<GetPictureDto>>> GetPhotos(string id, [FromQuery] int page, [FromQuery] int size)
         {
-            var request = HttpContext.Request;
-            return Ok(await _unitOfWorkService.UserService.GetPhotos(id, request, page, size));
+            try
+            {
+                var request = HttpContext.Request;
+                return Ok(await _unitOfWorkService.UserService.GetPhotos(id, request, page, size));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
+            }
         }
         [HttpGet("only/photos/{id}")]
         public async Task<ActionResult<List<GetPictureDto>>> GetUserPhotos(string id, [FromQuery] int page, [FromQuery] int size)
         {
-            var request = HttpContext.Request;
-            return Ok(await _unitOfWorkService.UserService.GetUserPhotos(id, request, page, size));
+            try
+            {
+                var request = HttpContext.Request;
+                return Ok(await _unitOfWorkService.UserService.GetUserPhotos(id, request, page, size));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
+            }
         }
         [HttpGet("search")]
         public async Task<ActionResult<List<UserAllDto>>> SearchAsync([FromQuery] string search)

@@ -17,6 +17,8 @@ namespace Aniverse.Core
         IPictureRepository PictureRepository { get; }
         IAnimalCategoryRepository AnimalCategoryRepository { get; }
         ISavePostRepository SavePostRepository { get; }
+        IPageRepository PageRepository { get; }
+        IPageFollowRepository PageFollowRepository { get; }
         Task SaveAsync();
     }
 }
