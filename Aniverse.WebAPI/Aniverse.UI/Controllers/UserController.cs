@@ -1,4 +1,5 @@
 ﻿using Aniverse.Business.DTO_s.Animal;
+using Aniverse.Business.DTO_s.Page;
 using Aniverse.Business.DTO_s.Picture;
 using Aniverse.Business.DTO_s.StatusCode;
 using Aniverse.Business.DTO_s.User;
@@ -68,7 +69,7 @@ namespace Aniverse.UI.Controllers
         public async Task<ActionResult> BioUpdate([FromBody] JsonPatchDocument<AppUser> bioChange)
         {
             try
-            {
+                {
                 await _unitOfWorkService.UserService.ChangeBio(bioChange);
                 return StatusCode(StatusCodes.Status204NoContent, new Response { Status = "Success", Message = "Change bio success"});
 
@@ -165,6 +166,32 @@ namespace Aniverse.UI.Controllers
             try
             {
                 return Ok(await _unitOfWorkService.UserService.SearchAsync(search));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
+            }
+        }
+        [HttpGet("{id}/pages")]
+        public async Task<ActionResult<List<PageGetDto>>> GetUserPages(string id)
+        {
+            try
+            {
+                var request = HttpContext.Request;
+                return Ok(await _unitOfWorkService.UserService.GetUserPages(id,request));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
+            }
+        }
+        [HttpGet("{id}/follow/pages")]
+        public async Task<ActionResult<List<PageGetDto>>> GetUserFollowPages(string id)
+        {
+            try
+            {
+                var request = HttpContext.Request;
+                return Ok(await _unitOfWorkService.PageService.GetUserFollowPages(id, request));
             }
             catch (Exception ex)
             {

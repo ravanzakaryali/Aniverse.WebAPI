@@ -14,6 +14,7 @@ namespace Aniverse.Business.DTO_s.User
         public string Address { get; set; }
         public string Gmail { get; set; }
         public string Birthday { get; set; }
+        public int FriendCount { get; set; }
         public string Bio { get; set; }
         public string ProfilPicture { get; set; }
         public string CoverPicture { get; set; }

@@ -30,6 +30,8 @@ using Aniverse.Business.DTO_s.Post;
 using Aniverse.Business.Validator.Post;
 using Aniverse.Business.DTO_s.Page;
 using Aniverse.Business.Validator.Page;
+using Aniverse.Business.DTO_s.Story;
+using Aniverse.Business.Validator.Story;
 
 namespace Aniverse
 {
@@ -68,16 +70,15 @@ namespace Aniverse
             services.AddTransient<IValidator<Login>, LoginValidation>();
             services.AddTransient<IValidator<PostCreateDto>, PostCreateValidation>();
             services.AddTransient<IValidator<PageCreateDto>, PageCreateValidation>();
+            services.AddTransient<IValidator<StoryCreateDto>, StoryCreateValidation>();
 
             services.AddIdentity<AppUser, IdentityRole>(options =>
             {
-                options.Password.RequireDigit = true;
+
                 options.Password.RequireLowercase = true;
-                options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireLowercase = true;
                 options.Password.RequireUppercase = true;
                 options.Password.RequiredLength = 6;
-                options.Password.RequiredUniqueChars = 1;
 
                 options.Lockout.MaxFailedAccessAttempts = 5;
                 options.Lockout.AllowedForNewUsers = false;

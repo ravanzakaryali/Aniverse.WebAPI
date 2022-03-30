@@ -6,6 +6,6 @@ namespace Aniverse.Business.DTO_s.Post
 {
     public class PostUpdateDto
     {
-        public string Contetn { get; set; }
+        public string Content { get; set; }
     }
 }

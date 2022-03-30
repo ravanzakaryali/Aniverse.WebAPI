@@ -13,7 +13,7 @@ namespace Aniverse.Business.Interface
     public interface IFriendService
     {
         Task<List<UserGetDto>> GetAllAsync(string username, HttpRequest request, int page,int size);
-        Task<List<UserGetDto>> GetUserFriendRequestAsync();
+        Task<List<UserGetDto>> GetUserFriendRequestAsync(int page,int size,HttpRequest request);
         Task ConfirmFriend(string id);
         Task AddFriendAsync(string id);
         Task DeleteFriendAsync(string id);

@@ -14,14 +14,16 @@ namespace Aniverse.Core.Entites
         public bool IsAnimalCoverPicture { get; set; }
         public bool IsPageProfilePicture { get; set; }
         public bool IsPageCoverPicture { get; set; }
-        public int? AnimalId { get; set; }
+        public int? AnimalId { get; set; } = null;
         public Animal Animal { get; set; }
-        public int? PostId { get; set; }
+        public int? PostId { get; set; } = null;
         public Post Post { get; set; }
         public string UserId { get; set; }
         public AppUser User { get; set; }
-        public int? PageId { get; set; }
+        public int? PageId { get; set; } = null;
         public Page Page { get; set; }
+        public int? ProductId { get; set; } = null;
+        public Product Product { get; set; }
         public IFormFile ImageFile { get; set; }
 
     }

@@ -7,7 +7,8 @@ namespace Aniverse.Business.DTO_s.Post
     {   
         public string Content { get; set; }
         public string UserId { get; set; }
-        public int AnimalId { get; set; }
+        public int? PageId { get; set; } = null;
+        public int? AnimalId { get; set; } = null;
         public List<IFormFile> ImageFile { get; set; }
         public ICollection<PostImageDto> Pictures { get; set; }
     }

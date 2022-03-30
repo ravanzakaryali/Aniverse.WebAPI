@@ -30,24 +30,41 @@ namespace Aniverse.Business.Implementations
 
         public async Task<List<CommentGetDto>> GetPostComments(int id)
         {
-            return _mapper.Map<List<CommentGetDto>>(await _unitOfWork.CommentRepository.GetAllAsync(c=>c.PostId == id && c.CommentId == null, "ReplyComment","User"));
+            return _mapper.Map<List<CommentGetDto>>(await _unitOfWork.CommentRepository.GetAllAsync(c => c.PostId == id && c.CommentId == null, "ReplyComment", "User"));
         }
-        public async Task CreateAsync(CommentCreateDto commentCreate)
+        public async Task<CommentGetDto> CreateAsync(CommentCreateDto commentCreate, HttpRequest request)
         {
-            var UserLoginId  = _httpContextAccessor.HttpContext.User.GetUserId();
-            commentCreate.UserId = UserLoginId;
-            await _unitOfWork.CommentRepository.CreateAsync(_mapper.Map<Comment>(commentCreate));
+            var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
+            commentCreate.UserId = userLoginId;
+            var comment = await _unitOfWork.CommentRepository.CreateComment(_mapper.Map<Comment>(commentCreate));
             await _unitOfWork.SaveAsync();
+            var picture = await _unitOfWork.PictureRepository.GetAsync(p => p.UserId == userLoginId && p.IsProfilePicture);
+            picture.ImageName = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{picture.ImageName}");
+            var postMap = _mapper.Map<CommentGetDto>(comment);
+            postMap.User.ProfilPicture = picture.ImageName;
+            return postMap;
         }
 
         public async Task CommentDeleteAsync(int id)
         {
-            var userLoginId  = _httpContextAccessor.HttpContext.User.GetUserId();
-            var commentDb = await _unitOfWork.CommentRepository.GetAsync(c => c.UserId == userLoginId && c.Id == id);    
+            var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
+            var commentDb = await _unitOfWork.CommentRepository.GetAsync(c => c.UserId == userLoginId && c.Id == id);
             if (commentDb is null)
             {
                 throw new NotFoundException("Comment is not found");
             }
-         }
+        }
+        private void PictureDbName(List<Picture> pictures, HttpRequest request)
+        {
+            foreach (var picture in pictures)
+            {
+                picture.ImageName = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{picture.ImageName}");
+            }
+        }
+        private void CommentUserProfile(CommentGetDto postMap, List<Picture> pictures)
+        {
+            if (pictures.Any(p => p.UserId == postMap.UserId && p.IsProfilePicture))
+                postMap.User.ProfilPicture = pictures.Where(p => p.UserId == postMap.UserId && p.IsProfilePicture).FirstOrDefault().ImageName;
+        }
     }
 }

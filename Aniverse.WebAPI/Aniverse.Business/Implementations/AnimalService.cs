@@ -1,8 +1,9 @@
 ﻿using Aniverse.Business.DTO_s.Animal;
 using Aniverse.Business.DTO_s.Picture;
 using Aniverse.Business.DTO_s.Post;
+using Aniverse.Business.DTO_s.User;
 using Aniverse.Business.Exceptions;
-using Aniverse.Business.Exceptions.FileExtensions;
+using Aniverse.Business.Exceptions.FileExceptions;
 using Aniverse.Business.Extensions;
 using Aniverse.Business.Helpers;
 using Aniverse.Business.Interface;
@@ -139,7 +140,7 @@ namespace Aniverse.Business.Implementations
             
             return posts;
         }
-        public async Task FollowCreate(int id,FollowDto follow)
+        public async Task<UserGetDto> FollowCreate(int id,FollowDto follow)
         {
 
             var UserLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
@@ -162,6 +163,7 @@ namespace Aniverse.Business.Implementations
                 _unitOfWork.AnimalFollowRepository.Delete(followDelete);
             }
             await _unitOfWork.SaveAsync();
+            return _mapper.Map<UserGetDto>(await _unitOfWork.UserRepository.GetAsync(u=>u.Id == UserLoginId));
         }
         public async Task<List<AnimalGetCategory>> GetAnimalCategory()
         {
@@ -205,12 +207,7 @@ namespace Aniverse.Business.Implementations
         }
         public async Task<List<AnimalAllDto>> AnimalUserFollows(HttpRequest request,string username)
         {
-            var userDb = await _unitOfWork.UserRepository.GetAsync(u=>u.UserName == username);
-            if(userDb is null)
-            {
-                throw new Exception();
-            }
-            var animalFollow = await _unitOfWork.AnimalFollowRepository.GetAllAsync(a=>a.UserId == userDb.Id, "Animal");
+            var animalFollow = await _unitOfWork.AnimalFollowRepository.GetAllAsync(a=>a.User.UserName == username, "Animal");
             var animals = _mapper.Map<List<AnimalAllDto>>(animalFollow.Select(a => a.Animal).ToList());
             var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => p.IsAnimalCoverPicture == true || p.IsAnimalProfilePicture);
             foreach (var picture in pictures)
@@ -239,9 +236,9 @@ namespace Aniverse.Business.Implementations
         public async Task ChangeCoverPicture(int id, AnimalPictureChangeDto coverCreate)
         {
             var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
-            if (coverCreate.ImageFile.CheckFileSize(10000))
+            if (!coverCreate.ImageFile.CheckFileSize(10000))
                 throw new FileTypeException("File max size 10 mb");
-            if (coverCreate.ImageFile.CheckFileType("image/"))
+            if (!coverCreate.ImageFile.CheckFileType("image/"))
                 throw new FileSizeException("File type must be image");
             var picture = new Picture
             {
@@ -258,9 +255,9 @@ namespace Aniverse.Business.Implementations
         }
         public async Task ChangeProfilePicture(int id, AnimalPictureChangeDto profileCreate)
         {
-            if (profileCreate.ImageFile.CheckFileSize(10000))
+            if (!profileCreate.ImageFile.CheckFileSize(10000))
                 throw new FileTypeException("File max size 10 mb");
-            if (profileCreate.ImageFile.CheckFileType("image/"))
+            if (!profileCreate.ImageFile.CheckFileType("image/"))
                 throw new FileSizeException("File type must be image");
             var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
             var picture = new Picture
@@ -276,6 +273,16 @@ namespace Aniverse.Business.Implementations
             {
                 coverPictureDb.IsAnimalProfilePicture = false;
             }
+            await _unitOfWork.SaveAsync();
+        }
+        public async Task DeleteAnimalAsync(int id)
+        {
+            var animal = await _unitOfWork.AnimalRepository.GetAsync(a=>a.Id == id);
+            if (animal is null)
+            {
+                throw new NotFoundException("Animal is not found");
+            }
+             _unitOfWork.AnimalRepository.Delete(animal);
             await _unitOfWork.SaveAsync();
         }
     }

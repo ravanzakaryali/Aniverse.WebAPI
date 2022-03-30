@@ -1,4 +1,6 @@
-﻿using Aniverse.Business.DTO_s.Picture;
+﻿using Aniverse.Business.DTO_s.Page;
+using Aniverse.Business.DTO_s.Picture;
+using Aniverse.Business.DTO_s.Post;
 using Aniverse.Business.DTO_s.User;
 using Aniverse.Business.Exceptions;
 using Aniverse.Business.Extensions;
@@ -71,6 +73,7 @@ namespace Aniverse.Business.Implementations
         public async Task<UserGetDto> GetAsync(string id, HttpRequest request)
         {
             var user = _mapper.Map<UserGetDto>(await _unitOfWork.UserRepository.GetAsync(u => u.UserName == id));
+            user.FriendCount = await _unitOfWork.FriendRepository.GetTotalCountAsync(u => (u.UserId == user.Id || u.FriendId == user.Id) && u.Status == FriendRequestStatus.Accepted);
             var picture = await _unitOfWork.PictureRepository.GetAsync(p => p.User.UserName == id && p.IsProfilePicture == true);
             var cover = await _unitOfWork.PictureRepository.GetAsync(p => p.User.UserName == id && p.IsCoverPicture == true);
             if (picture != null)
@@ -162,7 +165,7 @@ namespace Aniverse.Business.Implementations
         }
         public async Task<List<GetPictureDto>> GetUserPhotos(string username, HttpRequest request, int page=1,int size = 1)
         {
-            var photos = await _unitOfWork.PictureRepository.GetAllPaginateAsync(page, size,p=>p.Id ,p => p.User.UserName == username && p.AnimalId == null);
+            var photos = await _unitOfWork.PictureRepository.GetAllPaginateAsync(page, size,p=>p.Id ,p => p.User.UserName == username && p.AnimalId == null && p.PageId == null);
             var photosMap = _mapper.Map<List<GetPictureDto>>(photos);
 
             for (int i = 0; i < photosMap.Count; i++)
@@ -176,5 +179,20 @@ namespace Aniverse.Business.Implementations
         {
             return _mapper.Map<List<UserAllDto>>(await _unitOfWork.UserRepository.GetAllAsync(u => u.UserName.Contains(search) || u.Firstname.Contains(search) || u.Lastname.Contains(search)));
         } 
+        public async Task<List<PageGetDto>> GetUserPages(string id, HttpRequest request)
+        {
+            var pages = _mapper.Map<List<PageGetDto>>(await _unitOfWork.PageRepository.GetAllAsync(p=>p.UserId == id, "PageFollow"));
+            var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p=>p.IsPageProfilePicture, "Page");
+            foreach (var picture in pictures)
+            {
+                picture.ImageName = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{picture.ImageName}");
+            }
+            foreach (var pageGet in pages)
+            {
+                if (pictures.Any(p => pageGet.Id == p.PageId && p.IsPageProfilePicture))
+                    pageGet.ProfilPicture = pictures.Where(p => pageGet.Id == p.Page.Id && p.IsPageProfilePicture).FirstOrDefault().ImageName;
+            }
+            return pages;
+        }
     }
 }

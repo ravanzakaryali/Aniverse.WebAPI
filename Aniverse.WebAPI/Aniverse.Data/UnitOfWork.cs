@@ -23,6 +23,9 @@ namespace Aniverse.Data
         private ISavePostRepository _savePostRepository;
         private IPageRepository _pageRepository;
         private IPageFollowRepository _pageFollowRepository;
+        private IProductRepository _productRepository;
+        private IProductCategoryRepository _productCategoryRepository;
+        private ISaveProductRepository _saveProductRepository;
         public UnitOfWork(AppDbContext context)
         {
             _context = context;
@@ -41,6 +44,9 @@ namespace Aniverse.Data
         public ISavePostRepository SavePostRepository => _savePostRepository ??= new SavePostRepository(_context);
         public IPageRepository PageRepository => _pageRepository ??= new PageRepository(_context);
         public IPageFollowRepository PageFollowRepository => _pageFollowRepository ??= new PageFollowRepository(_context);
+        public IProductRepository ProductRepository => _productRepository ??= new ProductRepository(_context); 
+        public IProductCategoryRepository ProductCategoryRepository => _productCategoryRepository ??= new ProductCategoryRepository(_context);
+        public ISaveProductRepository SaveProductRepository => _saveProductRepository ??= new SaveProductRepository(_context);
         public async Task SaveAsync()
         {
             await _context.SaveChangesAsync();

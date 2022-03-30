@@ -2,6 +2,7 @@
 using Aniverse.Business.DTO_s.Picture;
 using Aniverse.Business.DTO_s.Post;
 using Aniverse.Business.DTO_s.StatusCode;
+using Aniverse.Business.DTO_s.User;
 using Aniverse.Business.Interface;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -90,12 +91,11 @@ namespace Aniverse.UI.Controllers
             }
         }
         [HttpPost("follow/{id}")]
-        public async Task<ActionResult> FollowCreate(int id,[FromBody] FollowDto follow)
+        public async Task<ActionResult<UserGetDto>> FollowCreate(int id,[FromBody] FollowDto follow)
         {
             try
             {
-                await _unitOfWorkService.AnimalService.FollowCreate(id,follow);
-                return StatusCode(StatusCodes.Status204NoContent, new Response { Status = "Successs", Message = "User follow successfully" });
+                return Ok(await _unitOfWorkService.AnimalService.FollowCreate(id,follow));
             }
             catch (Exception ex)
             {
@@ -194,6 +194,20 @@ namespace Aniverse.UI.Controllers
                 return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
             }
         }
+        [HttpDelete("delete/{id}")]
+        public async Task<ActionResult> DeleteAnimal(int id)
+        {
+            try
+            {
+                await _unitOfWorkService.AnimalService.DeleteAnimalAsync(id);
+
+                return StatusCode(StatusCodes.Status204NoContent, new Response { Status = "Successs", Message = "Animal delete successfully" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
+            }
+        } 
         
     }
 }

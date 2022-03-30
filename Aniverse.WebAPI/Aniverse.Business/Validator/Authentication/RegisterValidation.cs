@@ -19,7 +19,7 @@ namespace Aniverse.Business.Validator.Authentication
             RuleFor(u => u.Password)
                 .NotEmpty()
                 .NotNull()
-                .Equal(u => u.ConfirmPasword);
+                .Equal(u => u.ConfirmPassword);
             RuleFor(u => u.Username)
                 .NotEmpty()
                 .NotNull()

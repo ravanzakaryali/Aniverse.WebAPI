@@ -54,16 +54,25 @@ namespace Aniverse.Business.Implementations
             return friendsMap;
         }
 
-        public async Task<List<UserGetDto>> GetUserFriendRequestAsync()
+        public async Task<List<UserGetDto>> GetUserFriendRequestAsync(int page, int size,HttpRequest request) 
         {
             var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
-            var frineds = await _unitOfWork.FriendRepository.GetAllAsync(u => u.UserId == userLoginId && u.Status == FriendRequestStatus.Pending, "Friend");
-            if(frineds is null)
+            var friends = await _unitOfWork.FriendRepository.GetAllPaginateAsync(page,size,u=>u.SenderDate,u => u.UserId == userLoginId && u.Status == FriendRequestStatus.Pending, "Friend");
+            var friendIds = friends.Select(x => x.FriendId);
+            var userIds = friends.Select(x => x.UserId);
+            var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => userIds.Contains(p.UserId) || friendIds.Contains(p.UserId));
+            if (friends is null)
             {
                 throw new NotFoundException("Friend is not found");
             }
-            var friendsId = frineds.Select(f => f.FriendId);
-            return _mapper.Map<List<UserGetDto>>(await _unitOfWork.UserRepository.GetAllAsync(u => friendsId.Contains(u.Id)));
+            PictureDbName(pictures, request);
+            var friendsMap = _mapper.Map<List<UserGetDto>>(await _unitOfWork.UserRepository.GetAllAsync(u => friendIds.Contains(u.Id)));
+            foreach (var friend in friendsMap)
+            {
+                if (pictures.Any(p => p.UserId == friend.Id && p.IsProfilePicture))
+                    friend.ProfilPicture = pictures.Where(p => p.UserId == friend.Id && p.IsProfilePicture).FirstOrDefault().ImageName;
+            }
+            return friendsMap;
         }
         public async Task ConfirmFriend(string id)
         {
@@ -167,6 +176,13 @@ namespace Aniverse.Business.Implementations
             userfriends.Status = FriendRequestStatus.Declined;
             _unitOfWork.FriendRepository.Update(userfriends);
             await _unitOfWork.SaveAsync();
+        }
+        private void PictureDbName(List<Picture> pictures, HttpRequest request)
+        {
+            foreach (var picture in pictures)
+            {
+                picture.ImageName = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{picture.ImageName}");
+            }
         }
     }
 }

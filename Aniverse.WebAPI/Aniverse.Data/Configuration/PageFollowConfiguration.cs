@@ -9,6 +9,7 @@ namespace Aniverse.Data.Configuration
         public void Configure(EntityTypeBuilder<PageFollow> builder)
         {
             builder.Property(p => p.FollowDate).HasDefaultValueSql("GETDATE()");
+            builder.HasIndex(p => p.PageId).IsUnique(false);
         }
     }
 }

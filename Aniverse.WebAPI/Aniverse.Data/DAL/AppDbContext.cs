@@ -17,7 +17,8 @@ namespace Aniverse.Data.DAL
         public DbSet<Like> Likes { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<Post> Posts { get; set; }
-        public DbSet<Product> PostProducts { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<ProductCategory> ProductCategories { get; set; }
         public DbSet<Setting> Settings { get; set; }
         public DbSet<Story> Story { get; set; }
         public DbSet<UserFriend> UserFriends { get; set; }
@@ -25,6 +26,7 @@ namespace Aniverse.Data.DAL
         public DbSet<AnimalFollow> AnimalFollows { get; set; }
         public DbSet<SavePost> SavePosts { get; set; }
         public DbSet<PageFollow> PageFollows { get; set; }
+        public DbSet<SaveProduct> SaveProducts { get; set; }
         public DbSet<Page> Page { get; set; } 
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -40,6 +42,8 @@ namespace Aniverse.Data.DAL
             builder.ApplyConfiguration(new UserFriendConfiguration());
             builder.ApplyConfiguration(new PageConfiguration());
             builder.ApplyConfiguration(new PageFollowConfiguration());
+            builder.ApplyConfiguration(new ProductConfiguration());
+            builder.ApplyConfiguration(new SaveProductConfiguration());
 
             base.OnModelCreating(builder);
         }

@@ -51,12 +51,12 @@ namespace Aniverse.UI.Controllers
             }
         }
         [HttpPost]
-        public async Task<ActionResult> CreateAsync([FromForm] StoryCreateDto storyCreate)
+        public async Task<ActionResult<List<StoryGetDto>>> CreateAsync([FromForm] StoryCreateDto storyCreate)
         {
             try
             {
-                await _unitOfWorkService.StoryService.CreateAsync(storyCreate);
-                return StatusCode(StatusCodes.Status204NoContent,new Response { Status = "Successs", Message = "Story successfully posted"});
+                var request = HttpContext.Request;
+                return Ok(await _unitOfWorkService.StoryService.CreateAsync(storyCreate, request));
             }
             catch(Exception ex)
             {
@@ -64,12 +64,12 @@ namespace Aniverse.UI.Controllers
             }
         }
         [HttpGet("friend")]
-        public async Task<ActionResult<List<StoryGetDto>>> GetFriendStoriesAsync()
+        public async Task<ActionResult<List<StoryGetDto>>> GetFriendStoriesAsync([FromQuery] int page, [FromQuery] int size)
         {
             try
             {
                 var request = HttpContext.Request;
-                return Ok(await _unitOfWorkService.StoryService.GetFriendAsync(request));
+                return Ok(await _unitOfWorkService.StoryService.GetFriendAsync(page,size,request));
             }
             catch (Exception ex)
             {

@@ -19,6 +19,7 @@ namespace Aniverse.Business.Implementations
         private IStoryService _storyService;
         private ILikeService _likeService;
         private IPageService _pageService;
+        private IProductService _productService;
 
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
@@ -40,5 +41,6 @@ namespace Aniverse.Business.Implementations
         public IStoryService StoryService => _storyService ??= new StoryService(_unitOfWork, _mapper, _hostEnvironment, _httpContextAccessor);
         public ILikeService LikeService => _likeService ??= new LikeService(_unitOfWork, _mapper, _httpContextAccessor);
         public IPageService PageService => _pageService ??= new PageService(_unitOfWork, _mapper, _hostEnvironment, _httpContextAccessor);
+        public IProductService ProductService => _productService ??= new ProductService(_unitOfWork,_mapper, _hostEnvironment,_httpContextAccessor);
     }
 }

@@ -3,6 +3,7 @@ using Aniverse.Business.DTO_s.User;
 using Aniverse.Business.Helpers;
 using Aniverse.Business.Services.Interface;
 using Aniverse.Core.Entites;
+using Aniverse.Data.DAL;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -15,19 +16,26 @@ namespace Aniverse.UI.Controllers
     public class AuthenticateController : Controller
     {
         private readonly UserManager<AppUser> _userManager;
+        private readonly AppDbContext _context;
         private readonly IJwtService _jwtService;
-        public AuthenticateController(UserManager<AppUser> userManager, IJwtService jwtService)
+        public AuthenticateController(UserManager<AppUser> userManager, IJwtService jwtService, AppDbContext context)
         {
             _userManager = userManager;
             _jwtService = jwtService;
+            _context = context;
         }
         [HttpPost("register")]
         public async Task<ActionResult> Register([FromBody] Register register)
         {
-            AppUser isEmailExsist = await _userManager.FindByNameAsync(register.Email);
+            AppUser isEmailExsist = await _userManager.FindByEmailAsync(register.Email);
             if (isEmailExsist != null)
             {
                 return StatusCode(StatusCodes.Status403Forbidden, new { status = "error", message = "Email is already exisit" });
+            }
+            AppUser isExsist = await _userManager.FindByNameAsync(register.Username);
+            if (isExsist != null)
+            {
+                return StatusCode(StatusCodes.Status403Forbidden, new { status = "error", message = "Username is already exisit" });
             }
             AppUser user = new AppUser
             {
@@ -36,6 +44,7 @@ namespace Aniverse.UI.Controllers
                 Email = register.Email,
                 UserName = register.Username,
                 Gender = register.Gender,
+                Address = register.Address
             };
             IdentityResult result = await _userManager.CreateAsync(user, register.Password);
             if (!result.Succeeded)

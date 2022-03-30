@@ -488,17 +488,26 @@ namespace Animalgram.Data.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<string>("Content")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<DateTime>("CreationDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("Hastag")
-                        .HasColumnType("nvarchar(max)");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("PageId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("Url")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
                         .HasColumnType("nvarchar(450)");
@@ -507,9 +516,11 @@ namespace Animalgram.Data.Migrations
 
                     b.HasIndex("CategoryId");
 
+                    b.HasIndex("PageId");
+
                     b.HasIndex("UserId");
 
-                    b.ToTable("PostProducts");
+                    b.ToTable("Products");
                 });
 
             modelBuilder.Entity("Aniverse.Core.Entites.ProductCategory", b =>
@@ -524,7 +535,7 @@ namespace Animalgram.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ProductCategory");
+                    b.ToTable("ProductCategories");
                 });
 
             modelBuilder.Entity("Aniverse.Core.Entites.Setting", b =>
@@ -703,8 +714,7 @@ namespace Animalgram.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("PageId")
-                        .IsUnique();
+                    b.HasIndex("PageId");
 
                     b.HasIndex("UserId");
 
@@ -737,6 +747,33 @@ namespace Animalgram.Data.Migrations
                     b.HasIndex("UserId");
 
                     b.ToTable("SavePosts");
+                });
+
+            modelBuilder.Entity("Aniverse.Core.Entities.SaveProduct", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("SaveAddDate")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("SaveProducts");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -973,7 +1010,8 @@ namespace Animalgram.Data.Migrations
                 {
                     b.HasOne("Aniverse.Core.Entites.Animal", "Animal")
                         .WithMany("Pictures")
-                        .HasForeignKey("AnimalId");
+                        .HasForeignKey("AnimalId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Aniverse.Core.Entities.Page", "Page")
                         .WithMany("Pictures")
@@ -983,7 +1021,7 @@ namespace Animalgram.Data.Migrations
                         .WithMany("Pictures")
                         .HasForeignKey("PostId");
 
-                    b.HasOne("Aniverse.Core.Entites.Product", null)
+                    b.HasOne("Aniverse.Core.Entites.Product", "Product")
                         .WithMany("Pictures")
                         .HasForeignKey("ProductId");
 
@@ -996,7 +1034,8 @@ namespace Animalgram.Data.Migrations
                 {
                     b.HasOne("Aniverse.Core.Entites.Animal", "Animal")
                         .WithMany("Posts")
-                        .HasForeignKey("AnimalId");
+                        .HasForeignKey("AnimalId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Aniverse.Core.Entites.Group", null)
                         .WithMany("Posts")
@@ -1016,6 +1055,12 @@ namespace Animalgram.Data.Migrations
                     b.HasOne("Aniverse.Core.Entites.ProductCategory", "Category")
                         .WithMany("Products")
                         .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Aniverse.Core.Entities.Page", "Page")
+                        .WithMany("Products")
+                        .HasForeignKey("PageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1059,8 +1104,8 @@ namespace Animalgram.Data.Migrations
             modelBuilder.Entity("Aniverse.Core.Entities.PageFollow", b =>
                 {
                     b.HasOne("Aniverse.Core.Entities.Page", "Page")
-                        .WithOne("PageFollow")
-                        .HasForeignKey("Aniverse.Core.Entities.PageFollow", "PageId")
+                        .WithMany("PageFollow")
+                        .HasForeignKey("PageId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1082,6 +1127,19 @@ namespace Animalgram.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Aniverse.Core.Entities.SaveProduct", b =>
+                {
+                    b.HasOne("Aniverse.Core.Entites.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Aniverse.Core.Entites.AppUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

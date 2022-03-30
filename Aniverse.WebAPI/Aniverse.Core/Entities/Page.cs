@@ -15,7 +15,8 @@ namespace Aniverse.Core.Entities
         public bool IsOfficial { get; set; }
         public string UserId { get; set; }
         public AppUser User { get; set; }
-        public PageFollow PageFollow { get; set; }
+        public List<PageFollow> PageFollow { get; set; }
+        public ICollection<Product> Products { get; set; } 
         public DateTime CreationDate { get; set; }
         public ICollection<Picture> Pictures { get; set; }
         public ICollection<Post> Posts { get; set; }

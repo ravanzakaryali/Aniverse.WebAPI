@@ -1,4 +1,5 @@
-﻿using Aniverse.Business.DTO_s.Picture;
+﻿using Aniverse.Business.DTO_s.Page;
+using Aniverse.Business.DTO_s.Picture;
 using Aniverse.Business.DTO_s.User;
 using Aniverse.Core.Entites;
 using Microsoft.AspNetCore.Http;
@@ -21,5 +22,6 @@ namespace Aniverse.Business.Interface
         Task<List<GetPictureDto>> GetPhotos(string username, HttpRequest request, int page, int size);
         Task<List<GetPictureDto>> GetUserPhotos(string username, HttpRequest request, int page, int size);
         Task<List<UserAllDto>> SearchAsync(string search);
+        Task<List<PageGetDto>> GetUserPages(string id, HttpRequest request);
     }
 }

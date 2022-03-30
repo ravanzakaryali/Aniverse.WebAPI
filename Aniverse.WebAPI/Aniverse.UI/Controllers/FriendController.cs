@@ -36,11 +36,12 @@ namespace Aniverse.UI.Controllers
             }
         }
         [HttpGet("request")]
-        public async Task<ActionResult<List<UserGetDto>>> GetFriendRequestAsync()
+        public async Task<ActionResult<List<UserGetDto>>> GetFriendRequestAsync([FromQuery] int page, [FromQuery] int size)
         {
             try
             {
-                return Ok(await _unitOfWorkService.FriendService.GetUserFriendRequestAsync());
+                var request = HttpContext.Request;
+                return Ok(await _unitOfWorkService.FriendService.GetUserFriendRequestAsync(page,size,request));
             }
             catch (Exception ex)
             {

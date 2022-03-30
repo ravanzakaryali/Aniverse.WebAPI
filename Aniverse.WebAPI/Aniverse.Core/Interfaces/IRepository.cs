@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Aniverse.Core.Interfaces
 {
+
     public interface IRepository<TEntity>
     {
         Task<List<TEntity>> GetAllAsync(Expression<Func<TEntity, bool>> exp = null, params string[] includes);

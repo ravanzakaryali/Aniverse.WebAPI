@@ -8,7 +8,10 @@ namespace Aniverse.Data.Configuration
     {
         public void Configure(EntityTypeBuilder<Picture> builder)
         {
-            builder.Ignore(p=>p.ImageFile);
+            builder.Ignore(p => p.ImageFile);
+            builder.HasOne(p => p.Animal).WithMany(b => b.Pictures)
+                   .HasForeignKey(p => p.AnimalId)
+                   .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

@@ -19,6 +19,9 @@ namespace Aniverse.Core
         ISavePostRepository SavePostRepository { get; }
         IPageRepository PageRepository { get; }
         IPageFollowRepository PageFollowRepository { get; }
+        IProductRepository ProductRepository { get; }
+        IProductCategoryRepository ProductCategoryRepository { get; }
+        ISaveProductRepository SaveProductRepository { get; }
         Task SaveAsync();
     }
 }

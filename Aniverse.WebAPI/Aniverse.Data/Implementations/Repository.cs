@@ -28,11 +28,12 @@ namespace Aniverse.Data.Implementations
 
         public async Task<List<TEntity>> GetAllPaginateAsync<TOrderBy>(int page, int size, Expression<Func<TEntity,
               TOrderBy>> orderBy, Expression<Func<TEntity, bool>> exp = null ,params string[] includes)
+        
         {
             var query = GetQuery(includes);
             return exp is null
-                ? await query.Skip((page - 1) * size).Take(size).OrderByDescending(orderBy).ToListAsync()
-                : await query.Where(exp).Skip((page - 1) * size).OrderByDescending(orderBy).Take(size).ToListAsync();
+                ? await query.OrderByDescending(orderBy).Skip((page - 1) * size).Take(size).ToListAsync()
+                : await query.Where(exp).OrderByDescending(orderBy).Skip((page - 1) * size).Take(size).ToListAsync();
         }
 
         public async Task<TEntity> GetAsync(Expression<Func<TEntity, bool>> exp = null, params string[] includes)

@@ -7,7 +7,7 @@ namespace Aniverse.Business.Validator.Story
     {
         public StoryCreateValidation()
         {
-            RuleFor(s=>s.StoryFile).NotEmpty();
+            RuleFor(s=>s.StoryFile).NotEmpty().NotNull();
         }
     }
 }

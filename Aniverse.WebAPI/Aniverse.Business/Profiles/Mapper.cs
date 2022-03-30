@@ -5,6 +5,7 @@ using Aniverse.Business.DTO_s.Page;
 using Aniverse.Business.DTO_s.Picture;
 using Aniverse.Business.DTO_s.Post;
 using Aniverse.Business.DTO_s.Post.Like;
+using Aniverse.Business.DTO_s.Product;
 using Aniverse.Business.DTO_s.Story;
 using Aniverse.Business.DTO_s.User;
 using Aniverse.Core.Entites;
@@ -39,7 +40,12 @@ namespace Aniverse.Business.Profiles
             CreateMap<Animal, AnimalSelectGetDto>();
             CreateMap<AnimalUpdateDto, Animal>();
             CreateMap<Page, PageGetDto>();
-
+            CreateMap<PageCreateDto, Page>();
+            CreateMap<Post, PostPageGetDto>();
+            CreateMap<ProductCategory, ProductCategoryGetDto>();
+            CreateMap<ProductImageDto, Picture>();
+            CreateMap<ProductCreateDto, Product>();
+            CreateMap<Product, ProductGetDto>();
         }
     }
 }

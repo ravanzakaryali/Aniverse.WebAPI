@@ -36,12 +36,12 @@ namespace Aniverse.UI.Controllers
             }
         }
         [HttpGet("{id}")]
-        public async Task<ActionResult<List<PostGetDto>>> GetAsync(string id)
+        public async Task<ActionResult<List<PostGetDto>>> GetAsync(string id, [FromQuery] int page, [FromQuery] int size)
         {
             try
             {
                 var request = HttpContext.Request;
-                return Ok(await _unitOfWorkService.PostService.GetAsync(id, request));
+                return Ok(await _unitOfWorkService.PostService.GetAsync(id,page,size, request));
             }
             catch (Exception ex)
             {
@@ -63,12 +63,12 @@ namespace Aniverse.UI.Controllers
 
         }
         [HttpPost]
-        public async Task<ActionResult> CreateAsync([FromForm] PostCreateDto postCreate)
+        public async Task<ActionResult<PostGetDto>> CreateAsync([FromForm] PostCreateDto postCreate)
         {
             try
             {
-                await _unitOfWorkService.PostService.CreateAsync(postCreate);
-                return StatusCode(StatusCodes.Status204NoContent, new Response { Status = "Successs", Message = "Post successfully posted" });
+                var request = HttpContext.Request;
+                return Ok(await _unitOfWorkService.PostService.CreateAsync(request,postCreate));
             }
             catch (Exception ex)
             {
@@ -76,12 +76,11 @@ namespace Aniverse.UI.Controllers
             }
         }
         [HttpPost("like")]
-        public async Task<ActionResult> LikeCreateAsync([FromBody] LikeCreateDto likeCreate)
+        public async Task<ActionResult<string>> LikeCreateAsync([FromBody] LikeCreateDto likeCreate)
         {
             try
             {
-                await _unitOfWorkService.LikeService.CreateAsync(likeCreate);
-                return StatusCode(StatusCodes.Status204NoContent, new Response { Status = "Successs", Message = "Like successfully" });
+                return Ok(await _unitOfWorkService.LikeService.CreateAsync(likeCreate));
             }
             catch (Exception ex)
             {
@@ -102,7 +101,7 @@ namespace Aniverse.UI.Controllers
             }
         }
         [HttpPut("update/{id}")]
-        public async Task<ActionResult> PostUpdateAsync(int id, PostCreateDto postCreate)
+        public async Task<ActionResult> PostUpdateAsync(int id, PostUpdateDto postCreate)
         {
             try
             {
@@ -186,6 +185,19 @@ namespace Aniverse.UI.Controllers
             {
                 var request = HttpContext.Request;
                 return Ok(await _unitOfWorkService.PostService.GetAllSave(request, page, size));
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(StatusCodes.Status502BadGateway, new Response { Status = "Error", Message = ex.Message });
+            }
+        }
+        [HttpPatch("restore/{id}")]
+        public async Task<ActionResult> PostRestoreAsync(int id)
+        {
+            try
+            {
+                await _unitOfWorkService.PostService.PostReduceAsync(id);
+                return StatusCode(StatusCodes.Status204NoContent, new Response { Status = "Successs", Message = "Success" });
             }
             catch (Exception ex)
             {

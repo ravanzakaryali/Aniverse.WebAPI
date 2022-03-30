@@ -24,7 +24,7 @@ namespace Aniverse.Business.Implementations
             _mapper = mapper;
             _httpContextAccessor = httpContextAccessor;
         }
-        public async Task CreateAsync(LikeCreateDto likeCreate)
+        public async Task<string> CreateAsync(LikeCreateDto likeCreate)
         {
             var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
             likeCreate.UserId = userLoginId;
@@ -38,6 +38,7 @@ namespace Aniverse.Business.Implementations
                 _unitOfWork.LikeRepository.Delete(like);
             }
             await _unitOfWork.SaveAsync();
+            return userLoginId;
         }
     }
 }

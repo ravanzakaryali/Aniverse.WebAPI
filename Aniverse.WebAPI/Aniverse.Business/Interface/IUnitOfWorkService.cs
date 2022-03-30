@@ -11,5 +11,6 @@
         IStoryService StoryService { get; }
         ILikeService LikeService { get; }
         IPageService PageService { get; }
+        IProductService ProductService { get; }
     }
 }

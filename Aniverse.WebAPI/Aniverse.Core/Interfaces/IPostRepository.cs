@@ -6,5 +6,6 @@ namespace Aniverse.Core.Interfaces
 {
     public interface IPostRepository : IRepository<Post>
     {
+        Task<Post> CreatePost(Post post);
     }
 }

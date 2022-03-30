@@ -21,12 +21,12 @@ namespace Aniverse.UI.Controllers
             _unitOfWorkService = unitOfWorkService;
         }
         [HttpPost]
-        public async Task<ActionResult> Create([FromBody] CommentCreateDto commentCreate)
+        public async Task<ActionResult<CommentGetDto>> Create([FromBody] CommentCreateDto commentCreate)
         {
             try
             {
-                await _unitOfWorkService.CommentService.CreateAsync(commentCreate);
-                return StatusCode(StatusCodes.Status204NoContent, new Response { Status = "Successs", Message = "Comment create successfully" });
+                var request = HttpContext.Request;
+                return Ok(await _unitOfWorkService.CommentService.CreateAsync(commentCreate, request));
             }
             catch (Exception ex)
             {

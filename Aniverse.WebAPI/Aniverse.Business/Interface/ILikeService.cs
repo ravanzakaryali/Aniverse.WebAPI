@@ -6,6 +6,6 @@ namespace Aniverse.Business.Interface
 {
     public interface ILikeService
     {
-        Task CreateAsync(LikeCreateDto likeCreate);
+        Task<string> CreateAsync(LikeCreateDto likeCreate);
     }
 }

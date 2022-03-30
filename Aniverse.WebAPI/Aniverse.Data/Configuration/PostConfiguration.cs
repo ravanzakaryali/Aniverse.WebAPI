@@ -13,6 +13,9 @@ namespace Aniverse.Data.Configuration
         {
             builder.Property(p=>p.CreationDate).HasDefaultValueSql("GETDATE()");
             builder.Property(p=>p.Content).IsRequired();
+            builder.HasOne(p => p.Animal).WithMany(b => b.Posts)
+                  .HasForeignKey(p => p.AnimalId)
+                  .OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

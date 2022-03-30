@@ -1,6 +1,7 @@
 ﻿using Aniverse.Business.DTO_s.Animal;
 using Aniverse.Business.DTO_s.Picture;
 using Aniverse.Business.DTO_s.Post;
+using Aniverse.Business.DTO_s.User;
 using Microsoft.AspNetCore.Http;
 using System.Collections.Generic;
 using System.Security.Claims;
@@ -15,7 +16,7 @@ namespace Aniverse.Business.Interface
         Task<List<AnimalAllDto>> GetFriendAnimals(HttpRequest request,string username, int page, int size);
         Task<List<AnimalAllDto>> GetAnimalUserAsync(string username,HttpRequest request);
         Task<List<PostGetDto>> GetAnimalPosts(string animalname, HttpRequest request);
-        Task FollowCreate(int id,FollowDto follow);
+        Task<UserGetDto> FollowCreate(int id,FollowDto follow);
         Task<List<AnimalGetCategory>> GetAnimalCategory();
         Task AnimalCreateAsync(AnimalCreateDto animalCreate);
         Task<List<AnimalSelectGetDto>> SelectAnimal();
@@ -24,5 +25,6 @@ namespace Aniverse.Business.Interface
         Task<List<GetPictureDto>> GetAnimalPhotos(string animalname, HttpRequest request, int page, int size);
         Task ChangeCoverPicture(int id, AnimalPictureChangeDto cover);
         Task ChangeProfilePicture(int id, AnimalPictureChangeDto profile);
+        Task DeleteAnimalAsync(int id);
     }
 }
