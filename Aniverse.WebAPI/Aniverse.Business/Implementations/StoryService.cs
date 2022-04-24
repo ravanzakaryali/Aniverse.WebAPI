@@ -1,6 +1,7 @@
 ﻿using Aniverse.Business.DTO_s.Story;
 using Aniverse.Business.Exceptions;
 using Aniverse.Business.Exceptions.DateTimeExceptions;
+using Aniverse.Business.Exceptions.FileExceptions;
 using Aniverse.Business.Extensions;
 using Aniverse.Business.Helpers;
 using Aniverse.Business.Interface;
@@ -37,6 +38,10 @@ namespace Aniverse.Business.Implementations
             storyCreate.UserId = userLoginId;
             if (!await _unitOfWork.StoryRepository.OneStoryPerDay(userLoginId))
                 throw new OneStoryPerDayException("It is possible to share one story a day.");
+            if (!storyCreate.StoryFile.CheckFileSize(10000))
+                throw new FileTypeException("File max size 100 mb");
+            if (!storyCreate.StoryFile.CheckFileType("image/"))
+                throw new FileSizeException("File type must be image");
             storyCreate.StoryFileName = await storyCreate.StoryFile.FileSaveAsync(_hostEnvironment.ContentRootPath, "Images");
             var story = await _unitOfWork.StoryRepository.CreateStory(_mapper.Map<Story>(storyCreate));
             await _unitOfWork.SaveAsync();

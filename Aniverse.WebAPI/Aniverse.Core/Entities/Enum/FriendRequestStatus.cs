@@ -9,6 +9,7 @@ namespace Aniverse.Core.Entites.Enum
         Pending, 
         Accepted,
         Declined,
-        Blocked
+        Blocked,
+        NotFriend
     }
 }

@@ -38,9 +38,9 @@ namespace Aniverse.Business.Implementations
         {
             string userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
             AppUser user = await _unitOfWork.UserRepository.GetAsync(u => u.Id == userLoginId);
-            if(user is null)
+            if (user is null)
             {
-                throw new NotFoundException("User is not found");   
+                throw new NotFoundException("User is not found");
             }
             bioChange.ApplyTo(user);
             await _unitOfWork.SaveAsync();
@@ -49,13 +49,13 @@ namespace Aniverse.Business.Implementations
         public async Task<List<UserAllDto>> GetAllAsync(HttpRequest request)
         {
             var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
-            var friends = await _unitOfWork.FriendRepository.GetAllAsync(f=>f.UserId == userLoginId || f.FriendId== userLoginId);
-            if(friends is null)
+            var friends = await _unitOfWork.FriendRepository.GetAllAsync(f => f.UserId == userLoginId || f.FriendId == userLoginId);
+            if (friends is null)
             {
                 throw new NotFoundException("Friends is not found");
             }
-            var friendIds = friends.Select(f=>f.FriendId);
-            var userIds = friends.Select(f=>f.UserId);
+            var friendIds = friends.Select(f => f.FriendId);
+            var userIds = friends.Select(f => f.UserId);
             var users = _mapper.Map<List<UserAllDto>>(await _unitOfWork.UserRepository.GetAllAsync(u => !friendIds.Contains(u.Id) && !userIds.Contains(u.Id) && u.Id != userLoginId));
             var returnUserIds = users.Select(u => u.Id);
             var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => returnUserIds.Contains(p.UserId));
@@ -72,6 +72,7 @@ namespace Aniverse.Business.Implementations
         }
         public async Task<UserGetDto> GetAsync(string id, HttpRequest request)
         {
+            string userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
             var user = _mapper.Map<UserGetDto>(await _unitOfWork.UserRepository.GetAsync(u => u.UserName == id));
             user.FriendCount = await _unitOfWork.FriendRepository.GetTotalCountAsync(u => (u.UserId == user.Id || u.FriendId == user.Id) && u.Status == FriendRequestStatus.Accepted);
             var picture = await _unitOfWork.PictureRepository.GetAsync(p => p.User.UserName == id && p.IsProfilePicture == true);
@@ -142,9 +143,9 @@ namespace Aniverse.Business.Implementations
         }
         public async Task<List<UserGetDto>> GetBlcokUsersAsync()
         {
-            var userLoginId  = _httpContextAccessor.HttpContext.User.GetUserId();
+            var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
             var frineds = await _unitOfWork.FriendRepository.GetAllAsync(u => u.UserId == userLoginId && u.Status == FriendRequestStatus.Blocked, "Friend");
-            if(frineds is null)
+            if (frineds is null)
             {
                 throw new NotFoundException("Friend is not found");
             }
@@ -153,7 +154,7 @@ namespace Aniverse.Business.Implementations
         }
         public async Task<List<GetPictureDto>> GetPhotos(string username, HttpRequest request, int page = 1, int size = 1)
         {
-            var photos = await _unitOfWork.PictureRepository.GetAllPaginateAsync(page, size,p=>p.Id ,p => p.User.UserName == username);
+            var photos = await _unitOfWork.PictureRepository.GetAllPaginateAsync(page, size, p => p.Id, p => p.User.UserName == username);
             var photosMap = _mapper.Map<List<GetPictureDto>>(photos);
 
             for (int i = 0; i < photosMap.Count; i++)
@@ -163,9 +164,9 @@ namespace Aniverse.Business.Implementations
             }
             return photosMap;
         }
-        public async Task<List<GetPictureDto>> GetUserPhotos(string username, HttpRequest request, int page=1,int size = 1)
+        public async Task<List<GetPictureDto>> GetUserPhotos(string username, HttpRequest request, int page = 1, int size = 1)
         {
-            var photos = await _unitOfWork.PictureRepository.GetAllPaginateAsync(page, size,p=>p.Id ,p => p.User.UserName == username && p.AnimalId == null && p.PageId == null);
+            var photos = await _unitOfWork.PictureRepository.GetAllPaginateAsync(page, size, p => p.Id, p => p.User.UserName == username && p.AnimalId == null && p.PageId == null);
             var photosMap = _mapper.Map<List<GetPictureDto>>(photos);
 
             for (int i = 0; i < photosMap.Count; i++)
@@ -178,11 +179,11 @@ namespace Aniverse.Business.Implementations
         public async Task<List<UserAllDto>> SearchAsync(string search)
         {
             return _mapper.Map<List<UserAllDto>>(await _unitOfWork.UserRepository.GetAllAsync(u => u.UserName.Contains(search) || u.Firstname.Contains(search) || u.Lastname.Contains(search)));
-        } 
+        }
         public async Task<List<PageGetDto>> GetUserPages(string id, HttpRequest request)
         {
-            var pages = _mapper.Map<List<PageGetDto>>(await _unitOfWork.PageRepository.GetAllAsync(p=>p.UserId == id, "PageFollow"));
-            var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p=>p.IsPageProfilePicture, "Page");
+            var pages = _mapper.Map<List<PageGetDto>>(await _unitOfWork.PageRepository.GetAllAsync(p => p.UserId == id, "PageFollow"));
+            var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => p.IsPageProfilePicture, "Page");
             foreach (var picture in pictures)
             {
                 picture.ImageName = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{picture.ImageName}");

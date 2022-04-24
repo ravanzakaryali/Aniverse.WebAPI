@@ -13,7 +13,7 @@ namespace Aniverse.Business.Interface
         Task<ProductGetDto> ProductCreateAsync(ProductCreateDto productCreate, HttpRequest request);
         Task<List<ProductGetDto>> GetProductsAsync(int id,int page,int size ,HttpRequest request);
         Task<List<ProductGetDto>> GetAllAsync(int page, int size, HttpRequest request);
-        Task<List<ProductGetDto>> GetUserSaveProducts(string id, HttpRequest request);
+        Task<List<ProductGetDto>> GetUserSaveProducts(int page, int size, HttpRequest request);
         Task SaveProductAsync(int id);
         Task UnSaveProductAsync(int id);
     }

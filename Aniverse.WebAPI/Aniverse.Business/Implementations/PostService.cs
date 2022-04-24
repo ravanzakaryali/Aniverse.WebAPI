@@ -75,7 +75,7 @@ namespace Aniverse.Business.Implementations
             var posts = await _unitOfWork.PostRepository.GetAllPaginateAsync(page, size, p => p.CreationDate, p => !p.IsDelete && !p.IsArchive && p.PageId == null, "User", "Likes", "Animal");
             var postsIds = posts.Select(f => f.Id);
             var userIds = posts.Select(p => p.UserId);
-            var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => posts.Contains(p.Post) || userIds.Contains(p.UserId));
+            var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => posts.Contains(p.Post) || userIds.Contains(p.UserId) || p.IsProfilePicture);
             PictureDbName(pictures, request);
             var postMap = _mapper.Map<List<PostGetDto>>(posts);
             var comments = _mapper.Map<List<CommentGetDto>>(await _unitOfWork.CommentRepository.GetAllAsync(c => postsIds.Contains(c.PostId), "User"));
@@ -91,7 +91,7 @@ namespace Aniverse.Business.Implementations
             var posts = await _unitOfWork.PostRepository.GetAllPaginateAsync(page,size,p=>p.CreationDate,p => p.User.UserName == id && !p.IsArchive && !p.IsDelete && p.PageId == null, "User", "Likes","Animal");
             var postsIds = posts.Select(f => f.Id);
             var userIds = posts.Select(p => p.UserId);
-            var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => posts.Contains(p.Post) || userIds.Contains(p.UserId));
+            var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => posts.Contains(p.Post) || userIds.Contains(p.UserId) || p.IsProfilePicture);
             PictureDbName(pictures, request);
             var postMap = _mapper.Map<List<PostGetDto>>(posts);
             var comments = _mapper.Map<List<CommentGetDto>>(await _unitOfWork.CommentRepository.GetAllAsync(c => postsIds.Contains(c.PostId), "User"));
@@ -104,14 +104,14 @@ namespace Aniverse.Business.Implementations
         public async Task<List<PostGetDto>> GetAnimalPosts(string animalname, HttpRequest request)
         {
             var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
-            var animalPost = await _unitOfWork.PostRepository.GetAllAsync(p => p.Animal.Animalname == animalname && p.PageId == null, "User", "Likes", "Comments", "Comments.User", "Animal");
+            var animalPost = await _unitOfWork.PostRepository.GetAllAsync(p => p.Animal.Animalname == animalname && !p.IsArchive && !p.IsDelete && p.PageId == null, "User", "Likes", "Comments", "Comments.User", "Animal");
             if (animalPost is null)
             {
                 throw new NotFoundException("Animal post not found");
             }
             var postsIds = animalPost.Select(f => f.Id);
             var userIds = animalPost.Select(p => p.UserId);
-            var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => animalPost.Contains(p.Post) || userIds.Contains(p.UserId));
+            var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => animalPost.Contains(p.Post) || userIds.Contains(p.UserId) || p.IsProfilePicture);
             PictureDbName(pictures, request);
             var postMap = _mapper.Map<List<PostGetDto>>(animalPost);
             var comments = _mapper.Map<List<CommentGetDto>>(await _unitOfWork.CommentRepository.GetAllAsync(c => postsIds.Contains(c.PostId), "User"));
@@ -130,7 +130,7 @@ namespace Aniverse.Business.Implementations
                 throw new NotFoundException("Post is not found");
             }
             var postsIds = posts.Select(f => f.Id);
-            var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => posts.Contains(p.Post) || p.UserId == userLoginId);
+            var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => posts.Contains(p.Post) || p.UserId == userLoginId || p.IsProfilePicture);
             PictureDbName(pictures, request);
             var postMap = _mapper.Map<List<PostGetDto>>(posts);
             var comments = _mapper.Map<List<CommentGetDto>>(await _unitOfWork.CommentRepository.GetAllAsync(c => postsIds.Contains(c.PostId), "User"));
@@ -150,7 +150,7 @@ namespace Aniverse.Business.Implementations
                 throw new NotFoundException("Animal post not found");
             }
             var postIds = posts.Select(f => f.Id);
-            var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => posts.Contains(p.Post) || p.UserId == userLoginId);
+            var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => posts.Contains(p.Post) || p.UserId == userLoginId || p.IsProfilePicture);
             PictureDbName(pictures, request);
             var postMap = _mapper.Map<List<PostGetDto>>(posts);
             var comments = _mapper.Map<List<CommentGetDto>>(await _unitOfWork.CommentRepository.GetAllAsync(c => postIds.Contains(c.PostId), "User"));
@@ -200,10 +200,10 @@ namespace Aniverse.Business.Implementations
                                                                             p => !p.IsArchive && 
                                                                             !p.IsDelete && 
                                                                             p.PageId == null &&(friendsId.Contains(p.UserId) ||
-                                                                            userIds.Contains(p.UserId)) || (p.UserId == userLoginId && p.PageId == null), 
+                                                                            userIds.Contains(p.UserId)) || (p.UserId == userLoginId && p.PageId == null && !p.IsArchive && !p.IsDelete), 
                                                                             "User", "Likes", "Animal");
             var postsIds = posts.Select(f => f.Id);
-            var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => posts.Contains(p.Post) || userIds.Contains(p.UserId) || friendsId.Contains(p.UserId) || p.UserId == userLoginId);
+            var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => posts.Contains(p.Post) || userIds.Contains(p.UserId) || friendsId.Contains(p.UserId) || p.IsProfilePicture);
             PictureDbName(pictures, request);
             var postMap = _mapper.Map<List<PostGetDto>>(posts);
             var comments = _mapper.Map<List<CommentGetDto>>(await _unitOfWork.CommentRepository.GetAllAsync(c => postsIds.Contains(c.PostId), "User"));

@@ -44,7 +44,8 @@ namespace Aniverse.UI.Controllers
                 Email = register.Email,
                 UserName = register.Username,
                 Gender = register.Gender,
-                Address = register.Address
+                Address = register.Address,
+                Birthday = register.Birthday
             };
             IdentityResult result = await _userManager.CreateAsync(user, register.Password);
             if (!result.Succeeded)

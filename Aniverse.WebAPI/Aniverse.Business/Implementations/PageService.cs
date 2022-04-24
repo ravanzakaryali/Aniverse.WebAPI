@@ -72,7 +72,7 @@ namespace Aniverse.Business.Implementations
 
         public async Task<PageGetDto> GetPageAsync(string pagename, HttpRequest request)
         {
-            var pageMap = _mapper.Map<PageGetDto>(await _unitOfWork.PageRepository.GetAsync(p => p.Name == pagename, "PageFollow"));
+            var pageMap = _mapper.Map<PageGetDto>(await _unitOfWork.PageRepository.GetAsync(p => p.Pagename == pagename, "PageFollow"));
             var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => p.Page.Pagename == pagename && (p.IsPageProfilePicture || p.IsPageCoverPicture));
             foreach (var picture in pictures)
             {
@@ -108,7 +108,7 @@ namespace Aniverse.Business.Implementations
             var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
             var posts = await _unitOfWork.PostRepository.GetAllPaginateAsync(page, size, p => p.CreationDate, p => p.Page.Pagename == pagename, "User", "Likes", "Page", "Comments", "Comments.User");
             var postIds = posts.Select(f => f.Id);
-            var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => posts.Contains(p.Post) || p.Page.Pagename == pagename || p.UserId == userLoginId);
+            var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => posts.Contains(p.Post) || p.Page.Pagename == pagename || p.IsProfilePicture);
             PictureDbName(pictures, request);
             var postMap = _mapper.Map<List<PostPageGetDto>>(posts);
             var comments = _mapper.Map<List<CommentGetDto>>(await _unitOfWork.CommentRepository.GetAllAsync(c => postIds.Contains(c.PostId), "User"));
@@ -217,7 +217,7 @@ namespace Aniverse.Business.Implementations
         {
             var pageFollow = await _unitOfWork.PageFollowRepository.GetAllAsync(p => p.UserId == id);
             var pageIds = pageFollow.Select(p => p.PageId).ToList();
-            var pages = _mapper.Map<List<PageGetDto>>(await _unitOfWork.PageRepository.GetAllAsync(p => pageIds.Contains(p.Id)));
+            var pages = _mapper.Map<List<PageGetDto>>(await _unitOfWork.PageRepository.GetAllAsync(p => pageIds.Contains(p.Id), "PageFollow"));
             var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => pageIds.Contains((int)p.PageId) && p.IsPageProfilePicture);
             foreach (var picture in pictures)
             {

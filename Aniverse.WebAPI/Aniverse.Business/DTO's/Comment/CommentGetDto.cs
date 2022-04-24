@@ -9,6 +9,7 @@ namespace Aniverse.Business.DTO_s.Comment
     {
         public int Id { get; set; }
         public string Content { get; set; }
+        public int CommentId { get; set; }
         public DateTime SenderDate { get; set; }
         public int PostId { get; set; }
         public bool IsModified { get; set; }

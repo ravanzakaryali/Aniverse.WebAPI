@@ -22,8 +22,8 @@ namespace Aniverse.Business.Implementations
 
         public readonly IUnitOfWork _unitOfWork;
         public readonly IMapper _mapper;
-        public readonly IHttpContextAccessor _httpContextAccessor;
         public readonly IHostEnvironment _hostEnvironment;
+        public readonly IHttpContextAccessor _httpContextAccessor;
 
         public ProductService(IUnitOfWork unitOfWork, IMapper mapper,IHostEnvironment hostEnvironment ,IHttpContextAccessor httpContextAccessor)
         {
@@ -70,20 +70,28 @@ namespace Aniverse.Business.Implementations
         }
         public async Task<List<ProductGetDto>> GetProductsAsync(int id, int page, int size, HttpRequest request)
         {
+            var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
             var products = await _unitOfWork.ProductRepository.GetAllPaginateAsync(page, size, p => p.CreationDate, p => p.PageId == id,"Pictures");
             var productsId = products.Select(p => p.Id);
             var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => p.PageId == id && productsId.Contains((int)p.ProductId));
             PictureDbName(pictures, request);
             var productsMap = _mapper.Map<List<ProductGetDto>>(products);
+            var productSave = await _unitOfWork.SaveProductRepository.GetAllAsync(s=>s.UserId == userLoginId);
+            var productSaveIds = productSave.Select(p => p.ProductId);
+            ProductSaveIds(productsMap, productSaveIds);
             return productsMap;
         } 
         public async Task<List<ProductGetDto>> GetAllAsync(int page, int size, HttpRequest request)
         {
+            var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
             var products = await _unitOfWork.ProductRepository.GetAllPaginateAsync(page, size, p => p.CreationDate, null, "Pictures");
             var productsId = products.Select(p => p.Id);
             var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => productsId.Contains((int)p.ProductId));
             PictureDbName(pictures, request);
             var productsMap = _mapper.Map<List<ProductGetDto>>(products);
+            var productSave = await _unitOfWork.SaveProductRepository.GetAllAsync(s => s.UserId == userLoginId);
+            var productSaveIds = productSave.Select(p => p.ProductId);
+            ProductSaveIds(productsMap, productSaveIds);
             return productsMap;
         }
         public async Task SaveProductAsync(int id)
@@ -109,17 +117,19 @@ namespace Aniverse.Business.Implementations
             _unitOfWork.SaveProductRepository.Delete(saveProduct);
             await _unitOfWork.SaveAsync();
         }
-        public async Task<List<ProductGetDto>> GetUserSaveProducts(string id, HttpRequest request)
+        public async Task<List<ProductGetDto>> GetUserSaveProducts(int page, int size, HttpRequest request)
         {
-            var user = await _unitOfWork.UserRepository.GetAsync(u => u.Id == id);
-            if(user is null)
-                throw new NotFoundException("User is not found");
-            var saveProduct = await _unitOfWork.SaveProductRepository.GetAllAsync(s => s.UserId == id, "Product", "Product.Pictures");
+            var userLoginId = _httpContextAccessor.HttpContext.User.GetUserId();
+            var saveProduct = await _unitOfWork.SaveProductRepository.GetAllPaginateAsync(page,size,s=>s.SaveAddDate,s => s.UserId == userLoginId, "Product", "Product.Pictures");
             var products = saveProduct.Select(p => p.Product);
             var productsId = saveProduct.Select(p => p.ProductId);
             var pictures = await _unitOfWork.PictureRepository.GetAllAsync(p => productsId.Contains((int)p.ProductId));
             PictureDbName(pictures, request);
-            return _mapper.Map<List<ProductGetDto>>(products);
+            var productsMap = _mapper.Map<List<ProductGetDto>>(products);
+            var productSave = await _unitOfWork.SaveProductRepository.GetAllAsync(s => s.UserId == userLoginId);
+            var productSaveIds = productSave.Select(p => p.ProductId);
+            ProductSaveIds(productsMap, productSaveIds);
+            return productsMap;
         }
         private void PictureDbName(List<Picture> pictures, HttpRequest request)
         {
@@ -128,5 +138,15 @@ namespace Aniverse.Business.Implementations
                 picture.ImageName = String.Format($"{request.Scheme}://{request.Host}{request.PathBase}/Images/{picture.ImageName}");
             }
         }
+        private void ProductSaveIds(List<ProductGetDto> productsMap, IEnumerable<int> productSaveIds)
+        {
+            foreach (var product in productsMap)
+            {
+                if (productSaveIds.Contains(product.Id))
+                {
+                    product.IsSave = true;
+                }
+            }
+        } 
     }
 }

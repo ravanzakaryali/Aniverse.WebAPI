@@ -12,6 +12,7 @@ namespace Aniverse.Business.DTO_s.Product
         public string Url { get; set; }
         public decimal Price { get; set; }
         public bool IsDeleted { get; set; }
+        public bool IsSave { get; set; }
         public DateTime CreationDate { get; set; }
         public string UserId { get; set; }
         public UserGetDto User { get; set; }

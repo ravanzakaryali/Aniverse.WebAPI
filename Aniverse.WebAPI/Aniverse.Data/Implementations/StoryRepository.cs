@@ -25,13 +25,15 @@ namespace Aniverse.Data.Implementations
 
         public async Task<bool> OneStoryPerDay(string loginUserId)
         {
-            var dateNow = DateTime.Today.DayOfYear;
-            var story = await _context.Story.Where(s=>s.UserId == loginUserId && !s.IsDeleted && !s.IsArchive).FirstOrDefaultAsync();
+            var story = await _context.Story.OrderByDescending(s=>s.CreatedDate).Where(s=>s.UserId == loginUserId && !s.IsDeleted && !s.IsArchive).FirstOrDefaultAsync();
+            var dateNow = DateTime.Today.ToString("dd");
+
             if(story is null)
             {
                 return true;
             }
-            if(story.CreatedDate.DayOfYear == dateNow)
+            var createDate = story.CreatedDate.ToString("dd");
+            if(createDate == dateNow)
             {
                 return false;
             }
