@@ -23,9 +23,5 @@
     <ProjectReference Include="..\Aniverse.Business\Aniverse.Business.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Images\" />
-  </ItemGroup>
-
 
 </Project>

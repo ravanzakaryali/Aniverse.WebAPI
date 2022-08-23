@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9DNXE00hx3cOKItNN6il/2HJP2Q5s+bFfQXWUDufY0a/riQWeKzy2YhKW41RHPagoxwRHnZJ3IPQSyr8dQdnWQ==",
+  "dgSpecHash": "8gsyvrYDJQd8HJKTl238UPi/NRvXAk4Arr33hW9YjJdoel2P676ENlUaZMwoNrlyZEFodQD5mLFO0/ZGysb55g==",
   "success": true,
-  "projectFilePath": "C:\\CodeAcademyFinalProject\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.UI\\Aniverse.UI.csproj",
+  "projectFilePath": "E:\\Aniverse.WebAPi_Final\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.UI\\Aniverse.UI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\automapper\\11.0.0\\automapper.11.0.0.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\11.0.0\\automapper.extensions.microsoft.dependencyinjection.11.0.0.nupkg.sha512",

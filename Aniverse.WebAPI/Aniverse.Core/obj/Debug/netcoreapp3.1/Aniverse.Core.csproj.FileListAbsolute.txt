@@ -24,3 +24,16 @@ C:\CodeAcademyFinalProject\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.WebAPI\Anive
 C:\CodeAcademyFinalProject\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.Core\obj\Debug\netcoreapp3.1\Aniverse.Core.dll
 C:\CodeAcademyFinalProject\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.Core\obj\Debug\netcoreapp3.1\Aniverse.Core.pdb
 C:\CodeAcademyFinalProject\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.Core\obj\Debug\netcoreapp3.1\Aniverse.Core.genruntimeconfig.cache
+E:\Aniverse.WebAPi_Final\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.Core\bin\Debug\netcoreapp3.1\Aniverse.Core.deps.json
+E:\Aniverse.WebAPi_Final\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.Core\bin\Debug\netcoreapp3.1\Aniverse.Core.runtimeconfig.json
+E:\Aniverse.WebAPi_Final\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.Core\bin\Debug\netcoreapp3.1\Aniverse.Core.runtimeconfig.dev.json
+E:\Aniverse.WebAPi_Final\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.Core\bin\Debug\netcoreapp3.1\Aniverse.Core.dll
+E:\Aniverse.WebAPi_Final\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.Core\bin\Debug\netcoreapp3.1\Aniverse.Core.pdb
+E:\Aniverse.WebAPi_Final\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.Core\obj\Debug\netcoreapp3.1\Aniverse.Core.csproj.AssemblyReference.cache
+E:\Aniverse.WebAPi_Final\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.Core\obj\Debug\netcoreapp3.1\Aniverse.Core.GeneratedMSBuildEditorConfig.editorconfig
+E:\Aniverse.WebAPi_Final\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.Core\obj\Debug\netcoreapp3.1\Aniverse.Core.AssemblyInfoInputs.cache
+E:\Aniverse.WebAPi_Final\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.Core\obj\Debug\netcoreapp3.1\Aniverse.Core.AssemblyInfo.cs
+E:\Aniverse.WebAPi_Final\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.Core\obj\Debug\netcoreapp3.1\Aniverse.Core.csproj.CoreCompileInputs.cache
+E:\Aniverse.WebAPi_Final\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.Core\obj\Debug\netcoreapp3.1\Aniverse.Core.dll
+E:\Aniverse.WebAPi_Final\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.Core\obj\Debug\netcoreapp3.1\Aniverse.Core.pdb
+E:\Aniverse.WebAPi_Final\Aniverse.WebAPI\Aniverse.WebAPI\Aniverse.Core\obj\Debug\netcoreapp3.1\Aniverse.Core.genruntimeconfig.cache

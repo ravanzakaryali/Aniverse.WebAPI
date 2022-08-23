@@ -6073,11 +6073,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\CodeAcademyFinalProject\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.Core\\Aniverse.Core.csproj",
+      "projectUniqueName": "E:\\Aniverse.WebAPi_Final\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.Core\\Aniverse.Core.csproj",
       "projectName": "Aniverse.Core",
-      "projectPath": "C:\\CodeAcademyFinalProject\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.Core\\Aniverse.Core.csproj",
+      "projectPath": "E:\\Aniverse.WebAPi_Final\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.Core\\Aniverse.Core.csproj",
       "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-      "outputPath": "C:\\CodeAcademyFinalProject\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.Core\\obj\\",
+      "outputPath": "E:\\Aniverse.WebAPi_Final\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.Core\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

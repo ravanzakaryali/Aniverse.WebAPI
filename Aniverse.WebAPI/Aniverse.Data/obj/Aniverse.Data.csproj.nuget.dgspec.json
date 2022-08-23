@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\CodeAcademyFinalProject\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.Data\\Aniverse.Data.csproj": {}
+    "E:\\Aniverse.WebAPi_Final\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.Data\\Aniverse.Data.csproj": {}
   },
   "projects": {
-    "C:\\CodeAcademyFinalProject\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.Core\\Aniverse.Core.csproj": {
+    "E:\\Aniverse.WebAPi_Final\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.Core\\Aniverse.Core.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\CodeAcademyFinalProject\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.Core\\Aniverse.Core.csproj",
+        "projectUniqueName": "E:\\Aniverse.WebAPi_Final\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.Core\\Aniverse.Core.csproj",
         "projectName": "Aniverse.Core",
-        "projectPath": "C:\\CodeAcademyFinalProject\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.Core\\Aniverse.Core.csproj",
+        "projectPath": "E:\\Aniverse.WebAPi_Final\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.Core\\Aniverse.Core.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\CodeAcademyFinalProject\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.Core\\obj\\",
+        "outputPath": "E:\\Aniverse.WebAPi_Final\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.Core\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -94,14 +94,14 @@
         }
       }
     },
-    "C:\\CodeAcademyFinalProject\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.Data\\Aniverse.Data.csproj": {
+    "E:\\Aniverse.WebAPi_Final\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.Data\\Aniverse.Data.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\CodeAcademyFinalProject\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.Data\\Aniverse.Data.csproj",
+        "projectUniqueName": "E:\\Aniverse.WebAPi_Final\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.Data\\Aniverse.Data.csproj",
         "projectName": "Aniverse.Data",
-        "projectPath": "C:\\CodeAcademyFinalProject\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.Data\\Aniverse.Data.csproj",
+        "projectPath": "E:\\Aniverse.WebAPi_Final\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.Data\\Aniverse.Data.csproj",
         "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
-        "outputPath": "C:\\CodeAcademyFinalProject\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.Data\\obj\\",
+        "outputPath": "E:\\Aniverse.WebAPi_Final\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.Data\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -122,8 +122,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\CodeAcademyFinalProject\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.Core\\Aniverse.Core.csproj": {
-                "projectPath": "C:\\CodeAcademyFinalProject\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.Core\\Aniverse.Core.csproj"
+              "E:\\Aniverse.WebAPi_Final\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.Core\\Aniverse.Core.csproj": {
+                "projectPath": "E:\\Aniverse.WebAPi_Final\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.Core\\Aniverse.Core.csproj"
               }
             }
           }

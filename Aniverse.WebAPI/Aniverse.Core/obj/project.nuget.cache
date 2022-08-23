@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "kuMgLIVaBTzFhJbTb/r1sY+FjTMhrd67k6CHEaiZmHxhVgepQswiAb2kmUiHuB25+eLE3Q/XjZxKjv5Rgv8a3Q==",
+  "dgSpecHash": "bLjp8/kEx78oh6jgzyA4GdyukLFkbrxAJuvcMOCllHIOzf1lX2cYCcp4BTA1OnZMn/96ZMFoEjlwgUfYa0t/3g==",
   "success": true,
-  "projectFilePath": "C:\\CodeAcademyFinalProject\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.Core\\Aniverse.Core.csproj",
+  "projectFilePath": "E:\\Aniverse.WebAPi_Final\\Aniverse.WebAPI\\Aniverse.WebAPI\\Aniverse.Core\\Aniverse.Core.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\fluentvalidation\\10.3.6\\fluentvalidation.10.3.6.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\fluentvalidation.aspnetcore\\10.3.6\\fluentvalidation.aspnetcore.10.3.6.nupkg.sha512",
